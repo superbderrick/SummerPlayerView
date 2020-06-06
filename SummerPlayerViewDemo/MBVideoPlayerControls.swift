@@ -386,7 +386,8 @@ class MBVideoPlayerControls: UIView {
         // play/pause button
         addSubview(playButton)
         playButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        playButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+//        playButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     private func addForwardBackwardButton() {

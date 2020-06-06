@@ -45,7 +45,6 @@ public struct MainTheme: MBTheme {
     public var playListItemsBackgroundColor: UIColor = .clear
     public var playListCurrentItemFont = UIFont.systemFont(ofSize: 17.0)
     public var playListItemsFont = UIFont.systemFont(ofSize: 12.0)
-
     public var resizeButtonImage: UIImage! = Controls.resize(.fullScreen).image
     public var playButtonImage: UIImage! = Controls.playpause(false).image
     public var pauseButtonImage: UIImage! = Controls.playpause(true).image
