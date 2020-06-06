@@ -15,7 +15,6 @@ public protocol SummerPlayerViewConfiguration {
     var canShowTime: Bool { get }
     var canShowPlayPause: Bool { get }
     var canShowTimeBar: Bool { get }
-    var canShowFullScreenBtn: Bool { get }
     var canShowForwardBack: Bool { get }
     var isShowOverlay: Bool { get set }
     var dimension: PlayerDimension { get }
@@ -27,7 +26,6 @@ public struct MainConfiguration: SummerPlayerViewConfiguration {
     public var canShowTime = true
     public var canShowPlayPause = true
     public var canShowTimeBar = true
-    public var canShowFullScreenBtn = true
     public var canShowForwardBack = true
     public var isShowOverlay: Bool = true
     public var dimension: PlayerDimension = .embed

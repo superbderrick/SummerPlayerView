@@ -20,7 +20,7 @@ open class SummerPlayerView: UIView {
     
     // MARK: - Constants
 
-    public var playerStateDidChange: ((MBVideoPlayerState)->())? = nil
+    public var playerStateDidChange: ((SummerPlayerState)->())? = nil
     
     public var playerTimeDidChange: ((TimeInterval, TimeInterval)->())? = nil
     
@@ -42,11 +42,11 @@ open class SummerPlayerView: UIView {
     
     private var playerLayer: AVPlayerLayer?
 
-    let overlayView = MBVideoPlayerControls()
+    let overlayView = SummerPlayerControls()
     
     var configuration: SummerPlayerViewConfiguration = MainConfiguration()
     
-    var theme: MBTheme = MainTheme()
+    var theme: SummerPlayerViewTheme = MainTheme()
     
     public var fullScreenView: UIView? = nil
             
@@ -69,7 +69,7 @@ open class SummerPlayerView: UIView {
     
     // MARK: - View Initializers
     
-    required public init(configuration: SummerPlayerViewConfiguration?, theme: MBTheme?, header: UIView?) {
+    required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, header: UIView?) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         if let theme = theme {
@@ -213,7 +213,7 @@ open class SummerPlayerView: UIView {
 
 // MARK: MBVideoPlayerControlsDelegate
 
-extension SummerPlayerView: MBVideoPlayerControlsDelegate {
+extension SummerPlayerView: SummerPlayerControlsDelegate {
     
     public func didLoadVideo(_ url: URL) {
         

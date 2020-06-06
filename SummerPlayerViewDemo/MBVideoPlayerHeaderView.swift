@@ -12,8 +12,8 @@ class MBVideoPlayerHeaderView: UIView {
     
     // MARK: - Instance Variables
     var configuration: SummerPlayerViewConfiguration
-    var theme: MBTheme
-    var delegate: MBVideoPlayerControlsDelegate?
+    var theme: SummerPlayerViewTheme
+    var delegate: SummerPlayerControlsDelegate?
     var item: PlayerItem?
 
     lazy private var titleLabel: UILabel = {
@@ -50,7 +50,7 @@ class MBVideoPlayerHeaderView: UIView {
     
     // MARK: - View Initializers
     
-    required init(configuration: SummerPlayerViewConfiguration, theme: MBTheme, delegate: MBVideoPlayerControlsDelegate?) {
+    required init(configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, delegate: SummerPlayerControlsDelegate?) {
         self.configuration = configuration
         self.theme = theme
         self.delegate = delegate
@@ -85,7 +85,7 @@ class MBVideoPlayerHeaderView: UIView {
         applyTheme(theme)
     }
     
-    private func applyTheme(_ theme: MBTheme) {
+    private func applyTheme(_ theme: SummerPlayerViewTheme) {
         optionsButton.setImage(theme.optionsButtonImage, for: .normal)
         optionsButton.tintColor = theme.buttonTintColor
         titleLabel.textColor = theme.playListCurrentItemTextColor

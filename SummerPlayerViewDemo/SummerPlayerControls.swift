@@ -37,12 +37,7 @@ class SummerPlayerControls: UIView {
         return forwardButton
     }()
     
-    lazy private var resizeButton: UIButton = {
-        let resizeButton = UIButton()
-        resizeButton.translatesAutoresizingMaskIntoConstraints = false
-        resizeButton.addTarget(self, action: #selector(self.resizeButtonTapped), for: .touchUpInside)
-        return resizeButton
-    }()
+
     
     lazy private var playerTimeLabel: UILabel = {
         let label = UILabel()
@@ -118,7 +113,7 @@ class SummerPlayerControls: UIView {
     /// this controls player state whether it's paused or playing
     private var isActive: Bool = false
 
-    var delegate: MBVideoPlayerControlsDelegate?
+    var delegate: SummerPlayerControlsDelegate?
     
     /// custom header which comes as a default header
     var videoPlayerHeader: MBVideoPlayerHeaderView?
@@ -193,17 +188,11 @@ class SummerPlayerControls: UIView {
         if configuration.canShowTime {
             addTotalTimeLabel()
         }
-        
-        if configuration.canShowFullScreenBtn {
-            addResizeBtn()
-        }
-        
+                
         if configuration.canShowVideoList {
             addPlayList()
         }
 
-
-        
         applyTheme(theme)
     }
     
@@ -211,14 +200,12 @@ class SummerPlayerControls: UIView {
         playButton.tintColor = theme.buttonTintColor
         forwardButton.tintColor = theme.buttonTintColor
         backButton.tintColor = theme.buttonTintColor
-        resizeButton.tintColor = theme.buttonTintColor
         fullTimeLabel.textColor = theme.timeLabelTextColor
         playerTimeLabel.textColor = theme.timeLabelTextColor
         seekSlider.tintColor = theme.sliderTintColor
         seekSlider.thumbTintColor = theme.sliderThumbColor
         activityView.color = theme.activityViewColor
         collectionView.backgroundColor = theme.playListItemsBackgroundColor
-        resizeButton.setImage(theme.resizeButtonImage, for: .normal)
         playButton.setImage((isActive ? theme.pauseButtonImage : theme.playButtonImage), for: .normal)
         forwardButton.setImage(theme.forwardButtonImage, for: .normal)
         backButton.setImage(theme.backButtonImage, for: .normal)
@@ -255,7 +242,7 @@ class SummerPlayerControls: UIView {
                     guard let `self` = self else { return }
                     if newStatus == .playing || newStatus == .paused {
                         if let player = self.delegate?.playerStateDidChange {
-                            player((self.isActive ? MBVideoPlayerState.pause : MBVideoPlayerState.playing))
+                            player((self.isActive ? SummerPlayerState.pause : SummerPlayerState.playing))
                         }
                         self.activityView.isHidden = true
                     } else {
@@ -340,13 +327,13 @@ class SummerPlayerControls: UIView {
                     }
                 }
             }
-            resizeButton.setImage(Controls.resize(configuration.dimension).image, for: .normal)
+
             configuration.dimension = .fullScreen
         case .fullScreen:
             if let leftC = leftC, let rightC = rightC, let bottomC = bottomC, let topC = topC {
                 NSLayoutConstraint.deactivate([leftC, rightC, topC, bottomC])
                 layoutIfNeeded()
-                resizeButton.setImage(Controls.resize(configuration.dimension).image, for: .normal)
+
             }
             configuration.dimension = .embed
         }
@@ -355,12 +342,7 @@ class SummerPlayerControls: UIView {
         }
     }
     
-    private func addResizeBtn() {
-        // resize button
-        bottomControlsStackView.addArrangedSubview(resizeButton)
-        resizeButton.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
-        resizeButton.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
-    }
+
     
     private func addTimeBar() {
           // seek slider

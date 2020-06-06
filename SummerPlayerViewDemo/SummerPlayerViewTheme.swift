@@ -1,14 +1,6 @@
-//
-//  MBTheme.swift
-//  MBVideoPlayer
-//
-//  Created by Muhammad Waqas on 15/12/2019.
-//  Copyright © 2019 Muhammad Waqas. All rights reserved.
-//
 
 import UIKit
 
-/// MBTheme: it controls player componenets fonts, colors and images
 
 public protocol SummerPlayerViewTheme {
     var buttonTintColor: UIColor { get }

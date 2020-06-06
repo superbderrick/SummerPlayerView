@@ -17,7 +17,7 @@ import AVKit
   - playedToTheEnd: when video is about to finished
   - error: when there is error playing video
  */
-public enum MBVideoPlayerState {
+public enum SummerPlayerState {
     case readyToPlay
     case playing
     case pause
@@ -33,9 +33,9 @@ public enum MBVideoPlayerState {
     - playerCellForItem: we can provide our custom playlist cell in this call back.
     - playerDidSelectItem: it is called when playerlist item is selected
 */
-public protocol MBVideoPlayerControlsDelegate where Self: UIView {
+public protocol SummerPlayerControlsDelegate where Self: UIView {
     
-    var playerStateDidChange: ((_ state: MBVideoPlayerState)->())? {get set}
+    var playerStateDidChange: ((_ state: SummerPlayerState)->())? {get set}
     var playerTimeDidChange: ((_ newTime: TimeInterval, _ duration: TimeInterval)->())? {get set}
     var playerOrientationDidChange: ((_ dimension: PlayerDimension) -> ())? {get set}
     var playerDidChangeSize: ((PlayerDimension) -> ())? {get set}
