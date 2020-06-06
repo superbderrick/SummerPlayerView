@@ -17,7 +17,7 @@
 		4968EF7A248BB5AB0043C5DE /* SummerPlayerView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4968EF78248BB5A60043C5DE /* SummerPlayerView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4968EF9D248BB83B0043C5DE /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF94248BB83B0043C5DE /* VideoCollectionViewCell.swift */; };
 		4968EF9E248BB83B0043C5DE /* MBVideoPlayerDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF95248BB83B0043C5DE /* MBVideoPlayerDelegates.swift */; };
-		4968EF9F248BB83B0043C5DE /* MBConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF96248BB83B0043C5DE /* MBConfiguration.swift */; };
+		4968EF9F248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF96248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift */; };
 		4968EFA0248BB83B0043C5DE /* CMTime+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF97248BB83B0043C5DE /* CMTime+extension.swift */; };
 		4968EFA1248BB83B0043C5DE /* PlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF98248BB83B0043C5DE /* PlayerItem.swift */; };
 		4968EFA2248BB83B0043C5DE /* MBTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF99248BB83B0043C5DE /* MBTheme.swift */; };
@@ -62,7 +62,7 @@
 		4968EF73248BB5A60043C5DE /* SummerPlayerView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SummerPlayerView.xcodeproj; path = SummerPlayerView/SummerPlayerView.xcodeproj; sourceTree = "<group>"; };
 		4968EF94248BB83B0043C5DE /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoCollectionViewCell.swift; path = SummerPlayerViewDemo/VideoCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		4968EF95248BB83B0043C5DE /* MBVideoPlayerDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MBVideoPlayerDelegates.swift; path = SummerPlayerViewDemo/MBVideoPlayerDelegates.swift; sourceTree = SOURCE_ROOT; };
-		4968EF96248BB83B0043C5DE /* MBConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MBConfiguration.swift; path = SummerPlayerViewDemo/MBConfiguration.swift; sourceTree = SOURCE_ROOT; };
+		4968EF96248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerPlayerViewConfiguration.swift; path = SummerPlayerViewDemo/SummerPlayerViewConfiguration.swift; sourceTree = SOURCE_ROOT; };
 		4968EF97248BB83B0043C5DE /* CMTime+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CMTime+extension.swift"; path = "SummerPlayerViewDemo/CMTime+extension.swift"; sourceTree = SOURCE_ROOT; };
 		4968EF98248BB83B0043C5DE /* PlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerItem.swift; path = SummerPlayerViewDemo/PlayerItem.swift; sourceTree = SOURCE_ROOT; };
 		4968EF99248BB83B0043C5DE /* MBTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MBTheme.swift; path = SummerPlayerViewDemo/MBTheme.swift; sourceTree = SOURCE_ROOT; };
@@ -135,7 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				4968EF97248BB83B0043C5DE /* CMTime+extension.swift */,
-				4968EF96248BB83B0043C5DE /* MBConfiguration.swift */,
+				4968EF96248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift */,
 				4968EF99248BB83B0043C5DE /* MBTheme.swift */,
 				4968EF9A248BB83B0043C5DE /* MBVideoPlayerControls.swift */,
 				4968EF95248BB83B0043C5DE /* MBVideoPlayerDelegates.swift */,
@@ -241,7 +241,7 @@
 				4968EFA5248BB83B0043C5DE /* MBVideoPlayerHeaderView.swift in Sources */,
 				4968EFA3248BB83B0043C5DE /* MBVideoPlayerControls.swift in Sources */,
 				4968EF9D248BB83B0043C5DE /* VideoCollectionViewCell.swift in Sources */,
-				4968EF9F248BB83B0043C5DE /* MBConfiguration.swift in Sources */,
+				4968EF9F248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift in Sources */,
 				4968EFA0248BB83B0043C5DE /* CMTime+extension.swift in Sources */,
 				4968EF3F248BB4CB0043C5DE /* SceneDelegate.swift in Sources */,
 				4968EFA4248BB83B0043C5DE /* SummerPlayerView.swift in Sources */,

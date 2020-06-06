@@ -162,7 +162,7 @@ class MBVideoPlayerControls: UIView {
         
     }
     
-    func createOverlayViewWith(configuration: MBConfiguration, theme: MBTheme, header: UIView?) {
+    func createOverlayViewWith(configuration: SummerPlayerViewConfiguration, theme: MBTheme, header: UIView?) {
         
         // activity indicator
         addSubview(activityView)
@@ -202,14 +202,7 @@ class MBVideoPlayerControls: UIView {
             addPlayList()
         }
 
-        if configuration.canShowHeader {
-            if header == nil {
-                videoPlayerHeader = MBVideoPlayerHeaderView(configuration: configuration, theme: theme, delegate: delegate)
-                setHeaderView(videoPlayerHeader!)
-            } else {
-                setHeaderView(header!)
-            }
-        }
+
         
         applyTheme(theme)
     }
@@ -246,6 +239,7 @@ class MBVideoPlayerControls: UIView {
         playerTimeLabel.text = CMTime.zero.description
         seekSlider.value = 0.0
         fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
+        
     }
     
     func videoDidChange(_ time: CMTime) {

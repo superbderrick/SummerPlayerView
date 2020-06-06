@@ -11,7 +11,7 @@ import UIKit
 class MBVideoPlayerHeaderView: UIView {
     
     // MARK: - Instance Variables
-    var configuration: MBConfiguration
+    var configuration: SummerPlayerViewConfiguration
     var theme: MBTheme
     var delegate: MBVideoPlayerControlsDelegate?
     var item: PlayerItem?
@@ -50,7 +50,7 @@ class MBVideoPlayerHeaderView: UIView {
     
     // MARK: - View Initializers
     
-    required init(configuration: MBConfiguration, theme: MBTheme, delegate: MBVideoPlayerControlsDelegate?) {
+    required init(configuration: SummerPlayerViewConfiguration, theme: MBTheme, delegate: MBVideoPlayerControlsDelegate?) {
         self.configuration = configuration
         self.theme = theme
         self.delegate = delegate
@@ -79,12 +79,8 @@ class MBVideoPlayerHeaderView: UIView {
         controlsStackView.pinEdges(to: self)
         controlsStackView.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
-        if configuration.canShowHeaderTitle {
-            addTitleLabel()
-        }
-        if configuration.canShowHeaderOption {
-            addOptions()
-        }
+
+
         
         applyTheme(theme)
     }
@@ -100,17 +96,7 @@ class MBVideoPlayerHeaderView: UIView {
         controlsStackView.addArrangedSubview(titleLabel)
     }
     
-    private func addOptions() {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        controlsStackView.addArrangedSubview(view)
-        view.addSubview(optionsButton)
-        optionsButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        optionsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        optionsButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        optionsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        optionsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    }
+
     
     @objc func optionsBtnPressed(_ sender: UIButton) {
         if let player = delegate?.didSelectOptions, let item = item {

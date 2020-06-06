@@ -44,7 +44,7 @@ open class SummerPlayerView: UIView {
 
     let overlayView = MBVideoPlayerControls()
     
-    var configuration: MBConfiguration = MainConfiguration()
+    var configuration: SummerPlayerViewConfiguration = MainConfiguration()
     
     var theme: MBTheme = MainTheme()
     
@@ -69,7 +69,7 @@ open class SummerPlayerView: UIView {
     
     // MARK: - View Initializers
     
-    required public init(configuration: MBConfiguration?, theme: MBTheme?, header: UIView?) {
+    required public init(configuration: SummerPlayerViewConfiguration?, theme: MBTheme?, header: UIView?) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         if let theme = theme {
@@ -105,8 +105,6 @@ open class SummerPlayerView: UIView {
     }
     
     public func setPlayList(currentItem: PlayerItem, items: [PlayerItem], fullScreenView: UIView? = nil) {
-        
-        
         
         self.fullScreenView = fullScreenView
         
@@ -223,6 +221,7 @@ extension SummerPlayerView: MBVideoPlayerControlsDelegate {
         
         let playerItem = AVPlayerItem.init(url: url)
         queuePlayer.insert(playerItem, after: nil)
+        queuePlayer.play()
         
         overlayView.videoDidStart()
         
