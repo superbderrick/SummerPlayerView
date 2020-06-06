@@ -9,18 +9,14 @@
 import Foundation
 import AVKit
 
-/**
-enum to check player type
-   - embed: used within the view as a small player
-   - fullScreen: used as a full screen player
-*/
+
 public enum PlayerDimension {
     
     case embed
     case fullScreen
 }
 
-open class MBVideoPlayerView: UIView {
+open class SummerPlayerView: UIView {
     
     // MARK: - Constants
 
@@ -110,7 +106,7 @@ open class MBVideoPlayerView: UIView {
     
     public func setPlayList(currentItem: PlayerItem, items: [PlayerItem], fullScreenView: UIView? = nil) {
         
-        //playerLayer?.frame = self.bounds
+        
         
         self.fullScreenView = fullScreenView
         
@@ -219,7 +215,7 @@ open class MBVideoPlayerView: UIView {
 
 // MARK: MBVideoPlayerControlsDelegate
 
-extension MBVideoPlayerView: MBVideoPlayerControlsDelegate {
+extension SummerPlayerView: MBVideoPlayerControlsDelegate {
     
     public func didLoadVideo(_ url: URL) {
         
@@ -227,6 +223,7 @@ extension MBVideoPlayerView: MBVideoPlayerControlsDelegate {
         
         let playerItem = AVPlayerItem.init(url: url)
         queuePlayer.insert(playerItem, after: nil)
+        
         overlayView.videoDidStart()
         
         if let player = playerStateDidChange {
@@ -246,7 +243,7 @@ extension MBVideoPlayerView: MBVideoPlayerControlsDelegate {
 
 // MARK: MBVideoPlayerControlsDelegate
 
-extension MBVideoPlayerView: UIGestureRecognizerDelegate {
+extension SummerPlayerView: UIGestureRecognizerDelegate {
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if touch.view?.classForCoder == UIButton.classForCoder() { return false }

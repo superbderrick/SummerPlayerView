@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class SummerPlayerView: UIView {
+open class SummerPlayerTempView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.

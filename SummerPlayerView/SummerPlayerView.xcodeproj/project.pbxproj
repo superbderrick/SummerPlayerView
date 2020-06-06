@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4968EF5F248BB4F00043C5DE /* SummerPlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4968EF5D248BB4F00043C5DE /* SummerPlayerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4968EF66248BB5160043C5DE /* SummerPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF65248BB5160043C5DE /* SummerPlayerView.swift */; };
+		4968EF66248BB5160043C5DE /* SummerPlayerTempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF65248BB5160043C5DE /* SummerPlayerTempView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4968EF5A248BB4F00043C5DE /* SummerPlayerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SummerPlayerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4968EF5D248BB4F00043C5DE /* SummerPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SummerPlayerView.h; sourceTree = "<group>"; };
 		4968EF5E248BB4F00043C5DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4968EF65248BB5160043C5DE /* SummerPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummerPlayerView.swift; sourceTree = "<group>"; };
+		4968EF65248BB5160043C5DE /* SummerPlayerTempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummerPlayerTempView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +50,7 @@
 			children = (
 				4968EF5D248BB4F00043C5DE /* SummerPlayerView.h */,
 				4968EF5E248BB4F00043C5DE /* Info.plist */,
-				4968EF65248BB5160043C5DE /* SummerPlayerView.swift */,
+				4968EF65248BB5160043C5DE /* SummerPlayerTempView.swift */,
 			);
 			path = SummerPlayerView;
 			sourceTree = "<group>";
@@ -135,7 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4968EF66248BB5160043C5DE /* SummerPlayerView.swift in Sources */,
+				4968EF66248BB5160043C5DE /* SummerPlayerTempView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

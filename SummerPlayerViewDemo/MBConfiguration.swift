@@ -35,7 +35,7 @@ public struct MainConfiguration: MBConfiguration {
     public var canShowHeader = true
     public var canShowHeaderTitle = true
     public var canShowHeaderOption = true
-    public var isShowOverlay: Bool = true
+    public var isShowOverlay: Bool = false
     public var dimension: PlayerDimension = .embed
     public var seekDuration: Float64 = 15.0
 }
