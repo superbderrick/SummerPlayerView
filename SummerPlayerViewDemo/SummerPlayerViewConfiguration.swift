@@ -8,7 +8,6 @@
 
 import Foundation
 
-/// MBConfiguration: it controls player configuration .
 
 public protocol SummerPlayerViewConfiguration {
     var canShowVideoList: Bool { get }

@@ -1,10 +1,4 @@
-//
-//  AVPlayerView.swift
-//  VideoStreamingDemo
-//
-//  Created by Muhammad Waqas on 02/12/2019.
-//  Copyright © 2019 Muhammad Waqas. All rights reserved.
-//
+
 
 import Foundation
 import AVKit

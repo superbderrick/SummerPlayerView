@@ -1,10 +1,4 @@
-//
-//  MBVideoOverlay.swift
-//  MBVideoPlayer
-//
-//  Created by Muhammad Waqas on 07/12/2019.
-//  Copyright © 2019 Muhammad Waqas. All rights reserved.
-//
+
 
 import UIKit
 import AVKit

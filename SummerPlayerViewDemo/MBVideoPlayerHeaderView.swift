@@ -1,10 +1,4 @@
-//
-//  MBVideoPlayerHeaderView.swift
-//  MBVideoPlayer
-//
-//  Created by macadmin on 12/15/19.
-//  Copyright © 2019 Muhammad Waqas. All rights reserved.
-//
+
 
 import UIKit
 
