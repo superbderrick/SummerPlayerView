@@ -21,7 +21,7 @@ public protocol SummerPlayerViewConfiguration {
 }
 
 public struct MainConfiguration: SummerPlayerViewConfiguration {
-    public var canShowVideoList = false
+    public var canShowVideoList = true
     public var canShowTime = true
     public var canShowPlayPause = true
     public var canShowTimeBar = true
