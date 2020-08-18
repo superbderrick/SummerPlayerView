@@ -1,18 +1,16 @@
 //
 //  ViewController.swift
-//  MBVideoPlayer
+//  SummerPlayerViewDemo
 //
-//  Created by Muhammad Waqas on 06/12/2019.
-//  Copyright © 2019 Muhammad Waqas. All rights reserved.
+//  Created by derrick on 2020/08/18.
+//  Copyright © 2020 Derrick. All rights reserved.
 //
 
 import UIKit
 
-
 class ViewController: UIViewController {
-    
     @IBOutlet weak var videoPlayerView: SummerPlayerView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
           
@@ -76,6 +74,5 @@ class ViewController: UIViewController {
         
     }
         
+
 }
-
-
