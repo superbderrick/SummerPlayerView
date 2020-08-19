@@ -1,9 +1,9 @@
 //
-//  MBConfiguration.swift
-//  MBVideoPlayer
+//  SummerPlayerViewConfiguration.swift
+//  SummerPlayerViewDemo
 //
-//  Created by macadmin on 12/9/19.
-//  Copyright © 2019 Muhammad Waqas. All rights reserved.
+//  Created by derrick on 2020/08/20.
+//  Copyright © 2020 Derrick. All rights reserved.
 //
 
 import Foundation
@@ -20,13 +20,4 @@ public protocol SummerPlayerViewConfiguration {
     var seekDuration: Float64 { get }
 }
 
-public struct MainConfiguration: SummerPlayerViewConfiguration {
-    public var canShowVideoList = true
-    public var canShowTime = true
-    public var canShowPlayPause = true
-    public var canShowTimeBar = true
-    public var canShowForwardBack = true
-    public var isShowOverlay: Bool = true
-    public var dimension: PlayerDimension = .embed
-    public var seekDuration: Float64 = 15.0
-}
+
