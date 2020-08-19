@@ -151,7 +151,7 @@ open class SummerPlayerView: UIView {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         
-        if configuration.isShowOverlay {
+        if configuration.hideControls {
             overlayView.isHidden = true
             backgroundView.isHidden = true
             task?.cancel()
@@ -161,11 +161,11 @@ open class SummerPlayerView: UIView {
             task = DispatchWorkItem {
                 self.overlayView.isHidden = true
                 self.backgroundView.isHidden = true
-                self.configuration.isShowOverlay = !self.configuration.isShowOverlay
+                self.configuration.hideControls = !self.configuration.hideControls
             }
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
         }
-        configuration.isShowOverlay = !configuration.isShowOverlay
+        configuration.hideControls = !configuration.hideControls
         
     }
     
@@ -193,7 +193,7 @@ open class SummerPlayerView: UIView {
     
     private func createOverlay(_ header: UIView?) {
         
-        guard configuration.isShowOverlay else { return }
+        guard configuration.hideControls else { return }
         overlayView.delegate = self
         overlayView.createOverlayViewWith(configuration: configuration, theme: theme, header: header)
         overlayView.translatesAutoresizingMaskIntoConstraints = false

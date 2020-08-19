@@ -15,7 +15,7 @@ public struct BasicConfiguration: SummerPlayerViewConfiguration {
     public var canShowPlayPause = true
     public var canShowTimeBar = true
     public var canShowForwardBack = true
-    public var isShowOverlay: Bool = true
+    public var hideControls: Bool = false
     public var dimension: PlayerDimension = .embed
     public var seekDuration: Float64 = 15.0
 }

@@ -15,7 +15,7 @@ public protocol SummerPlayerViewConfiguration {
     var canShowPlayPause: Bool { get }
     var canShowTimeBar: Bool { get }
     var canShowForwardBack: Bool { get }
-    var isShowOverlay: Bool { get set }
+    var hideControls: Bool { get set }
     var dimension: PlayerDimension { get }
     var seekDuration: Float64 { get }
 }
