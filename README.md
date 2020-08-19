@@ -9,4 +9,8 @@
 
 ![](https://github.com/superbderrick/SummerSlider/blob/master/Image/logo.jpeg)
 
-## SummerPlayerView.
+## SummerPlayerView
+
+📺 SummerPlayerview is iOS custom videoplayer view for kids , It could integrate with AVPlayer, NexPlayer
+
+
