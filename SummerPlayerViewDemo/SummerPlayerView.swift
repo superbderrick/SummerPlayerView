@@ -38,7 +38,7 @@ open class SummerPlayerView: UIView {
 
     let overlayView = SummerPlayerControls()
     
-    var configuration: SummerPlayerViewConfiguration = MainConfiguration()
+    var configuration: SummerPlayerViewConfiguration = BasicConfiguration()
     
     var theme: SummerPlayerViewTheme = MainTheme()
     

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		495EA93424EC14A300914D91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EA93324EC14A300914D91 /* ViewController.swift */; };
+		495EA93A24ED7E7000914D91 /* BasicConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EA93924ED7E7000914D91 /* BasicConfiguration.swift */; };
 		4968EF3D248BB4CB0043C5DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF3C248BB4CB0043C5DE /* AppDelegate.swift */; };
 		4968EF3F248BB4CB0043C5DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF3E248BB4CB0043C5DE /* SceneDelegate.swift */; };
-		4968EF41248BB4CB0043C5DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF40248BB4CB0043C5DE /* ViewController.swift */; };
 		4968EF44248BB4CB0043C5DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4968EF42248BB4CB0043C5DE /* Main.storyboard */; };
 		4968EF46248BB4CC0043C5DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4968EF45248BB4CC0043C5DE /* Assets.xcassets */; };
 		4968EF49248BB4CC0043C5DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4968EF47248BB4CC0043C5DE /* LaunchScreen.storyboard */; };
@@ -51,10 +52,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		495EA93324EC14A300914D91 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		495EA93924ED7E7000914D91 /* BasicConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BasicConfiguration.swift; path = SummerPlayerViewDemo/BasicConfiguration.swift; sourceTree = SOURCE_ROOT; };
 		4968EF39248BB4CB0043C5DE /* SummerPlayerViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SummerPlayerViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4968EF3C248BB4CB0043C5DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4968EF3E248BB4CB0043C5DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4968EF40248BB4CB0043C5DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4968EF43248BB4CB0043C5DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4968EF45248BB4CC0043C5DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4968EF48248BB4CC0043C5DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -107,11 +109,11 @@
 				4968EF92248BB8230043C5DE /* temp */,
 				4968EF3C248BB4CB0043C5DE /* AppDelegate.swift */,
 				4968EF3E248BB4CB0043C5DE /* SceneDelegate.swift */,
-				4968EF40248BB4CB0043C5DE /* ViewController.swift */,
 				4968EF42248BB4CB0043C5DE /* Main.storyboard */,
 				4968EF45248BB4CC0043C5DE /* Assets.xcassets */,
 				4968EF47248BB4CC0043C5DE /* LaunchScreen.storyboard */,
 				4968EF4A248BB4CC0043C5DE /* Info.plist */,
+				495EA93324EC14A300914D91 /* ViewController.swift */,
 			);
 			path = SummerPlayerViewDemo;
 			sourceTree = "<group>";
@@ -143,6 +145,7 @@
 				4968EF9B248BB83B0043C5DE /* SummerPlayerView.swift */,
 				4968EF98248BB83B0043C5DE /* PlayerItem.swift */,
 				4968EF94248BB83B0043C5DE /* VideoCollectionViewCell.swift */,
+				495EA93924ED7E7000914D91 /* BasicConfiguration.swift */,
 			);
 			path = temp;
 			sourceTree = "<group>";
@@ -235,12 +238,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4968EF41248BB4CB0043C5DE /* ViewController.swift in Sources */,
 				4968EF3D248BB4CB0043C5DE /* AppDelegate.swift in Sources */,
 				4968EFA2248BB83B0043C5DE /* SummerPlayerViewTheme.swift in Sources */,
 				4968EFA5248BB83B0043C5DE /* MBVideoPlayerHeaderView.swift in Sources */,
 				4968EFA3248BB83B0043C5DE /* SummerPlayerControls.swift in Sources */,
 				4968EF9D248BB83B0043C5DE /* VideoCollectionViewCell.swift in Sources */,
+				495EA93424EC14A300914D91 /* ViewController.swift in Sources */,
+				495EA93A24ED7E7000914D91 /* BasicConfiguration.swift in Sources */,
 				4968EF9F248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift in Sources */,
 				4968EFA0248BB83B0043C5DE /* CMTime+extension.swift in Sources */,
 				4968EF3F248BB4CB0043C5DE /* SceneDelegate.swift in Sources */,

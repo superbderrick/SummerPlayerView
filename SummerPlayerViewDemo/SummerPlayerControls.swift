@@ -113,7 +113,7 @@ class SummerPlayerControls: UIView {
     var videoPlayerHeader: MBVideoPlayerHeaderView?
     
     /// default configuration for player
-    var configuration = MainConfiguration()
+    var configuration = BasicConfiguration()
     
     /// default theme for the player
     var theme = MainTheme()

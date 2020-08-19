@@ -1,22 +1,22 @@
 //
 //  ViewController.swift
-//  MBVideoPlayer
+//  SummerPlayerViewDemo
 //
-//  Created by Muhammad Waqas on 06/12/2019.
-//  Copyright © 2019 Muhammad Waqas. All rights reserved.
+//  Created by derrick on 2020/08/18.
+//  Copyright © 2020 Derrick. All rights reserved.
 //
 
 import UIKit
 
-
 class ViewController: UIViewController {
-    
     @IBOutlet weak var videoPlayerView: SummerPlayerView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let basicConfiguration = BasicConfiguration()
           
-        let playerView = SummerPlayerView(configuration: nil, theme: nil, header: nil)
+        let playerView = SummerPlayerView(configuration: basicConfiguration, theme: nil, header: nil)
 
         let playerItems = [
             PlayerItem(title: "What is this event? ... parker.", url: "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8", thumbnail: "5"),
@@ -76,6 +76,5 @@ class ViewController: UIViewController {
         
     }
         
+
 }
-
-
