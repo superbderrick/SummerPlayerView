@@ -89,7 +89,7 @@ open class SummerPlayerView: UIView {
     override open func layoutSubviews() {
         super.layoutSubviews()
         
-        regulatePlayerView(isFullScreen: true)
+        regulatePlayerView(isFullScreen: false)
     }
     
     private func regulatePlayerView(isFullScreen:Bool) {
