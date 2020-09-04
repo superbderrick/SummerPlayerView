@@ -38,6 +38,8 @@ open class SummerPlayerView: UIView {
     let playListView = PlayListView()
     let playControlView = PlayerControlView()
     
+    var wholeStandardViewRect = CGRect()
+    
     var configuration: SummerPlayerViewConfiguration = BasicConfiguration()
     
     var theme: SummerPlayerViewTheme = MainTheme()
@@ -133,11 +135,31 @@ open class SummerPlayerView: UIView {
         playListView.setPlayList(currentItem: currentItem, items: items)
     }
     
+//    public var totalDuration: CMTime? {
+//        return self.queuePlayer.currentItem?.asset.duration
+//    }
+    
+    
+    private func getwholeStandardViewRect() -> CGRect? {
+        var wholeStandardRect : CGRect
+              let xAXIS = self.bounds.size.width * 0.25
+              let yAXIS :CGFloat = 0.0
+              let WIDTH = self.bounds.size.width/2
+              let HEIGHT = self.bounds.size.height * 0.6
+              
+              wholeStandardRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
+        
+        return wholeStandardRect
+    }
+    
     private func setupSummerPlayerView(_ header: UIView?) {
+        
+        
+        let wholeStandardRect = getwholeStandardViewRect();
         
         setupPlayer()
             
-        setupInsideViews(header)
+        setupInsideViews(header,wholeStandardRect)
                 
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(backgroundView)
@@ -214,18 +236,30 @@ open class SummerPlayerView: UIView {
         
     }
     
-    /// this create overlay view on top of player with custom controls
-    
-    private func setupInsideViews(_ header: UIView?) {
+    private func setupInsideViews(_ header: UIView?,_ standardRect: CGRect?) {
         
         guard configuration.hideControls else { return }
-        playListView.delegate = self
+        
+        guard (standardRect != nil) else { return }
+        
+        playControlView.setupPlayerControlView(configuration: configuration, theme: theme, header: header ,rect: standardRect)
+        
+        playControlView.translatesAutoresizingMaskIntoConstraints = false
+        playControlView.isHidden = false
+        addSubview(playControlView)
+        playControlView.pinEdges(to: self)
+        
         playListView.createOverlayViewWith(configuration: configuration, theme: theme, header: header)
+        playListView.delegate = self
         playListView.translatesAutoresizingMaskIntoConstraints = false
         playListView.isHidden = false
         addSubview(playListView)
         playListView.backgroundColor = .clear
         playListView.pinEdges(to: self)
+        
+    }
+    
+    private func setupPlayerControlView() {
         
     }
     

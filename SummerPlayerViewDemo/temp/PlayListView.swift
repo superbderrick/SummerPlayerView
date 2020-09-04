@@ -10,12 +10,7 @@ class PlayListView: UIView {
     
     // MARK: - Instance Variables
 
-    lazy private var playButton: UIButton = {
-       let playButton = UIButton()
-        playButton.translatesAutoresizingMaskIntoConstraints = false
-        playButton.addTarget(self, action: #selector(self.clickPlayButton(_:)), for: .touchUpInside)
-        return playButton
-    }()
+
     
     lazy private var backButton: UIButton = {
         let backwardButton = UIButton()
@@ -162,9 +157,6 @@ class PlayListView: UIView {
         bottomControlsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         bottomControlsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
 
-        if configuration.canShowPlayPause {
-            addPlayPauseButton()
-        }
         
         if configuration.canShowForwardBack {
             addForwardBackwardButton()
@@ -190,7 +182,6 @@ class PlayListView: UIView {
     }
     
     private func applyTheme(_ theme: SummerPlayerViewTheme) {
-        playButton.tintColor = theme.buttonTintColor
         forwardButton.tintColor = theme.buttonTintColor
         backButton.tintColor = theme.buttonTintColor
         fullTimeLabel.textColor = theme.timeLabelTextColor
@@ -199,7 +190,6 @@ class PlayListView: UIView {
         seekSlider.thumbTintColor = theme.sliderThumbColor
         activityView.color = theme.activityViewColor
         collectionView.backgroundColor = theme.playListItemsBackgroundColor
-        playButton.setImage((isActive ? theme.pauseButtonImage : theme.playButtonImage), for: .normal)
         forwardButton.setImage(theme.forwardButtonImage, for: .normal)
         backButton.setImage(theme.backButtonImage, for: .normal)
     }
@@ -260,7 +250,6 @@ class PlayListView: UIView {
     
     @objc func clickPlayButton(_ sender: UIButton) {
         isActive = !isActive
-        playButton.setImage(Controls.playpause(isActive).image, for: .normal)
         delegate?.playPause(isActive)
         print("clicked -> \(isActive)")
         if let player = delegate?.playerStateDidChange {
@@ -357,25 +346,18 @@ class PlayListView: UIView {
         fullTimeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
-    private func addPlayPauseButton() {
-        // play/pause button
-        addSubview(playButton)
-        
-        playButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        playButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-    }
+
     
     private func addForwardBackwardButton() {
         // backward button
         addSubview(backButton)
-        backButton.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -25.0).isActive = true
-        backButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
+        //backButton.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -25.0).isActive = true
+        //backButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
         // forward button
         
         addSubview(forwardButton)
-        forwardButton.leadingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: 25.0).isActive = true
-        forwardButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
+        //forwardButton.leadingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: 25.0).isActive = true
+        //forwardButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
     }
     
     private func addPlayList() {
