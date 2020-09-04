@@ -5,7 +5,6 @@ import AVKit
 
 
 public enum PlayerDimension {
-    
     case embed
     case fullScreen
 }
@@ -36,7 +35,8 @@ open class SummerPlayerView: UIView {
     
     private var playerLayer: AVPlayerLayer?
 
-    let overlayView = SummerPlayerControls()
+    let playListView = PlayListView()
+    let playControlView = PlayerControlView()
     
     var configuration: SummerPlayerViewConfiguration = BasicConfiguration()
     
@@ -119,7 +119,7 @@ open class SummerPlayerView: UIView {
     // MARK: - Helper Methods
     
     func didRegisterPlayerItemCell(_ identifier: String, collectioViewCell cell: UICollectionViewCell.Type) {
-        overlayView.didRegisterPlayerItemCell(identifier, collectioViewCell: cell)
+        playListView.didRegisterPlayerItemCell(identifier, collectioViewCell: cell)
     }
     
     public func setPlayList(currentItem: PlayerItem, items: [PlayerItem], fullScreenView: UIView? = nil) {
@@ -130,35 +130,27 @@ open class SummerPlayerView: UIView {
             didLoadVideo(url)
         }
         
-        overlayView.setPlayList(currentItem: currentItem, items: items)
+        playListView.setPlayList(currentItem: currentItem, items: items)
     }
     
     private func setupPlayer(_ header: UIView?) {
         
-        // setup avQueuePlayer
-        
         createPlayer()
-        
-        // setup overlay
-        
-        createOverlay(header)
+            
+        setupInsideViews(header)
                 
-        // background view as a dim view having alphs 0.3
-        
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(backgroundView)
-        bringSubviewToFront(overlayView)
+        
+        bringSubviewToFront(playListView)
         
         backgroundView.pinEdges(to: self)
 
-        /// single tap with which we show and hide overlay view
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         tap.cancelsTouchesInView = false
         tap.delegate = self
         addGestureRecognizer(tap)
 
-        // orientation change observer
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
 
@@ -179,18 +171,16 @@ open class SummerPlayerView: UIView {
         var isTouched = false
         
         if configuration.hideControls {
-            overlayView.isHidden = true
+            playListView.isHidden = true
             backgroundView.isHidden = true
             task?.cancel()
             
-            print("handleTap maybe true ")
-            
             isTouched = true
         } else {
-            overlayView.isHidden = false
+            playListView.isHidden = false
             backgroundView.isHidden = false
             task = DispatchWorkItem {
-                self.overlayView.isHidden = true
+                self.playListView.isHidden = true
                 self.backgroundView.isHidden = true
                 self.configuration.hideControls = !self.configuration.hideControls
             }
@@ -209,7 +199,7 @@ open class SummerPlayerView: UIView {
     private func createPlayer() {
         
         queuePlayer = AVQueuePlayer()
-        queuePlayer.addObserver(overlayView, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+        queuePlayer.addObserver(playListView, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
         playerLayer = AVPlayerLayer(player: queuePlayer)
         playerLayer?.backgroundColor = UIColor.black.cgColor
         playerLayer?.videoGravity = .resizeAspect
@@ -220,22 +210,23 @@ open class SummerPlayerView: UIView {
             queue: DispatchQueue.main,
             using: { [weak self] (cmtime) in
                 print(cmtime)
-                self?.overlayView.videoDidChange(cmtime)
+                self?.playListView.videoDidChange(cmtime)
         })
         
     }
     
     /// this create overlay view on top of player with custom controls
     
-    private func createOverlay(_ header: UIView?) {
+    private func setupInsideViews(_ header: UIView?) {
         
         guard configuration.hideControls else { return }
-        overlayView.delegate = self
-        overlayView.createOverlayViewWith(configuration: configuration, theme: theme, header: header)
-        overlayView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(overlayView)
-        overlayView.backgroundColor = .clear
-        overlayView.pinEdges(to: self)
+        playListView.delegate = self
+        playListView.createOverlayViewWith(configuration: configuration, theme: theme, header: header)
+        playListView.translatesAutoresizingMaskIntoConstraints = false
+        playListView.isHidden = false
+        addSubview(playListView)
+        playListView.backgroundColor = .clear
+        playListView.pinEdges(to: self)
         
     }
     
@@ -253,7 +244,7 @@ extension SummerPlayerView: SummerPlayerControlsDelegate {
         queuePlayer.insert(playerItem, after: nil)
         queuePlayer.play()
         
-        overlayView.videoDidStart()
+        playListView.videoDidStart()
         
         if let player = playerStateDidChange {
             player(.readyToPlay)
