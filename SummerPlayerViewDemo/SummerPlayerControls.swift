@@ -81,7 +81,7 @@ class SummerPlayerControls: UIView {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.black
-        view.alpha = 0.9
+        view.alpha = 0.8
         return view
     }()
     
