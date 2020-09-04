@@ -55,7 +55,7 @@ open class SummerPlayerView: UIView {
     private lazy var backgroundView: UIView = {
        let view = UIView()
         view.backgroundColor = UIColor.black
-        view.alpha = 0.6
+        view.alpha = 0.9
         view.isOpaque = false
         view.isHidden = true
         return view
@@ -88,7 +88,6 @@ open class SummerPlayerView: UIView {
     
     override open func layoutSubviews() {
         super.layoutSubviews()
-        
         
         regulatePlayerView(isFullScreen: true)
     }
@@ -149,6 +148,7 @@ open class SummerPlayerView: UIView {
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(backgroundView)
         bringSubviewToFront(overlayView)
+        
         backgroundView.pinEdges(to: self)
 
         /// single tap with which we show and hide overlay view

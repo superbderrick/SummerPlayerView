@@ -32,7 +32,6 @@ class SummerPlayerControls: UIView {
     }()
     
 
-    
     lazy private var playerTimeLabel: UILabel = {
         let label = UILabel()
         label.text = CMTime.zero.description
@@ -82,7 +81,7 @@ class SummerPlayerControls: UIView {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.black
-        view.alpha = 0.3
+        view.alpha = 0.9
         return view
     }()
     
