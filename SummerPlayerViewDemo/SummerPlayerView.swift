@@ -72,18 +72,18 @@ open class SummerPlayerView: UIView {
         if let configuration = configuration {
             self.configuration = configuration
         }
-        setupPlayer(header)
+        setupSummerPlayerView(header)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        setupPlayer(nil)
+        setupSummerPlayerView(nil)
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupPlayer(nil)
+        setupSummerPlayerView(nil)
     }
     
     override open func layoutSubviews() {
@@ -133,9 +133,9 @@ open class SummerPlayerView: UIView {
         playListView.setPlayList(currentItem: currentItem, items: items)
     }
     
-    private func setupPlayer(_ header: UIView?) {
+    private func setupSummerPlayerView(_ header: UIView?) {
         
-        createPlayer()
+        setupPlayer()
             
         setupInsideViews(header)
                 
@@ -194,9 +194,8 @@ open class SummerPlayerView: UIView {
         
     }
     
-    /// this creates AVQueuePlayer
     
-    private func createPlayer() {
+    private func setupPlayer() {
         
         queuePlayer = AVQueuePlayer()
         queuePlayer.addObserver(playListView, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
