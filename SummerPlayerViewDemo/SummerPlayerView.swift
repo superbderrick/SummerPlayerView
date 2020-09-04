@@ -90,10 +90,10 @@ open class SummerPlayerView: UIView {
         super.layoutSubviews()
         
         
-        regulatePlayerViewSize(isFullScreen: true)
+        regulatePlayerView(isFullScreen: true)
     }
     
-    private func regulatePlayerViewSize(isFullScreen:Bool) {
+    private func regulatePlayerView(isFullScreen:Bool) {
         
         var playerViewRect : CGRect
         let xAXIS = self.bounds.size.width * 0.25
@@ -200,7 +200,7 @@ open class SummerPlayerView: UIView {
         }
         configuration.hideControls = !configuration.hideControls
         
-        regulatePlayerViewSize(isFullScreen: isTouched)
+        regulatePlayerView(isFullScreen: isTouched)
         
     }
     
