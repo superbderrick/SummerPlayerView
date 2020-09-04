@@ -88,8 +88,33 @@ open class SummerPlayerView: UIView {
     
     override open func layoutSubviews() {
         super.layoutSubviews()
-        playerLayer?.frame = self.bounds
         
+        
+        regulatePlayerViewSize(isFullScreen: true)
+    }
+    
+    private func regulatePlayerViewSize(isFullScreen:Bool) {
+        
+        var playerViewRect : CGRect
+        let xAXIS = self.bounds.size.width * 0.25
+        let yAXIS :CGFloat = 0.0
+        let WIDTH = self.bounds.size.width/2
+        let HEIGHT = self.bounds.size.height * 0.6
+        
+        if isFullScreen {
+            
+            playerViewRect = self.bounds
+            
+        } else {
+            playerViewRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
+        }
+        
+        print("self bounds origin X \(self.bounds.origin.x)")
+        print("self bounds origin Y \(self.bounds.origin.y)")
+        print("self bounds width    \(self.bounds.size.width)")
+        print("self bounds height   \(self.bounds.size.height)")
+        
+        playerLayer?.frame = playerViewRect
     }
     
     // MARK: - Helper Methods
@@ -151,10 +176,16 @@ open class SummerPlayerView: UIView {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         
+        var isTouched = false
+        
         if configuration.hideControls {
             overlayView.isHidden = true
             backgroundView.isHidden = true
             task?.cancel()
+            
+            print("handleTap maybe true ")
+            
+            isTouched = true
         } else {
             overlayView.isHidden = false
             backgroundView.isHidden = false
@@ -164,8 +195,12 @@ open class SummerPlayerView: UIView {
                 self.configuration.hideControls = !self.configuration.hideControls
             }
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
+            print("handleTap maybe false ")
+            isTouched = false
         }
         configuration.hideControls = !configuration.hideControls
+        
+        regulatePlayerViewSize(isFullScreen: isTouched)
         
     }
     
@@ -178,6 +213,7 @@ open class SummerPlayerView: UIView {
         playerLayer = AVPlayerLayer(player: queuePlayer)
         playerLayer?.backgroundColor = UIColor.black.cgColor
         playerLayer?.videoGravity = .resizeAspect
+        
         self.layer.addSublayer(playerLayer!)
         queuePlayer.addPeriodicTimeObserver(
             forInterval: CMTime(seconds: 1, preferredTimescale: 100),
