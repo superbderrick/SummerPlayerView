@@ -10,9 +10,10 @@ import UIKit
 
 class PlayerControlView: UIView {
     
+    private var isPlaying: Bool = false
+    
     lazy var addButton: UIButton = {
-        let addButton = UIButton(type: .contactAdd)
-        
+        let addButton = UIButton()
         if let image = UIImage(named: "more") {
             addButton.setImage(image, for: .normal)
         }
@@ -21,27 +22,18 @@ class PlayerControlView: UIView {
         return addButton
     }()
     
-    lazy var contentView: UIImageView = {
-        let contentView = UIImageView()
-        contentView.image = UIImage(named: "WoodTexture")
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        contentView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        contentView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        return contentView
-    }()
     
     lazy var headerTitle: UILabel = {
         let headerTitle = UILabel()
         headerTitle.font = UIFont.systemFont(ofSize: 22, weight: .medium)
-        headerTitle.text = "Custom View"
+        headerTitle.text = "SummerPlayer view is working"
         headerTitle.textColor = UIColor.white
         headerTitle.textAlignment = .center
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         return headerTitle
     }()
     
-    lazy var headerView: UIView = {
+    lazy var topView: UIView = {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.black
         headerView.alpha = 0.9
@@ -51,20 +43,31 @@ class PlayerControlView: UIView {
         return headerView
     }()
     
-    
-    private var isPlaying: Bool = false
-    
-    lazy private var playButton: UIButton = {
+    lazy  var playButton: UIButton = {
         let playButton = UIButton()
-        playButton.frame = CGRect(x: 0.0,y: 0.0,width: 720,height: 220)
+        if let image = UIImage(named: "play") {
+            playButton.setImage(image, for: .normal)
+        }
+        playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.addTarget(self, action: #selector(self.clickPlayButton(_:)), for: .touchUpInside)
         return playButton
     }()
     
     @objc func clickPlayButton(_ sender: UIButton) {
-        isPlaying = !isPlaying
         
     }
+    
+    lazy var bottomView: UIView = {
+        
+        let bottomView = UIView()
+        bottomView.backgroundColor = UIColor.black
+        bottomView.alpha = 0.9
+        bottomView.addSubview(playButton)
+        bottomView.translatesAutoresizingMaskIntoConstraints = false
+        return bottomView
+    }()
+    
+
     
     
     override init(frame: CGRect) {
@@ -79,8 +82,8 @@ class PlayerControlView: UIView {
     
     
     private func setupView() {
-        addSubview(contentView)
-        addSubview(headerView)
+        addSubview(topView)
+        addSubview(bottomView)
         setupTopLayout()
         setupBottomLayout()
     }
@@ -88,29 +91,35 @@ class PlayerControlView: UIView {
     private func setupTopLayout() {
         NSLayoutConstraint.activate([
             //pin headerTitle to headerView
-            headerTitle.topAnchor.constraint(equalTo: headerView.topAnchor),
-            headerTitle.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-            headerTitle.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-            headerTitle.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+            headerTitle.topAnchor.constraint(equalTo: topView.topAnchor),
+            headerTitle.bottomAnchor.constraint(equalTo: topView.bottomAnchor),
+            headerTitle.leadingAnchor.constraint(equalTo: topView.leadingAnchor),
+            headerTitle.trailingAnchor.constraint(equalTo: topView.trailingAnchor),
             
             //layout addButton in headerView
-            addButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            addButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -10),
+            addButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+            addButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -10),
             
             //pin headerView to top
-            headerView.topAnchor.constraint(equalTo: topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 40),
+            topView.topAnchor.constraint(equalTo: topAnchor),
+            topView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            topView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            topView.heightAnchor.constraint(equalToConstant: 40),
             
-            //layout contentView
-            contentView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     private func setupBottomLayout() {
+        NSLayoutConstraint.activate([
+            
+            playButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
+            playButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 10),
+            
+            bottomView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            bottomView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            bottomView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            bottomView.heightAnchor.constraint(equalToConstant: 40),
+            
+        ])
         
     }
     
@@ -119,53 +128,9 @@ class PlayerControlView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-      //preferred content size, calculate it if some internal state changes
-      return CGSize(width: 300, height: 300)
+        //preferred content size, calculate it if some internal state changes
+        return CGSize(width: 300, height: 300)
     }
     
 }
 
-
-
-//in playground we should have a red rectangle
-
-
-//    func setupPlayerControlView(configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView? , rect:CGRect?) {
-//
-//        guard (rect != nil) else { return }
-//
-//        self.bounds = rect!
-//        if configuration.canShowPlayPause {
-//            addPlayPauseButton(rect: rect)
-//            applyTheme(theme)
-//        }
-//
-//    }
-//
-//    private func addPlayPauseButton(rect:CGRect?) {
-//        // play/pause button
-//        addSubview(playButton)
-//
-////
-////        playButton.translatesAutoresizingMaskIntoConstraints = false
-////        playButton.widthAnchor.constraint(equalToConstant: rect!.size.width )
-////                 .isActive = true // ---- 3
-//    }
-//
-//    private func applyTheme(_ theme: SummerPlayerViewTheme) {
-//        playButton.tintColor = theme.buttonTintColor
-//        changePlayOrPauseButtonImage(true,theme)
-//
-//    }
-//
-//    private func changePlayOrPauseButtonImage(_ isPlaying : Bool ,_ theme:SummerPlayerViewTheme) {
-//        playButton.setImage((isPlaying ? theme.pauseButtonImage : theme.playButtonImage), for: .normal)
-//    }
-//
-//    public func changePlayerStatus(playerStstus:Bool) {
-//        isPlaying = playerStstus
-//
-//    }
-
-
-//}
