@@ -104,7 +104,7 @@ class PlayListView: UIView {
     var delegate: SummerPlayerControlsDelegate?
     
     /// custom header which comes as a default header
-    var videoPlayerHeader: MBVideoPlayerHeaderView?
+    var videoPlayerHeader: SummerVideoPlayerHeaderView?
     
     /// default configuration for player
     var configuration = BasicConfiguration()

@@ -10,8 +10,8 @@ import Foundation
 
 
 public struct BasicConfiguration: SummerPlayerViewConfiguration {
-    public var canShowVideoList = true
-    public var canShowTime = false
+    public var canShowVideoList = false
+    public var canShowTime = true
     public var canShowPlayPause = true
     public var canShowTimeBar = true
     public var canShowForwardBack = false

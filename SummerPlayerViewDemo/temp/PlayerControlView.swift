@@ -12,6 +12,11 @@ class PlayerControlView: UIView {
     
     lazy var addButton: UIButton = {
         let addButton = UIButton(type: .contactAdd)
+        
+        if let image = UIImage(named: "more") {
+            addButton.setImage(image, for: .normal)
+        }
+        
         addButton.translatesAutoresizingMaskIntoConstraints = false
         return addButton
     }()
@@ -30,6 +35,7 @@ class PlayerControlView: UIView {
         let headerTitle = UILabel()
         headerTitle.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         headerTitle.text = "Custom View"
+        headerTitle.textColor = UIColor.white
         headerTitle.textAlignment = .center
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         return headerTitle
@@ -38,8 +44,7 @@ class PlayerControlView: UIView {
     lazy var headerView: UIView = {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.black
-        headerView.alpha = 0.3
-
+        headerView.alpha = 0.9
         headerView.addSubview(headerTitle)
         headerView.addSubview(addButton)
         headerView.translatesAutoresizingMaskIntoConstraints = false
