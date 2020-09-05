@@ -22,7 +22,6 @@ class PlayerControlView: UIView {
         return addButton
     }()
     
-    
     lazy var headerTitle: UILabel = {
         let headerTitle = UILabel()
         headerTitle.font = UIFont.systemFont(ofSize: 22, weight: .medium)
@@ -43,7 +42,7 @@ class PlayerControlView: UIView {
         return headerView
     }()
     
-    lazy  var playButton: UIButton = {
+    lazy var playButton: UIButton = {
         let playButton = UIButton()
         if let image = UIImage(named: "play") {
             playButton.setImage(image, for: .normal)
@@ -53,8 +52,19 @@ class PlayerControlView: UIView {
         return playButton
     }()
     
+    lazy var playerSlider: UISlider = {
+        let slider = UISlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.addTarget(self, action: #selector(self.changeSeekSlider(_:)), for: .valueChanged)
+        return slider
+    }()
+    
     @objc func clickPlayButton(_ sender: UIButton) {
         
+    }
+    
+    @objc func changeSeekSlider(_ sender: UISlider) {
+
     }
     
     lazy var bottomView: UIView = {
@@ -62,12 +72,14 @@ class PlayerControlView: UIView {
         let bottomView = UIView()
         bottomView.backgroundColor = UIColor.black
         bottomView.alpha = 0.9
+        
         bottomView.addSubview(playButton)
+        bottomView.addSubview(playerSlider)
+        //bottomView.addSubview(playersl)
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         return bottomView
     }()
     
-
     
     
     override init(frame: CGRect) {
@@ -90,17 +102,15 @@ class PlayerControlView: UIView {
     
     private func setupTopLayout() {
         NSLayoutConstraint.activate([
-            //pin headerTitle to headerView
+            
             headerTitle.topAnchor.constraint(equalTo: topView.topAnchor),
             headerTitle.bottomAnchor.constraint(equalTo: topView.bottomAnchor),
             headerTitle.leadingAnchor.constraint(equalTo: topView.leadingAnchor),
             headerTitle.trailingAnchor.constraint(equalTo: topView.trailingAnchor),
             
-            //layout addButton in headerView
             addButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
             addButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -10),
             
-            //pin headerView to top
             topView.topAnchor.constraint(equalTo: topAnchor),
             topView.leadingAnchor.constraint(equalTo: leadingAnchor),
             topView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -113,6 +123,11 @@ class PlayerControlView: UIView {
             
             playButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
             playButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 10),
+            
+            playerSlider.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
+            playerSlider.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
+            playerSlider.widthAnchor.constraint(equalToConstant: 200),
+
             
             bottomView.bottomAnchor.constraint(equalTo: bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor),

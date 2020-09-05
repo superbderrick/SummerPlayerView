@@ -10,8 +10,6 @@ class PlayListView: UIView {
     
     // MARK: - Instance Variables
 
-
-    
     lazy private var backButton: UIButton = {
         let backwardButton = UIButton()
         backwardButton.translatesAutoresizingMaskIntoConstraints = false
