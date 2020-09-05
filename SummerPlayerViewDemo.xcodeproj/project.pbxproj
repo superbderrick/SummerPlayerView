@@ -24,7 +24,7 @@
 		4968EFA2248BB83B0043C5DE /* SummerPlayerViewTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF99248BB83B0043C5DE /* SummerPlayerViewTheme.swift */; };
 		4968EFA3248BB83B0043C5DE /* PlayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF9A248BB83B0043C5DE /* PlayListView.swift */; };
 		4968EFA4248BB83B0043C5DE /* SummerPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF9B248BB83B0043C5DE /* SummerPlayerView.swift */; };
-		4968EFA5248BB83B0043C5DE /* MBVideoPlayerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF9C248BB83B0043C5DE /* MBVideoPlayerHeaderView.swift */; };
+		4968EFA5248BB83B0043C5DE /* SummerVideoPlayerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF9C248BB83B0043C5DE /* SummerVideoPlayerHeaderView.swift */; };
 		49C76B3925024C8100FED147 /* PlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C76B3825024C8100FED147 /* PlayerControlView.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,10 +69,10 @@
 		4968EF97248BB83B0043C5DE /* CMTime+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CMTime+extension.swift"; path = "SummerPlayerViewDemo/CMTime+extension.swift"; sourceTree = SOURCE_ROOT; };
 		4968EF98248BB83B0043C5DE /* PlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerItem.swift; path = SummerPlayerViewDemo/PlayerItem.swift; sourceTree = SOURCE_ROOT; };
 		4968EF99248BB83B0043C5DE /* SummerPlayerViewTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerPlayerViewTheme.swift; path = SummerPlayerViewDemo/SummerPlayerViewTheme.swift; sourceTree = SOURCE_ROOT; };
-		4968EF9A248BB83B0043C5DE /* PlayListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayListView.swift; path = SummerPlayerViewDemo/PlayListView.swift; sourceTree = SOURCE_ROOT; };
-		4968EF9B248BB83B0043C5DE /* SummerPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerPlayerView.swift; path = SummerPlayerViewDemo/SummerPlayerView.swift; sourceTree = SOURCE_ROOT; };
-		4968EF9C248BB83B0043C5DE /* MBVideoPlayerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MBVideoPlayerHeaderView.swift; path = SummerPlayerViewDemo/MBVideoPlayerHeaderView.swift; sourceTree = SOURCE_ROOT; };
-		49C76B3825024C8100FED147 /* PlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerControlView.swift; path = SummerPlayerViewDemo/PlayerControlView.swift; sourceTree = SOURCE_ROOT; };
+		4968EF9A248BB83B0043C5DE /* PlayListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayListView.swift; path = SummerPlayerViewDemo/temp/PlayListView.swift; sourceTree = SOURCE_ROOT; };
+		4968EF9B248BB83B0043C5DE /* SummerPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerPlayerView.swift; path = SummerPlayerViewDemo/temp/SummerPlayerView.swift; sourceTree = SOURCE_ROOT; };
+		4968EF9C248BB83B0043C5DE /* SummerVideoPlayerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerVideoPlayerHeaderView.swift; path = SummerPlayerViewDemo/SummerVideoPlayerHeaderView.swift; sourceTree = SOURCE_ROOT; };
+		49C76B3825024C8100FED147 /* PlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerControlView.swift; path = SummerPlayerViewDemo/temp/PlayerControlView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,19 +138,27 @@
 		4968EF92248BB8230043C5DE /* temp */ = {
 			isa = PBXGroup;
 			children = (
+				4968EF9B248BB83B0043C5DE /* SummerPlayerView.swift */,
+				4968EF9A248BB83B0043C5DE /* PlayListView.swift */,
+				49C76B3825024C8100FED147 /* PlayerControlView.swift */,
+				49C76B3B250254D600FED147 /* UI */,
 				4968EF97248BB83B0043C5DE /* CMTime+extension.swift */,
 				4968EF96248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift */,
 				4968EF99248BB83B0043C5DE /* SummerPlayerViewTheme.swift */,
-				4968EF9A248BB83B0043C5DE /* PlayListView.swift */,
 				4968EF95248BB83B0043C5DE /* SummerPlayerDelegates.swift */,
-				4968EF9C248BB83B0043C5DE /* MBVideoPlayerHeaderView.swift */,
-				4968EF9B248BB83B0043C5DE /* SummerPlayerView.swift */,
+				4968EF9C248BB83B0043C5DE /* SummerVideoPlayerHeaderView.swift */,
 				4968EF98248BB83B0043C5DE /* PlayerItem.swift */,
 				4968EF94248BB83B0043C5DE /* VideoCollectionViewCell.swift */,
 				495EA93924ED7E7000914D91 /* BasicConfiguration.swift */,
-				49C76B3825024C8100FED147 /* PlayerControlView.swift */,
 			);
 			path = temp;
+			sourceTree = "<group>";
+		};
+		49C76B3B250254D600FED147 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,7 +251,7 @@
 			files = (
 				4968EF3D248BB4CB0043C5DE /* AppDelegate.swift in Sources */,
 				4968EFA2248BB83B0043C5DE /* SummerPlayerViewTheme.swift in Sources */,
-				4968EFA5248BB83B0043C5DE /* MBVideoPlayerHeaderView.swift in Sources */,
+				4968EFA5248BB83B0043C5DE /* SummerVideoPlayerHeaderView.swift in Sources */,
 				4968EFA3248BB83B0043C5DE /* PlayListView.swift in Sources */,
 				4968EF9D248BB83B0043C5DE /* VideoCollectionViewCell.swift in Sources */,
 				495EA93424EC14A300914D91 /* ViewController.swift in Sources */,

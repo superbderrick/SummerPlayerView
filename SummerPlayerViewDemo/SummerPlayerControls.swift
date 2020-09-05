@@ -136,11 +136,6 @@ class PlayListView: UIView {
         super.init(coder: coder)
     }
     
-    /**
-           This method assigns current video playing item and all the next items to respective views
-            - currentItem: current video which is playing
-            - items: all the next playlistitems
-     */
     func setPlayList(currentItem: PlayerItem, items: [PlayerItem]) {
         
         playerItems = items
