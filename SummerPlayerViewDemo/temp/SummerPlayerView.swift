@@ -258,7 +258,7 @@ extension SummerPlayerView: SummerPlayerControlsDelegate {
         queuePlayer.insert(playerItem, after: nil)
         queuePlayer.play()
         
-        playListView.videoDidStart()
+        playControlView.videoDidStart()
         
         if let player = playerStateDidChange {
             player(.readyToPlay)

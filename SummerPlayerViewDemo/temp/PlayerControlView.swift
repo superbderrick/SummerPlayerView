@@ -13,6 +13,8 @@ class PlayerControlView: UIView {
     
     private var isPlaying: Bool = false
     
+    var delegate: SummerPlayerControlsDelegate?
+    
     lazy private var playerTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "0.0"
@@ -90,6 +92,13 @@ class PlayerControlView: UIView {
     }
     
     @objc func changeSeekSlider(_ sender: UISlider) {
+        guard let totalDuration = delegate?.totalDuration else { return }
+        let seekTime = CMTime(seconds: Double(sender.value) * totalDuration.asDouble, preferredTimescale: 100)
+        playerTimeLabel.text = seekTime.description
+        delegate?.seekToTime(seekTime)
+        if let player = delegate?.playerTimeDidChange {
+            player(seekTime.asDouble, totalDuration.asDouble)
+        }
         
     }
     
@@ -101,8 +110,13 @@ class PlayerControlView: UIView {
     func videoDidStart() {
         playerTimeLabel.text = CMTime.zero.description
         playerSlider.value = 0.0
-        //fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
+        fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
         
+    }
+    
+    private func applyTheme(_ theme: SummerPlayerViewTheme) {
+        playerSlider.tintColor = theme.sliderTintColor
+        playerSlider.thumbTintColor = theme.sliderThumbColor
     }
     
     lazy var bottomView: UIView = {
