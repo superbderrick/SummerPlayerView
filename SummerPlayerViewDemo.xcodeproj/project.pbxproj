@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		495EA93424EC14A300914D91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EA93324EC14A300914D91 /* ViewController.swift */; };
-		495EA93A24ED7E7000914D91 /* BasicConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EA93924ED7E7000914D91 /* BasicConfiguration.swift */; };
 		4968EF3D248BB4CB0043C5DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF3C248BB4CB0043C5DE /* AppDelegate.swift */; };
 		4968EF3F248BB4CB0043C5DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF3E248BB4CB0043C5DE /* SceneDelegate.swift */; };
 		4968EF44248BB4CB0043C5DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4968EF42248BB4CB0043C5DE /* Main.storyboard */; };
@@ -16,16 +15,7 @@
 		4968EF49248BB4CC0043C5DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4968EF47248BB4CC0043C5DE /* LaunchScreen.storyboard */; };
 		4968EF79248BB5AB0043C5DE /* SummerPlayerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4968EF78248BB5A60043C5DE /* SummerPlayerView.framework */; };
 		4968EF7A248BB5AB0043C5DE /* SummerPlayerView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4968EF78248BB5A60043C5DE /* SummerPlayerView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4968EF9D248BB83B0043C5DE /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF94248BB83B0043C5DE /* VideoCollectionViewCell.swift */; };
-		4968EF9E248BB83B0043C5DE /* SummerPlayerDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF95248BB83B0043C5DE /* SummerPlayerDelegates.swift */; };
-		4968EF9F248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF96248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift */; };
-		4968EFA0248BB83B0043C5DE /* CMTime+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF97248BB83B0043C5DE /* CMTime+extension.swift */; };
-		4968EFA1248BB83B0043C5DE /* PlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF98248BB83B0043C5DE /* PlayerItem.swift */; };
-		4968EFA2248BB83B0043C5DE /* SummerPlayerViewTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF99248BB83B0043C5DE /* SummerPlayerViewTheme.swift */; };
-		4968EFA3248BB83B0043C5DE /* PlayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF9A248BB83B0043C5DE /* PlayListView.swift */; };
-		4968EFA4248BB83B0043C5DE /* SummerPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF9B248BB83B0043C5DE /* SummerPlayerView.swift */; };
-		4968EFA5248BB83B0043C5DE /* SummerVideoPlayerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF9C248BB83B0043C5DE /* SummerVideoPlayerHeaderView.swift */; };
-		49C76B3925024C8100FED147 /* PlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C76B3825024C8100FED147 /* PlayerControlView.swift */; };
+		496CACC02505130C00CD454F /* BasicConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACBF2505130C00CD454F /* BasicConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		495EA93324EC14A300914D91 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		495EA93924ED7E7000914D91 /* BasicConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BasicConfiguration.swift; path = SummerPlayerViewDemo/BasicConfiguration.swift; sourceTree = SOURCE_ROOT; };
 		4968EF39248BB4CB0043C5DE /* SummerPlayerViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SummerPlayerViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4968EF3C248BB4CB0043C5DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4968EF3E248BB4CB0043C5DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,16 +52,7 @@
 		4968EF48248BB4CC0043C5DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4968EF4A248BB4CC0043C5DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4968EF73248BB5A60043C5DE /* SummerPlayerView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SummerPlayerView.xcodeproj; path = SummerPlayerView/SummerPlayerView.xcodeproj; sourceTree = "<group>"; };
-		4968EF94248BB83B0043C5DE /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoCollectionViewCell.swift; path = SummerPlayerViewDemo/VideoCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		4968EF95248BB83B0043C5DE /* SummerPlayerDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerPlayerDelegates.swift; path = SummerPlayerViewDemo/SummerPlayerDelegates.swift; sourceTree = SOURCE_ROOT; };
-		4968EF96248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerPlayerViewConfiguration.swift; path = SummerPlayerViewDemo/SummerPlayerViewConfiguration.swift; sourceTree = SOURCE_ROOT; };
-		4968EF97248BB83B0043C5DE /* CMTime+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CMTime+extension.swift"; path = "SummerPlayerViewDemo/CMTime+extension.swift"; sourceTree = SOURCE_ROOT; };
-		4968EF98248BB83B0043C5DE /* PlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerItem.swift; path = SummerPlayerViewDemo/PlayerItem.swift; sourceTree = SOURCE_ROOT; };
-		4968EF99248BB83B0043C5DE /* SummerPlayerViewTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerPlayerViewTheme.swift; path = SummerPlayerViewDemo/SummerPlayerViewTheme.swift; sourceTree = SOURCE_ROOT; };
-		4968EF9A248BB83B0043C5DE /* PlayListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayListView.swift; path = SummerPlayerViewDemo/temp/PlayListView.swift; sourceTree = SOURCE_ROOT; };
-		4968EF9B248BB83B0043C5DE /* SummerPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerPlayerView.swift; path = SummerPlayerViewDemo/temp/SummerPlayerView.swift; sourceTree = SOURCE_ROOT; };
-		4968EF9C248BB83B0043C5DE /* SummerVideoPlayerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerVideoPlayerHeaderView.swift; path = SummerPlayerViewDemo/SummerVideoPlayerHeaderView.swift; sourceTree = SOURCE_ROOT; };
-		49C76B3825024C8100FED147 /* PlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerControlView.swift; path = SummerPlayerViewDemo/temp/PlayerControlView.swift; sourceTree = SOURCE_ROOT; };
+		496CACBF2505130C00CD454F /* BasicConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +88,7 @@
 		4968EF3B248BB4CB0043C5DE /* SummerPlayerViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				4968EF92248BB8230043C5DE /* temp */,
+				496CACBF2505130C00CD454F /* BasicConfiguration.swift */,
 				4968EF3C248BB4CB0043C5DE /* AppDelegate.swift */,
 				4968EF3E248BB4CB0043C5DE /* SceneDelegate.swift */,
 				4968EF42248BB4CB0043C5DE /* Main.storyboard */,
@@ -133,32 +113,6 @@
 				4968EF78248BB5A60043C5DE /* SummerPlayerView.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		4968EF92248BB8230043C5DE /* temp */ = {
-			isa = PBXGroup;
-			children = (
-				4968EF9B248BB83B0043C5DE /* SummerPlayerView.swift */,
-				4968EF9A248BB83B0043C5DE /* PlayListView.swift */,
-				49C76B3825024C8100FED147 /* PlayerControlView.swift */,
-				49C76B3B250254D600FED147 /* UI */,
-				4968EF97248BB83B0043C5DE /* CMTime+extension.swift */,
-				4968EF96248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift */,
-				4968EF99248BB83B0043C5DE /* SummerPlayerViewTheme.swift */,
-				4968EF95248BB83B0043C5DE /* SummerPlayerDelegates.swift */,
-				4968EF9C248BB83B0043C5DE /* SummerVideoPlayerHeaderView.swift */,
-				4968EF98248BB83B0043C5DE /* PlayerItem.swift */,
-				4968EF94248BB83B0043C5DE /* VideoCollectionViewCell.swift */,
-				495EA93924ED7E7000914D91 /* BasicConfiguration.swift */,
-			);
-			path = temp;
-			sourceTree = "<group>";
-		};
-		49C76B3B250254D600FED147 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,19 +204,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4968EF3D248BB4CB0043C5DE /* AppDelegate.swift in Sources */,
-				4968EFA2248BB83B0043C5DE /* SummerPlayerViewTheme.swift in Sources */,
-				4968EFA5248BB83B0043C5DE /* SummerVideoPlayerHeaderView.swift in Sources */,
-				4968EFA3248BB83B0043C5DE /* PlayListView.swift in Sources */,
-				4968EF9D248BB83B0043C5DE /* VideoCollectionViewCell.swift in Sources */,
+				496CACC02505130C00CD454F /* BasicConfiguration.swift in Sources */,
 				495EA93424EC14A300914D91 /* ViewController.swift in Sources */,
-				495EA93A24ED7E7000914D91 /* BasicConfiguration.swift in Sources */,
-				4968EF9F248BB83B0043C5DE /* SummerPlayerViewConfiguration.swift in Sources */,
-				4968EFA0248BB83B0043C5DE /* CMTime+extension.swift in Sources */,
 				4968EF3F248BB4CB0043C5DE /* SceneDelegate.swift in Sources */,
-				4968EFA4248BB83B0043C5DE /* SummerPlayerView.swift in Sources */,
-				49C76B3925024C8100FED147 /* PlayerControlView.swift in Sources */,
-				4968EF9E248BB83B0043C5DE /* SummerPlayerDelegates.swift in Sources */,
-				4968EFA1248BB83B0043C5DE /* PlayerItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

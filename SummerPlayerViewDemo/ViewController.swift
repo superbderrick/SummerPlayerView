@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SummerPlayerView
 class ViewController: UIViewController {
     @IBOutlet weak var videoPlayerView: SummerPlayerView!
 

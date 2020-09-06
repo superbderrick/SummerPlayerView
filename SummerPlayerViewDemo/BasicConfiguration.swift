@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SummerPlayerView
 
 public struct BasicConfiguration: SummerPlayerViewConfiguration {
     public var canShowVideoList = true
