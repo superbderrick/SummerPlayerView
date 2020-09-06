@@ -197,7 +197,6 @@ open class SummerPlayerView: UIView {
     
     
     private func setupPlayer() {
-        
         queuePlayer = AVQueuePlayer()
         queuePlayer.addObserver(playListView, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
         playerLayer = AVPlayerLayer(player: queuePlayer)
@@ -210,7 +209,6 @@ open class SummerPlayerView: UIView {
             queue: DispatchQueue.main,
             using: { [weak self] (cmtime) in
                 print(cmtime)
-                self?.playListView.videoDidChange(cmtime)
                 self?.playControlView.videoDidChange(cmtime)
         })
         
@@ -224,6 +222,7 @@ open class SummerPlayerView: UIView {
         
         self.playControlView = PlayerControlView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
         
+        self.playControlView.delegate = self
         addSubview(self.playControlView)
         
         

@@ -104,7 +104,6 @@ class PlayListView: UIView {
     }
     
     func setPlayList(currentItem: PlayerItem, items: [PlayerItem]) {
-        
         playerItems = items
         self.currentItem = currentItem
         collectionView.reloadData()
@@ -154,11 +153,8 @@ class PlayListView: UIView {
        collectionView.register(cell.self, forCellWithReuseIdentifier: identifier)
     }
     
-    
-    func videoDidChange(_ time: CMTime) {
-    }
-    
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
         if keyPath == "timeControlStatus", let change = change, let newValue = change[NSKeyValueChangeKey.newKey] as? Int, let oldValue = change[NSKeyValueChangeKey.oldKey] as? Int {
             let oldStatus = AVPlayer.TimeControlStatus(rawValue: oldValue)
             let newStatus = AVPlayer.TimeControlStatus(rawValue: newValue)

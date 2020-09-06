@@ -88,6 +88,35 @@ class PlayerControlView: UIView {
     }()
     
     @objc func clickPlayButton(_ sender: UIButton) {
+        print("clicked -> \(isPlaying)")
+        
+        isPlaying = !isPlaying
+        delegate?.playPause(isPlaying)
+        
+        if let player = delegate?.playerStateDidChange {
+            player((isPlaying == true ? .playing : .pause))
+        }
+        
+        changePauseOrPlay(isPlayig: isPlaying)
+        
+    }
+    
+    private func changePauseOrPlay(isPlayig:Bool) {
+    
+        if(isPlaying) {
+            if let image = UIImage(named: "pause") {
+                playButton.setImage(image, for: .normal)
+                
+            }
+        } else {
+            if let image = UIImage(named: "play") {
+                playButton.setImage(image, for: .normal)
+            }
+        }
+        
+        
+        
+        
         
     }
     
@@ -107,11 +136,32 @@ class PlayerControlView: UIView {
         playerTimeLabel.text = time.description
     }
     
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == "timeControlStatus", let change = change, let newValue = change[NSKeyValueChangeKey.newKey] as? Int, let oldValue = change[NSKeyValueChangeKey.oldKey] as? Int {
+            let oldStatus = AVPlayer.TimeControlStatus(rawValue: oldValue)
+            let newStatus = AVPlayer.TimeControlStatus(rawValue: newValue)
+            if newStatus != oldStatus {
+                DispatchQueue.main.async {[weak self] in
+                    guard let `self` = self else { return }
+                    if newStatus == .playing || newStatus == .paused {
+                        if let player = self.delegate?.playerStateDidChange {
+                            player((self.isPlaying ? SummerPlayerState.pause : SummerPlayerState.playing))
+                        }
+                    } else {
+                        
+                    }
+                }
+            }
+        }
+    }
+    
     func videoDidStart() {
         playerTimeLabel.text = CMTime.zero.description
+        playButton.setImage(UIImage(named: "pause"), for: .normal)
+
         playerSlider.value = 0.0
         fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
-        
     }
     
     private func applyTheme(_ theme: SummerPlayerViewTheme) {
