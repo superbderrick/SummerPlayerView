@@ -6,17 +6,6 @@ import AVKit
 
 class PlayListView: UIView {
     
-    // MARK: - Constants
-    
-    // MARK: - Instance Variables
-
-    lazy private var playButton: UIButton = {
-       let playButton = UIButton()
-        playButton.translatesAutoresizingMaskIntoConstraints = false
-        playButton.addTarget(self, action: #selector(self.clickPlayButton(_:)), for: .touchUpInside)
-        return playButton
-    }()
-    
     lazy private var backButton: UIButton = {
         let backwardButton = UIButton()
         backwardButton.translatesAutoresizingMaskIntoConstraints = false
@@ -30,30 +19,7 @@ class PlayListView: UIView {
         forwardButton.addTarget(self, action: #selector(self.clickForwardButton(_:)), for: .touchUpInside)
         return forwardButton
     }()
-    
-
-    lazy private var playerTimeLabel: UILabel = {
-        let label = UILabel()
-        label.text = CMTime.zero.description
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy private var fullTimeLabel: UILabel = {
-       let timeLabel = UILabel()
-        timeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
-        timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeLabel.textAlignment = .center
-        return timeLabel
-    }()
-    
-    lazy private var seekSlider: UISlider = {
-        let slider = UISlider()
-        slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.addTarget(self, action: #selector(self.changeSeekSlider(_:)), for: .valueChanged)
-        return slider
-    }()
+        
     
     lazy private var activityView: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .large)
@@ -87,7 +53,8 @@ class PlayListView: UIView {
     
     private lazy var collectionView: UICollectionView =  {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 100)
+        let test:CGFloat = self.frame.size.width * 0.25
+        layout.itemSize = CGSize(width: 200, height: 100)
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -109,10 +76,10 @@ class PlayListView: UIView {
     var delegate: SummerPlayerControlsDelegate?
     
     /// custom header which comes as a default header
-    var videoPlayerHeader: MBVideoPlayerHeaderView?
+    var videoPlayerHeader: SummerVideoPlayerHeaderView?
     
     /// default configuration for player
-    var configuration = BasicConfiguration()
+    var configuration = InternalConfiguration()
     
     /// default theme for the player
     var theme = MainTheme()
@@ -136,23 +103,15 @@ class PlayListView: UIView {
         super.init(coder: coder)
     }
     
-    /**
-           This method assigns current video playing item and all the next items to respective views
-            - currentItem: current video which is playing
-            - items: all the next playlistitems
-     */
     func setPlayList(currentItem: PlayerItem, items: [PlayerItem]) {
-        
         playerItems = items
         self.currentItem = currentItem
         collectionView.reloadData()
         videoPlayerHeader?.setItem(currentItem)
-        
     }
     
     func createOverlayViewWith(configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
         
-        // activity indicator
         addSubview(activityView)
         activityView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         activityView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -162,26 +121,10 @@ class PlayListView: UIView {
         bottomControlsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         bottomControlsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
 
-        if configuration.canShowPlayPause {
-            addPlayPauseButton()
-        }
-        
         if configuration.canShowForwardBack {
             addForwardBackwardButton()
         }
-        
-        if configuration.canShowTime {
-            addTimeLabel()
-        }
-        
-        if configuration.canShowTimeBar {
-            addTimeBar()
-        }
-        
-        if configuration.canShowTime {
-            addTotalTimeLabel()
-        }
-                
+
         if configuration.canShowVideoList {
             addPlayList()
         }
@@ -190,16 +133,11 @@ class PlayListView: UIView {
     }
     
     private func applyTheme(_ theme: SummerPlayerViewTheme) {
-        playButton.tintColor = theme.buttonTintColor
         forwardButton.tintColor = theme.buttonTintColor
         backButton.tintColor = theme.buttonTintColor
-        fullTimeLabel.textColor = theme.timeLabelTextColor
-        playerTimeLabel.textColor = theme.timeLabelTextColor
-        seekSlider.tintColor = theme.sliderTintColor
-        seekSlider.thumbTintColor = theme.sliderThumbColor
+        
         activityView.color = theme.activityViewColor
         collectionView.backgroundColor = theme.playListItemsBackgroundColor
-        playButton.setImage((isActive ? theme.pauseButtonImage : theme.playButtonImage), for: .normal)
         forwardButton.setImage(theme.forwardButtonImage, for: .normal)
         backButton.setImage(theme.backButtonImage, for: .normal)
     }
@@ -215,18 +153,8 @@ class PlayListView: UIView {
        collectionView.register(cell.self, forCellWithReuseIdentifier: identifier)
     }
     
-    func videoDidStart() {
-        playerTimeLabel.text = CMTime.zero.description
-        seekSlider.value = 0.0
-        fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
-        
-    }
-    
-    func videoDidChange(_ time: CMTime) {
-        playerTimeLabel.text = time.description
-    }
-    
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
         if keyPath == "timeControlStatus", let change = change, let newValue = change[NSKeyValueChangeKey.newKey] as? Int, let oldValue = change[NSKeyValueChangeKey.oldKey] as? Int {
             let oldStatus = AVPlayer.TimeControlStatus(rawValue: oldValue)
             let newStatus = AVPlayer.TimeControlStatus(rawValue: newValue)
@@ -251,7 +179,7 @@ class PlayListView: UIView {
     @objc func changeSeekSlider(_ sender: UISlider) {
         guard let totalDuration = delegate?.totalDuration else { return }
         let seekTime = CMTime(seconds: Double(sender.value) * totalDuration.asDouble, preferredTimescale: 100)
-        playerTimeLabel.text = seekTime.description
+        //playerTimeLabel.text = seekTime.description
         delegate?.seekToTime(seekTime)
         if let player = delegate?.playerTimeDidChange {
             player(seekTime.asDouble, totalDuration.asDouble)
@@ -260,7 +188,6 @@ class PlayListView: UIView {
     
     @objc func clickPlayButton(_ sender: UIButton) {
         isActive = !isActive
-        playButton.setImage(Controls.playpause(isActive).image, for: .normal)
         delegate?.playPause(isActive)
         print("clicked -> \(isActive)")
         if let player = delegate?.playerStateDidChange {
@@ -278,8 +205,8 @@ class PlayListView: UIView {
         }
         let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
         delegate?.seekToTime(time2)
-        playerTimeLabel.text = time2.description
-        seekSlider.value = time2.asFloat / totalDuration.asFloat
+        //playerTimeLabel.text = time2.description
+//        seekSlider.value = time2.asFloat / totalDuration.asFloat
         if let player = delegate?.playerTimeDidChange {
             player(time2.asDouble, totalDuration.asDouble)
         }
@@ -293,8 +220,8 @@ class PlayListView: UIView {
         if newTime < CMTimeGetSeconds(totalDuration) {
             let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
             delegate?.seekToTime(time2)
-            playerTimeLabel.text = time2.description
-            seekSlider.value = time2.asFloat / totalDuration.asFloat
+           // playerTimeLabel.text = time2.description
+            //seekSlider.value = time2.asFloat / totalDuration.asFloat
             if let player = delegate?.playerTimeDidChange {
                 player(time2.asDouble, totalDuration.asDouble)
             }
@@ -336,46 +263,19 @@ class PlayListView: UIView {
     }
     
 
-    
-    private func addTimeBar() {
-          // seek slider
-          bottomControlsStackView.addArrangedSubview(seekSlider)
-          seekSlider.centerYAnchor.constraint(equalTo: bottomControlsStackView.centerYAnchor, constant: 0).isActive = true
-    }
-    
-    private func addTimeLabel() {
-        // time label
-        bottomControlsStackView.addArrangedSubview(playerTimeLabel)
-        playerTimeLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        playerTimeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    }
-    
-    private func addTotalTimeLabel() {
-        // total time label
-        bottomControlsStackView.addArrangedSubview(fullTimeLabel)
-        fullTimeLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        fullTimeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    }
-    
-    private func addPlayPauseButton() {
-        // play/pause button
-        addSubview(playButton)
-        
-        playButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        playButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-    }
+
+
     
     private func addForwardBackwardButton() {
         // backward button
         addSubview(backButton)
-        backButton.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -25.0).isActive = true
-        backButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
+        //backButton.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -25.0).isActive = true
+        //backButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
         // forward button
         
         addSubview(forwardButton)
-        forwardButton.leadingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: 25.0).isActive = true
-        forwardButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
+        //forwardButton.leadingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: 25.0).isActive = true
+        //forwardButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
     }
     
     private func addPlayList() {
@@ -387,8 +287,8 @@ class PlayListView: UIView {
         // videos stackview
         playListStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         playListStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        playListStackView.bottomAnchor.constraint(equalTo: self.seekSlider.topAnchor, constant: -10.0).isActive = true
         playListStackView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
+        playListStackView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -15).isActive = true
         
         // collectionView
         playListStackView.addSubview(collectionView)

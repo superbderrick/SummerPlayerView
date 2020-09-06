@@ -12,7 +12,7 @@ public enum PlayerDimension {
 open class SummerPlayerView: UIView {
     
     // MARK: - Constants
-
+    
     public var playerStateDidChange: ((SummerPlayerState)->())? = nil
     
     public var playerTimeDidChange: ((TimeInterval, TimeInterval)->())? = nil
@@ -20,7 +20,7 @@ open class SummerPlayerView: UIView {
     public var playerOrientationDidChange: ((PlayerDimension) -> ())? = nil
     
     public var playerDidChangeSize: ((PlayerDimension) -> ())? = nil
-        
+    
     public var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? = nil
     
     public var playerDidSelectItem: ((Int)->())? = nil
@@ -34,16 +34,19 @@ open class SummerPlayerView: UIView {
     private var queuePlayer: AVQueuePlayer!
     
     private var playerLayer: AVPlayerLayer?
-
-    let playListView = PlayListView()
-    let playControlView = PlayerControlView()
     
-    var configuration: SummerPlayerViewConfiguration = BasicConfiguration()
+    let playListView = PlayListView()
+    
+    var playControlView = PlayerControlView()
+    
+    var wholeStandardViewRect = CGRect()
+    
+    var configuration: SummerPlayerViewConfiguration = InternalConfiguration()
     
     var theme: SummerPlayerViewTheme = MainTheme()
     
     public var fullScreenView: UIView? = nil
-            
+    
     public var totalDuration: CMTime? {
         return self.queuePlayer.currentItem?.asset.duration
     }
@@ -53,7 +56,7 @@ open class SummerPlayerView: UIView {
     }
     
     private lazy var backgroundView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = UIColor.black
         view.alpha = 0.1
         view.isOpaque = false
@@ -61,9 +64,7 @@ open class SummerPlayerView: UIView {
         return view
     }()
     
-    // MARK: - View Initializers
-    
-    required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, header: UIView?) {
+    required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, header: UIView?, viewRect: CGRect) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         if let theme = theme {
@@ -72,24 +73,24 @@ open class SummerPlayerView: UIView {
         if let configuration = configuration {
             self.configuration = configuration
         }
-        setupPlayer(header)
+        setupSummerPlayerView(header,viewRect)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        setupPlayer(nil)
+        setupSummerPlayerView(nil,nil)
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupPlayer(nil)
+        setupSummerPlayerView(nil,nil)
     }
     
     override open func layoutSubviews() {
         super.layoutSubviews()
         
-        regulatePlayerView(isFullScreen: true)
+        regulatePlayerView(isFullScreen: false)
     }
     
     private func regulatePlayerView(isFullScreen:Bool) {
@@ -108,10 +109,6 @@ open class SummerPlayerView: UIView {
             playerViewRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
         }
         
-        print("self bounds origin X \(self.bounds.origin.x)")
-        print("self bounds origin Y \(self.bounds.origin.y)")
-        print("self bounds width    \(self.bounds.size.width)")
-        print("self bounds height   \(self.bounds.size.height)")
         
         playerLayer?.frame = playerViewRect
     }
@@ -133,30 +130,33 @@ open class SummerPlayerView: UIView {
         playListView.setPlayList(currentItem: currentItem, items: items)
     }
     
-    private func setupPlayer(_ header: UIView?) {
-        
-        createPlayer()
-            
-        setupInsideViews(header)
-                
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(backgroundView)
-        
-        bringSubviewToFront(playListView)
-        
-        backgroundView.pinEdges(to: self)
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        tap.cancelsTouchesInView = false
-        tap.delegate = self
-        addGestureRecognizer(tap)
-
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
-
-    }
     
-    /// this is called when device orientation got changed
+    private func setupSummerPlayerView(_ header: UIView? , _ viewRect: CGRect?) {
+        if(viewRect != nil) {
+            let wholeStandardRect = getwholeStandardViewRect(viewRect!)
+            
+            setupPlayer()
+            
+            setupInsideViews(header,wholeStandardRect)
+            
+            backgroundView.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(backgroundView)
+            
+            bringSubviewToFront(playListView)
+            bringSubviewToFront(playControlView)
+            
+            backgroundView.pinEdges(to: self)
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+            tap.cancelsTouchesInView = false
+            tap.delegate = self
+            addGestureRecognizer(tap)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
+        }
+        
+        
+    }
     
     @objc func onOrientationChanged() {
         if let didChangeOrientation = playerOrientationDidChange {
@@ -164,28 +164,31 @@ open class SummerPlayerView: UIView {
         }
     }
     
-    /// this controls tap on player and show/hide overlay view
-    
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        
+        print("handleTap ")
         
         var isTouched = false
         
         if configuration.hideControls {
             playListView.isHidden = true
+            self.playControlView.isHidden = true
             backgroundView.isHidden = true
             task?.cancel()
             
             isTouched = true
         } else {
             playListView.isHidden = false
+            self.playControlView.isHidden = false
             backgroundView.isHidden = false
             task = DispatchWorkItem {
-                self.playListView.isHidden = true
+                //self.playListView.isHidden = true
+                //self.playControlView.isHidden = true
                 self.backgroundView.isHidden = true
                 self.configuration.hideControls = !self.configuration.hideControls
             }
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
             print("handleTap maybe false ")
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
             isTouched = false
         }
         configuration.hideControls = !configuration.hideControls
@@ -194,10 +197,8 @@ open class SummerPlayerView: UIView {
         
     }
     
-    /// this creates AVQueuePlayer
     
-    private func createPlayer() {
-        
+    private func setupPlayer() {
         queuePlayer = AVQueuePlayer()
         queuePlayer.addObserver(playListView, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
         playerLayer = AVPlayerLayer(player: queuePlayer)
@@ -210,23 +211,34 @@ open class SummerPlayerView: UIView {
             queue: DispatchQueue.main,
             using: { [weak self] (cmtime) in
                 print(cmtime)
-                self?.playListView.videoDidChange(cmtime)
+                self?.playControlView.videoDidChange(cmtime)
         })
         
     }
     
-    /// this create overlay view on top of player with custom controls
-    
-    private func setupInsideViews(_ header: UIView?) {
+    private func setupInsideViews(_ header: UIView?,_ standardRect: CGRect?) {
         
         guard configuration.hideControls else { return }
-        playListView.delegate = self
+        
+        guard (standardRect != nil) else { return }
+        
+        self.playControlView = PlayerControlView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
+        
+        self.playControlView.delegate = self
+        addSubview(self.playControlView)
+        
+        
         playListView.createOverlayViewWith(configuration: configuration, theme: theme, header: header)
+        playListView.delegate = self
         playListView.translatesAutoresizingMaskIntoConstraints = false
         playListView.isHidden = false
         addSubview(playListView)
         playListView.backgroundColor = .clear
         playListView.pinEdges(to: self)
+        
+    }
+    
+    private func setupPlayerControlView() {
         
     }
     
@@ -244,7 +256,7 @@ extension SummerPlayerView: SummerPlayerControlsDelegate {
         queuePlayer.insert(playerItem, after: nil)
         queuePlayer.play()
         
-        playListView.videoDidStart()
+        playControlView.videoDidStart()
         
         if let player = playerStateDidChange {
             player(.readyToPlay)
@@ -279,6 +291,19 @@ extension UIView {
         trailingAnchor.constraint(equalTo: other.trailingAnchor).isActive = true
         topAnchor.constraint(equalTo: other.topAnchor).isActive = true
         bottomAnchor.constraint(equalTo: other.bottomAnchor).isActive = true
+    }
+    
+    public func getwholeStandardViewRect(_ viewRect:CGRect) -> CGRect? {
+        var wholeStandardRect : CGRect
+        let xAXIS = viewRect.size.width * 0.25
+        
+        let yAXIS :CGFloat = 0.0
+        let WIDTH = viewRect.size.width/2
+        let HEIGHT = viewRect.size.height * 0.6
+        
+        wholeStandardRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
+        
+        return wholeStandardRect
     }
 }
 

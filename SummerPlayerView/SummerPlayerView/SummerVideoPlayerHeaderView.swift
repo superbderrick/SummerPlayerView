@@ -2,7 +2,7 @@
 
 import UIKit
 
-class MBVideoPlayerHeaderView: UIView {
+class SummerVideoPlayerHeaderView: UIView {
     
     // MARK: - Instance Variables
     var configuration: SummerPlayerViewConfiguration
