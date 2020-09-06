@@ -16,7 +16,7 @@
 		496CACB9250512C300CD454F /* SummerVideoPlayerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACAB250512C300CD454F /* SummerVideoPlayerHeaderView.swift */; };
 		496CACBA250512C300CD454F /* PlayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACB1250512C300CD454F /* PlayListView.swift */; };
 		496CACBB250512C300CD454F /* CMTime+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACB0250512C300CD454F /* CMTime+extension.swift */; };
-		496CACBC250512C300CD454F /* BasicConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACAF250512C300CD454F /* BasicConfiguration.swift */; };
+		496CACBC250512C300CD454F /* InternalConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACAF250512C300CD454F /* InternalConfiguration.swift */; };
 		496CACBD250512C300CD454F /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACAC250512C300CD454F /* VideoCollectionViewCell.swift */; };
 		496CACBE250512C300CD454F /* SummerPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACAD250512C300CD454F /* SummerPlayerView.swift */; };
 /* End PBXBuildFile section */
@@ -31,7 +31,7 @@
 		496CACAC250512C300CD454F /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		496CACAD250512C300CD454F /* SummerPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummerPlayerView.swift; sourceTree = "<group>"; };
 		496CACAE250512C300CD454F /* PlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlView.swift; sourceTree = "<group>"; };
-		496CACAF250512C300CD454F /* BasicConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BasicConfiguration.swift; path = ../../SummerPlayerViewDemo/BasicConfiguration.swift; sourceTree = "<group>"; };
+		496CACAF250512C300CD454F /* InternalConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InternalConfiguration.swift; path = ../../SummerPlayerViewDemo/InternalConfiguration.swift; sourceTree = "<group>"; };
 		496CACB0250512C300CD454F /* CMTime+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CMTime+extension.swift"; sourceTree = "<group>"; };
 		496CACB1250512C300CD454F /* PlayListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayListView.swift; sourceTree = "<group>"; };
 		496CACB2250512C300CD454F /* SummerPlayerDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummerPlayerDelegates.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 				496CACAB250512C300CD454F /* SummerVideoPlayerHeaderView.swift */,
 				496CACAA250512C300CD454F /* PlayerItem.swift */,
 				496CACAC250512C300CD454F /* VideoCollectionViewCell.swift */,
-				496CACAF250512C300CD454F /* BasicConfiguration.swift */,
+				496CACAF250512C300CD454F /* InternalConfiguration.swift */,
 				4968EF5D248BB4F00043C5DE /* SummerPlayerView.h */,
 				4968EF5E248BB4F00043C5DE /* Info.plist */,
 			);
@@ -173,7 +173,7 @@
 				496CACB8250512C300CD454F /* SummerPlayerViewConfiguration.swift in Sources */,
 				496CACB4250512C300CD454F /* PlayerControlView.swift in Sources */,
 				496CACB5250512C300CD454F /* SummerPlayerDelegates.swift in Sources */,
-				496CACBC250512C300CD454F /* BasicConfiguration.swift in Sources */,
+				496CACBC250512C300CD454F /* InternalConfiguration.swift in Sources */,
 				496CACB6250512C300CD454F /* PlayerItem.swift in Sources */,
 				496CACB7250512C300CD454F /* SummerPlayerViewTheme.swift in Sources */,
 			);

@@ -79,7 +79,7 @@ class PlayListView: UIView {
     var videoPlayerHeader: SummerVideoPlayerHeaderView?
     
     /// default configuration for player
-    var configuration = BasicConfiguration()
+    var configuration = InternalConfiguration()
     
     /// default theme for the player
     var theme = MainTheme()

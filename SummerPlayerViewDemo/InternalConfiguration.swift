@@ -2,14 +2,13 @@
 //  BasicConfiguration.swift
 //  SummerPlayerViewDemo
 //
-//  Created by derrick on 2020/09/06.
+//  Created by derrick on 2020/08/20.
 //  Copyright © 2020 Derrick. All rights reserved.
 //
 
-import UIKit
-import SummerPlayerView
+import Foundation
 
-struct BasicConfiguration: SummerPlayerViewConfiguration {
+public struct InternalConfiguration: SummerPlayerViewConfiguration {
     public var canShowVideoList = true
     public var canShowTime = true
     public var canShowPlayPause = true

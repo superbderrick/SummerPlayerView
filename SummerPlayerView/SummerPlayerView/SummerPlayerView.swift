@@ -41,7 +41,7 @@ open class SummerPlayerView: UIView {
     
     var wholeStandardViewRect = CGRect()
     
-    var configuration: SummerPlayerViewConfiguration = BasicConfiguration()
+    var configuration: SummerPlayerViewConfiguration = InternalConfiguration()
     
     var theme: SummerPlayerViewTheme = MainTheme()
     
