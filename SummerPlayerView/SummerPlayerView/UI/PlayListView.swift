@@ -52,6 +52,7 @@ class PlayListView: UIView {
     
     private lazy var collectionView: UICollectionView =  {
         let layout = UICollectionViewFlowLayout()
+        
         let test:CGFloat = self.frame.size.width * 0.25
         layout.itemSize = CGSize(width: 200, height: 100)
         layout.scrollDirection = .horizontal
@@ -108,7 +109,9 @@ class PlayListView: UIView {
         videoPlayerHeader?.setItem(currentItem)
     }
     
-    func createOverlayViewWith(configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
+    func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
+        
+        let testValue:CGFloat = wholeViewWidth
         
         addSubview(activityView)
         activityView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -290,6 +293,7 @@ class PlayListView: UIView {
         
         // collectionView
         playListStackView.addSubview(collectionView)
+        //
         collectionView.pinEdges(to: playListStackView)
     }
 }

@@ -67,6 +67,7 @@ open class SummerPlayerView: UIView {
     required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, header: UIView?, viewRect: CGRect) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
+        
         if let theme = theme {
             self.theme = theme
         }
@@ -137,7 +138,7 @@ open class SummerPlayerView: UIView {
             
             setupPlayer()
             
-            setupInsideViews(header,wholeStandardRect)
+            setupInsideViews(header,wholeStandardRect , wholeRect: viewRect)
             
             backgroundView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(backgroundView)
@@ -214,7 +215,7 @@ open class SummerPlayerView: UIView {
         
     }
     
-    private func setupInsideViews(_ header: UIView?,_ standardRect: CGRect?) {
+    private func setupInsideViews(_ header: UIView?,_ standardRect: CGRect? , wholeRect : CGRect?) {
         
         guard configuration.hideControls else { return }
         
@@ -226,7 +227,7 @@ open class SummerPlayerView: UIView {
         addSubview(self.playControlView)
         
         
-        playListView.createOverlayViewWith(configuration: configuration, theme: theme, header: header)
+        playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: theme, header: header)
         playListView.delegate = self
         playListView.translatesAutoresizingMaskIntoConstraints = false
         playListView.isHidden = false
@@ -281,6 +282,7 @@ extension SummerPlayerView: UIGestureRecognizerDelegate {
 // MARK: MBVideoPlayerControlsDelegate
 
 extension UIView {
+    
     public func pinEdges(to other: UIView) {
         leadingAnchor.constraint(equalTo: other.leadingAnchor).isActive = true
         trailingAnchor.constraint(equalTo: other.trailingAnchor).isActive = true
