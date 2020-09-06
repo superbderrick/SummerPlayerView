@@ -11,7 +11,7 @@ import AVKit
 
 class PlayerControlView: UIView {
     
-    private var isPlaying: Bool = false
+    private var isPlaying: Bool = true
     
     var delegate: SummerPlayerControlsDelegate?
     
@@ -113,11 +113,6 @@ class PlayerControlView: UIView {
                 playButton.setImage(image, for: .normal)
             }
         }
-        
-        
-        
-        
-        
     }
     
     @objc func changeSeekSlider(_ sender: UISlider) {
