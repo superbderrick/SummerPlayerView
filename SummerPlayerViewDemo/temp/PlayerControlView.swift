@@ -7,12 +7,38 @@
 //
 
 import UIKit
+import AVKit
 
 class PlayerControlView: UIView {
     
     private var isPlaying: Bool = false
     
-    lazy var addButton: UIButton = {
+    lazy private var playerTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0.0"
+        label.textColor = UIColor.white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        return label
+    }()
+    
+    lazy private var fullTimeLabel: UILabel = {
+        let timeLabel = UILabel()
+        timeLabel.text = "0.0"
+        timeLabel.textColor = UIColor.white
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        timeLabel.textAlignment = .center
+        return timeLabel
+    }()
+    
+    lazy private var playerSlider: UISlider = {
+        let slider = UISlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.addTarget(self, action: #selector(self.changeSeekSlider(_:)), for: .valueChanged)
+        return slider
+    }()
+    
+    lazy private var addButton: UIButton = {
         let addButton = UIButton()
         if let image = UIImage(named: "more") {
             addButton.setImage(image, for: .normal)
@@ -22,7 +48,7 @@ class PlayerControlView: UIView {
         return addButton
     }()
     
-    lazy var headerTitle: UILabel = {
+    lazy private var headerTitle: UILabel = {
         let headerTitle = UILabel()
         headerTitle.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         headerTitle.text = "SummerPlayer view is working"
@@ -32,9 +58,9 @@ class PlayerControlView: UIView {
         return headerTitle
     }()
     
-    lazy var topView: UIView = {
+    lazy private var topView: UIView = {
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.black
+        headerView.backgroundColor = UIColor.clear
         headerView.alpha = 0.9
         headerView.addSubview(headerTitle)
         headerView.addSubview(addButton)
@@ -42,7 +68,7 @@ class PlayerControlView: UIView {
         return headerView
     }()
     
-    lazy var playButton: UIButton = {
+    lazy private var playButton: UIButton = {
         let playButton = UIButton()
         if let image = UIImage(named: "play") {
             playButton.setImage(image, for: .normal)
@@ -52,11 +78,11 @@ class PlayerControlView: UIView {
         return playButton
     }()
     
-    lazy var playerSlider: UISlider = {
-        let slider = UISlider()
-        slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.addTarget(self, action: #selector(self.changeSeekSlider(_:)), for: .valueChanged)
-        return slider
+    lazy private var bottomControlsStackView: UIStackView  = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     @objc func clickPlayButton(_ sender: UIButton) {
@@ -64,23 +90,32 @@ class PlayerControlView: UIView {
     }
     
     @objc func changeSeekSlider(_ sender: UISlider) {
-
+        
+    }
+    
+    
+    func videoDidChange(_ time: CMTime) {
+        playerTimeLabel.text = time.description
+    }
+    
+    func videoDidStart() {
+        playerTimeLabel.text = CMTime.zero.description
+        playerSlider.value = 0.0
+        //fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
+        
     }
     
     lazy var bottomView: UIView = {
         
         let bottomView = UIView()
-        bottomView.backgroundColor = UIColor.black
+        bottomView.backgroundColor = UIColor.clear
         bottomView.alpha = 0.9
         
         bottomView.addSubview(playButton)
-        bottomView.addSubview(playerSlider)
-        //bottomView.addSubview(playersl)
+        bottomView.addSubview(bottomControlsStackView)
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         return bottomView
     }()
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,7 +126,6 @@ class PlayerControlView: UIView {
         super.init(coder: coder)
         setupView()
     }
-    
     
     private func setupView() {
         addSubview(topView)
@@ -119,15 +153,32 @@ class PlayerControlView: UIView {
         ])
     }
     private func setupBottomLayout() {
+        
+        bottomControlsStackView.addArrangedSubview(playerTimeLabel)
+        
+        playerTimeLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        playerTimeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        
+        bottomControlsStackView.addArrangedSubview(playerSlider)
+        playerSlider.centerYAnchor.constraint(equalTo: bottomControlsStackView.centerYAnchor, constant: 0).isActive = true
+        
+        bottomControlsStackView.addArrangedSubview(fullTimeLabel)
+        
+        fullTimeLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        fullTimeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        
         NSLayoutConstraint.activate([
             
             playButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
             playButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 10),
             
-            playerSlider.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
-            playerSlider.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
-            playerSlider.widthAnchor.constraint(equalToConstant: 200),
-
+            
+            bottomControlsStackView.leadingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: 40),
+            bottomControlsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            bottomControlsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            bottomControlsStackView.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
             
             bottomView.bottomAnchor.constraint(equalTo: bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor),

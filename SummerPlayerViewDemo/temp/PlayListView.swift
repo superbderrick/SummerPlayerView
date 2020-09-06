@@ -6,10 +6,6 @@ import AVKit
 
 class PlayListView: UIView {
     
-    // MARK: - Constants
-    
-    // MARK: - Instance Variables
-
     lazy private var backButton: UIButton = {
         let backwardButton = UIButton()
         backwardButton.translatesAutoresizingMaskIntoConstraints = false
@@ -23,16 +19,7 @@ class PlayListView: UIView {
         forwardButton.addTarget(self, action: #selector(self.clickForwardButton(_:)), for: .touchUpInside)
         return forwardButton
     }()
-    
-
-    lazy private var playerTimeLabel: UILabel = {
-        let label = UILabel()
-        label.text = CMTime.zero.description
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        return label
-    }()
-    
+        
     lazy private var fullTimeLabel: UILabel = {
        let timeLabel = UILabel()
         timeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
@@ -129,18 +116,12 @@ class PlayListView: UIView {
         super.init(coder: coder)
     }
     
-    /**
-           This method assigns current video playing item and all the next items to respective views
-            - currentItem: current video which is playing
-            - items: all the next playlistitems
-     */
     func setPlayList(currentItem: PlayerItem, items: [PlayerItem]) {
         
         playerItems = items
         self.currentItem = currentItem
         collectionView.reloadData()
         videoPlayerHeader?.setItem(currentItem)
-        
     }
     
     func createOverlayViewWith(configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
@@ -160,9 +141,7 @@ class PlayListView: UIView {
             addForwardBackwardButton()
         }
         
-        if configuration.canShowTime {
-            addTimeLabel()
-        }
+
         
         if configuration.canShowTimeBar {
             addTimeBar()
@@ -183,7 +162,6 @@ class PlayListView: UIView {
         forwardButton.tintColor = theme.buttonTintColor
         backButton.tintColor = theme.buttonTintColor
         fullTimeLabel.textColor = theme.timeLabelTextColor
-        playerTimeLabel.textColor = theme.timeLabelTextColor
         seekSlider.tintColor = theme.sliderTintColor
         seekSlider.thumbTintColor = theme.sliderThumbColor
         activityView.color = theme.activityViewColor
@@ -204,14 +182,13 @@ class PlayListView: UIView {
     }
     
     func videoDidStart() {
-        playerTimeLabel.text = CMTime.zero.description
+      //  playerTimeLabel.text = CMTime.zero.description
         seekSlider.value = 0.0
         fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
         
     }
     
     func videoDidChange(_ time: CMTime) {
-        playerTimeLabel.text = time.description
     }
     
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -239,7 +216,7 @@ class PlayListView: UIView {
     @objc func changeSeekSlider(_ sender: UISlider) {
         guard let totalDuration = delegate?.totalDuration else { return }
         let seekTime = CMTime(seconds: Double(sender.value) * totalDuration.asDouble, preferredTimescale: 100)
-        playerTimeLabel.text = seekTime.description
+        //playerTimeLabel.text = seekTime.description
         delegate?.seekToTime(seekTime)
         if let player = delegate?.playerTimeDidChange {
             player(seekTime.asDouble, totalDuration.asDouble)
@@ -265,7 +242,7 @@ class PlayListView: UIView {
         }
         let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
         delegate?.seekToTime(time2)
-        playerTimeLabel.text = time2.description
+        //playerTimeLabel.text = time2.description
         seekSlider.value = time2.asFloat / totalDuration.asFloat
         if let player = delegate?.playerTimeDidChange {
             player(time2.asDouble, totalDuration.asDouble)
@@ -280,7 +257,7 @@ class PlayListView: UIView {
         if newTime < CMTimeGetSeconds(totalDuration) {
             let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
             delegate?.seekToTime(time2)
-            playerTimeLabel.text = time2.description
+           // playerTimeLabel.text = time2.description
             seekSlider.value = time2.asFloat / totalDuration.asFloat
             if let player = delegate?.playerTimeDidChange {
                 player(time2.asDouble, totalDuration.asDouble)
@@ -330,12 +307,7 @@ class PlayListView: UIView {
           seekSlider.centerYAnchor.constraint(equalTo: bottomControlsStackView.centerYAnchor, constant: 0).isActive = true
     }
     
-    private func addTimeLabel() {
-        // time label
-        bottomControlsStackView.addArrangedSubview(playerTimeLabel)
-        playerTimeLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        playerTimeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    }
+
     
     private func addTotalTimeLabel() {
         // total time label
