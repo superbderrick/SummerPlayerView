@@ -109,10 +109,6 @@ open class SummerPlayerView: UIView {
             playerViewRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
         }
         
-        print("self bounds origin X \(self.bounds.origin.x)")
-        print("self bounds origin Y \(self.bounds.origin.y)")
-        print("self bounds width    \(self.bounds.size.width)")
-        print("self bounds height   \(self.bounds.size.height)")
         
         playerLayer?.frame = playerViewRect
     }
@@ -147,6 +143,7 @@ open class SummerPlayerView: UIView {
             addSubview(backgroundView)
             
             bringSubviewToFront(playListView)
+            bringSubviewToFront(playControlView)
             
             backgroundView.pinEdges(to: self)
             
