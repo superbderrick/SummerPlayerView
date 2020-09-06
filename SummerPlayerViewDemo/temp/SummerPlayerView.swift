@@ -64,8 +64,6 @@ open class SummerPlayerView: UIView {
         return view
     }()
     
-    // MARK: - View Initializers
-    
     required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, header: UIView?, viewRect: CGRect) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
@@ -137,12 +135,9 @@ open class SummerPlayerView: UIView {
     }
     
     
-
-    
     private func setupSummerPlayerView(_ header: UIView? , _ viewRect: CGRect?) {
         if(viewRect != nil) {
             let wholeStandardRect = getwholeStandardViewRect(viewRect!)
-            
             
             setupPlayer()
             
@@ -160,22 +155,17 @@ open class SummerPlayerView: UIView {
             tap.delegate = self
             addGestureRecognizer(tap)
             
-            
             NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
         }
         
         
     }
     
-    /// this is called when device orientation got changed
-    
     @objc func onOrientationChanged() {
         if let didChangeOrientation = playerOrientationDidChange {
             didChangeOrientation(configuration.dimension)
         }
     }
-    
-    /// this controls tap on player and show/hide overlay view
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         
@@ -224,6 +214,7 @@ open class SummerPlayerView: UIView {
             using: { [weak self] (cmtime) in
                 print(cmtime)
                 self?.playListView.videoDidChange(cmtime)
+                self?.playControlView.videoDidChange(cmtime)
         })
         
     }
@@ -267,7 +258,7 @@ extension SummerPlayerView: SummerPlayerControlsDelegate {
         queuePlayer.insert(playerItem, after: nil)
         queuePlayer.play()
         
-        playListView.videoDidStart()
+        playControlView.videoDidStart()
         
         if let player = playerStateDidChange {
             player(.readyToPlay)
