@@ -30,7 +30,6 @@ class PlayListView: UIView {
     
     lazy private var playListStackView: UIStackView = {
         let stackView = UIStackView()
-       // stackView.isHidden = true
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -64,7 +63,6 @@ class PlayListView: UIView {
         collectionView.dataSource = self
         return collectionView
     }()
-    /// PlayerItems that comes at the bottom as next playlist.
     private var playerItems: [PlayerItem]?
     
     /// current video item which is playing now

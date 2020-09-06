@@ -182,8 +182,6 @@ open class SummerPlayerView: UIView {
             self.playControlView.isHidden = false
             backgroundView.isHidden = false
             task = DispatchWorkItem {
-                //self.playListView.isHidden = true
-                //self.playControlView.isHidden = true
                 self.backgroundView.isHidden = true
                 self.configuration.hideControls = !self.configuration.hideControls
             }
@@ -238,9 +236,6 @@ open class SummerPlayerView: UIView {
         
     }
     
-    private func setupPlayerControlView() {
-        
-    }
     
 }
 
