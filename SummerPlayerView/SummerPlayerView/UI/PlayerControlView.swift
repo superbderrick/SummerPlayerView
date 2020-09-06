@@ -40,7 +40,7 @@ class PlayerControlView: UIView {
         return slider
     }()
     
-    lazy private var addButton: UIButton = {
+    lazy private var moreButton: UIButton = {
         let addButton = UIButton()
         if let image = UIImage(named: "more") {
             addButton.setImage(image, for: .normal)
@@ -52,10 +52,10 @@ class PlayerControlView: UIView {
     
     lazy private var headerTitle: UILabel = {
         let headerTitle = UILabel()
-        headerTitle.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        headerTitle.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         headerTitle.text = "SummerPlayer view is working"
         headerTitle.textColor = UIColor.white
-        headerTitle.textAlignment = .center
+        headerTitle.textAlignment = .left
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         return headerTitle
     }()
@@ -65,7 +65,7 @@ class PlayerControlView: UIView {
         headerView.backgroundColor = UIColor.clear
         headerView.alpha = 0.9
         headerView.addSubview(headerTitle)
-        headerView.addSubview(addButton)
+        headerView.addSubview(moreButton)
         headerView.translatesAutoresizingMaskIntoConstraints = false
         return headerView
     }()
@@ -198,11 +198,11 @@ class PlayerControlView: UIView {
             
             headerTitle.topAnchor.constraint(equalTo: topView.topAnchor),
             headerTitle.bottomAnchor.constraint(equalTo: topView.bottomAnchor),
-            headerTitle.leadingAnchor.constraint(equalTo: topView.leadingAnchor),
+            headerTitle.leadingAnchor.constraint(equalTo: topView.leadingAnchor , constant: 30),
             headerTitle.trailingAnchor.constraint(equalTo: topView.trailingAnchor),
             
-            addButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
-            addButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -10),
+            moreButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+            moreButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -10),
             
             topView.topAnchor.constraint(equalTo: topAnchor),
             topView.leadingAnchor.constraint(equalTo: leadingAnchor),

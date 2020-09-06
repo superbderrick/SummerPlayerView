@@ -30,7 +30,6 @@ class PlayListView: UIView {
     
     lazy private var playListStackView: UIStackView = {
         let stackView = UIStackView()
-       // stackView.isHidden = true
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -53,6 +52,7 @@ class PlayListView: UIView {
     
     private lazy var collectionView: UICollectionView =  {
         let layout = UICollectionViewFlowLayout()
+        
         let test:CGFloat = self.frame.size.width * 0.25
         layout.itemSize = CGSize(width: 200, height: 100)
         layout.scrollDirection = .horizontal
@@ -64,7 +64,6 @@ class PlayListView: UIView {
         collectionView.dataSource = self
         return collectionView
     }()
-    /// PlayerItems that comes at the bottom as next playlist.
     private var playerItems: [PlayerItem]?
     
     /// current video item which is playing now
@@ -110,7 +109,9 @@ class PlayListView: UIView {
         videoPlayerHeader?.setItem(currentItem)
     }
     
-    func createOverlayViewWith(configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
+    func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
+        
+        let testValue:CGFloat = wholeViewWidth
         
         addSubview(activityView)
         activityView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -292,6 +293,7 @@ class PlayListView: UIView {
         
         // collectionView
         playListStackView.addSubview(collectionView)
+        //
         collectionView.pinEdges(to: playListStackView)
     }
 }
