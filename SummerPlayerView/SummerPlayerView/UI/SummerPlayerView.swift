@@ -134,11 +134,12 @@ open class SummerPlayerView: UIView {
     
     private func setupSummerPlayerView(_ header: UIView? , _ viewRect: CGRect?) {
         if(viewRect != nil) {
-            let wholeStandardRect = getwholeStandardViewRect(viewRect!)
+            let wholeViewRect = getWholeViewRect(viewRect!)
+            
             
             setupPlayer()
             
-            setupInsideViews(header,wholeStandardRect , wholeRect: viewRect)
+            setupInsideViews(header,wholeViewRect , wholeRect: viewRect)
             
             backgroundView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(backgroundView)
@@ -224,7 +225,9 @@ open class SummerPlayerView: UIView {
         self.playerScreenView.delegate = self
         addSubview(self.playerScreenView)
         
-        self.playerControlView = PlayerControllView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
+        let quarterViewRect = getQuarterViewRect(wholeRect!)
+        
+        self.playerControlView = PlayerControllView(frame: CGRect(x: quarterViewRect!.origin.x, y: 0, width: quarterViewRect!.width, height: quarterViewRect!.height))
         
         self.playerControlView.delegate = self
         addSubview(self.playerControlView)
@@ -292,12 +295,24 @@ extension UIView {
         bottomAnchor.constraint(equalTo: other.bottomAnchor).isActive = true
     }
     
-    public func getwholeStandardViewRect(_ viewRect:CGRect) -> CGRect? {
+    public func getWholeViewRect(_ viewRect:CGRect) -> CGRect? {
         var wholeStandardRect : CGRect
         let xAXIS = viewRect.size.width * 0.25
         let yAXIS :CGFloat = 0.0
         let WIDTH = viewRect.size.width/2
         let HEIGHT = viewRect.size.height * 0.6
+        
+        wholeStandardRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
+        
+        return wholeStandardRect
+    }
+    
+    public func getQuarterViewRect(_ viewRect:CGRect) -> CGRect? {
+        var wholeStandardRect : CGRect
+        let xAXIS : CGFloat = 0.0
+        let yAXIS : CGFloat = 0.0
+        let WIDTH = viewRect.size.width
+        let HEIGHT = viewRect.size.height * 0.4
         
         wholeStandardRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
         
