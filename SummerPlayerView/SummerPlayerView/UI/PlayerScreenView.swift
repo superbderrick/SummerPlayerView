@@ -13,7 +13,7 @@ class PlayerScreenView: UIView {
     
     private var isPlaying: Bool = true
     
-    var delegate: SummerPlayerControlsDelegate?
+    var delegate: LegacyDelegate?
     
     lazy private var playerTimeLabel: UILabel = {
         let label = UILabel()

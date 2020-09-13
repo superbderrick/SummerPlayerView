@@ -7,7 +7,7 @@ class SummerVideoPlayerHeaderView: UIView {
     // MARK: - Instance Variables
     var configuration: SummerPlayerViewConfiguration
     var theme: SummerPlayerViewTheme
-    var delegate: SummerPlayerControlsDelegate?
+    var delegate: LegacyDelegate?
     var item: PlayerItem?
     
     lazy private var titleLabel: UILabel = {
@@ -44,7 +44,7 @@ class SummerVideoPlayerHeaderView: UIView {
     
     // MARK: - View Initializers
     
-    required init(configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, delegate: SummerPlayerControlsDelegate?) {
+    required init(configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, delegate: LegacyDelegate?) {
         self.configuration = configuration
         self.theme = theme
         self.delegate = delegate

@@ -10,7 +10,7 @@
         <!--Main View Controller-->
         <scene sceneID="XAq-qR-Vyf">
             <objects>
-                <viewController id="3XT-BY-eWc" customClass="MainViewController" customModule="SummerPlayerViewDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" id="3XT-BY-eWc" customClass="MainViewController" customModule="SummerPlayerViewDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z4z-h9-L1g">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

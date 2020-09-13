@@ -12,7 +12,7 @@ class PlayerControllView: UIView {
     
     private var isPlaying: Bool = true
     
-    var delegate: SummerPlayerControlsDelegate?
+    var delegate: PlayerControlViewDelegate?
     
     lazy private var backButton: UIButton = {
         let backwardButton = UIButton()
@@ -56,18 +56,7 @@ class PlayerControllView: UIView {
     }
     
     @objc func clickBackButton(_ sender: UIButton) {
-        //        guard let totalDuration = delegate?.totalDuration, let current = delegate?.currentTime, isActive else { return }
-        //        let playerCurrentTime = CMTimeGetSeconds(current)
-        //        var newTime = playerCurrentTime - configuration.seekDuration
-        //
-        //        if newTime < 0 {
-        //            newTime = 0
-        //        }
-        //        let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
-        //        delegate?.seekToTime(time2)
-        //        if let player = delegate?.playerTimeDidChange {
-        //            player(time2.asDouble, totalDuration.asDouble)
-        //        }
+        delegate?.didPressedBackButton()
     }
     
     @objc func clickForwardButton(_ sender: UIButton) {

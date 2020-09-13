@@ -39,11 +39,13 @@ open class SummerPlayerView: UIView {
     
     var playerControlView = PlayerControllView()
     
-    var wholeStandardViewRect = CGRect()
-    
     var configuration: SummerPlayerViewConfiguration = InternalConfiguration()
     
     var theme: SummerPlayerViewTheme = MainTheme()
+    
+    var delegate: LegacyDelegate?
+    
+    open var sDelegate: SummerPlayerViewDelegate?
     
     public var fullScreenView: UIView? = nil
     
@@ -249,7 +251,22 @@ open class SummerPlayerView: UIView {
 
 // MARK: MBVideoPlayerControlsDelegate
 
-extension SummerPlayerView: SummerPlayerControlsDelegate {
+extension SummerPlayerView:PlayerControlViewDelegate {
+    public func didPressedBackButton() {
+        
+        print("didPressedBackButton")
+        
+        self.queuePlayer.pause()
+        self.playerLayer?.removeFromSuperlayer()
+        
+        sDelegate?.didPressedBackButton()
+        
+    }
+    
+    
+}
+
+extension SummerPlayerView: LegacyDelegate {
     
     public func didLoadVideo(_ url: URL) {
         

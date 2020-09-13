@@ -27,7 +27,7 @@ public enum SummerPlayerState {
     - playerCellForItem: we can provide our custom playlist cell in this call back.
     - playerDidSelectItem: it is called when playerlist item is selected
 */
-public protocol SummerPlayerControlsDelegate where Self: UIView {
+public protocol LegacyDelegate where Self: UIView {
     
     var playerStateDidChange: ((_ state: SummerPlayerState)->())? {get set}
     var playerTimeDidChange: ((_ newTime: TimeInterval, _ duration: TimeInterval)->())? {get set}
@@ -44,6 +44,9 @@ public protocol SummerPlayerControlsDelegate where Self: UIView {
     func didLoadVideo(_ url: URL)
     func seekToTime(_ seekTime: CMTime)
     func playPause(_ isActive: Bool)
+    
+    
+    
 }
 
 

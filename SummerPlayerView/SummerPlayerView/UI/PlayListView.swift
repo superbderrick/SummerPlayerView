@@ -57,7 +57,7 @@ class PlayListView: UIView {
     /// this controls player state whether it's paused or playing
     private var isActive: Bool = false
     
-    var delegate: SummerPlayerControlsDelegate?
+    var delegate: LegacyDelegate?
     
     /// custom header which comes as a default header
     var videoPlayerHeader: SummerVideoPlayerHeaderView?
