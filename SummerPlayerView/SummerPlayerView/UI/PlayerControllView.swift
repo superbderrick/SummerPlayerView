@@ -9,9 +9,18 @@
 import UIKit
 
 class PlayerControllView: UIView {
+    
+    private var isPlaying: Bool = true
+    
+    var delegate: SummerPlayerControlsDelegate?
 
     lazy private var backButton: UIButton = {
         let backwardButton = UIButton()
+        backwardButton.translatesAutoresizingMaskIntoConstraints = false
+        if let image = UIImage(named: "back") {
+            backwardButton.setImage(image, for: .normal)
+        }
+        
         backwardButton.translatesAutoresizingMaskIntoConstraints = false
         backwardButton.addTarget(self, action: #selector(self.clickBackButton(_:)), for: .touchUpInside)
         return backwardButton
@@ -23,6 +32,20 @@ class PlayerControllView: UIView {
         forwardButton.addTarget(self, action: #selector(self.clickForwardButton(_:)), for: .touchUpInside)
         return forwardButton
     }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
+    }
+    
+    private func setupView() {
+        addSubview(backButton)
+    }
     
     @objc func clickBackButton(_ sender: UIButton) {
 //        guard let totalDuration = delegate?.totalDuration, let current = delegate?.currentTime, isActive else { return }
