@@ -8,7 +8,7 @@
 
 import UIKit
 import SummerPlayerView
-class ViewController: UIViewController {
+class PlayerViewController: UIViewController {
     @IBOutlet weak var videoPlayerView: SummerPlayerView!
 
     override func viewDidLoad() {
