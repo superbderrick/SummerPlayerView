@@ -73,9 +73,6 @@ class SummerVideoPlayerHeaderView: UIView {
         controlsStackView.pinEdges(to: self)
         controlsStackView.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
-
-
-        
         applyTheme(theme)
     }
     
