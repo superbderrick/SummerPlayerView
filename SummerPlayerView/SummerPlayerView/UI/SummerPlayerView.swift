@@ -37,7 +37,7 @@ open class SummerPlayerView: UIView {
     
     let playListView = PlayListView()
     
-    var playControlView = PlayerControlView()
+    var playControlView = PlayerScreenView()
     
     var wholeStandardViewRect = CGRect()
     
@@ -167,8 +167,6 @@ open class SummerPlayerView: UIView {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         
-        print("handleTap ")
-        
         var isTouched = false
         
         if configuration.hideControls {
@@ -221,11 +219,10 @@ open class SummerPlayerView: UIView {
         
         guard (standardRect != nil) else { return }
         
-        self.playControlView = PlayerControlView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
+        self.playControlView = PlayerScreenView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
         
         self.playControlView.delegate = self
         addSubview(self.playControlView)
-        
         
         playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: theme, header: header)
         playListView.delegate = self
@@ -293,7 +290,6 @@ extension UIView {
     public func getwholeStandardViewRect(_ viewRect:CGRect) -> CGRect? {
         var wholeStandardRect : CGRect
         let xAXIS = viewRect.size.width * 0.25
-        
         let yAXIS :CGFloat = 0.0
         let WIDTH = viewRect.size.width/2
         let HEIGHT = viewRect.size.height * 0.6

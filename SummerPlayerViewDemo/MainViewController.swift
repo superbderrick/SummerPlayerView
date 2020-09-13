@@ -26,10 +26,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func startPlayerController(_ sender: Any) {
-        
-            
         movePlayerController()
-
     }
     
 

@@ -6,21 +6,6 @@ import AVKit
 
 class PlayListView: UIView {
     
-    lazy private var backButton: UIButton = {
-        let backwardButton = UIButton()
-        backwardButton.translatesAutoresizingMaskIntoConstraints = false
-        backwardButton.addTarget(self, action: #selector(self.clickBackButton(_:)), for: .touchUpInside)
-        return backwardButton
-    }()
-    
-    lazy private var forwardButton: UIButton = {
-       let forwardButton = UIButton()
-        forwardButton.translatesAutoresizingMaskIntoConstraints = false
-        forwardButton.addTarget(self, action: #selector(self.clickForwardButton(_:)), for: .touchUpInside)
-        return forwardButton
-    }()
-        
-    
     lazy private var activityView: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .large)
         activity.translatesAutoresizingMaskIntoConstraints = false
@@ -111,7 +96,6 @@ class PlayListView: UIView {
     
     func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
         
-    
         addSubview(activityView)
         activityView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         activityView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -121,10 +105,6 @@ class PlayListView: UIView {
         bottomControlsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         bottomControlsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
 
-        if configuration.canShowForwardBack {
-            addForwardBackwardButton()
-        }
-
         if configuration.canShowVideoList {
             addPlayList()
         }
@@ -133,13 +113,8 @@ class PlayListView: UIView {
     }
     
     private func applyTheme(_ theme: SummerPlayerViewTheme) {
-        forwardButton.tintColor = theme.buttonTintColor
-        backButton.tintColor = theme.buttonTintColor
-        
         activityView.color = theme.activityViewColor
         collectionView.backgroundColor = theme.playListItemsBackgroundColor
-        forwardButton.setImage(theme.forwardButtonImage, for: .normal)
-        backButton.setImage(theme.backButtonImage, for: .normal)
     }
     
     private func setHeaderView(_ header: UIView) {
@@ -195,38 +170,7 @@ class PlayListView: UIView {
         }
     }
     
-    @objc func clickBackButton(_ sender: UIButton) {
-        guard let totalDuration = delegate?.totalDuration, let current = delegate?.currentTime, isActive else { return }
-        let playerCurrentTime = CMTimeGetSeconds(current)
-        var newTime = playerCurrentTime - configuration.seekDuration
 
-        if newTime < 0 {
-            newTime = 0
-        }
-        let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
-        delegate?.seekToTime(time2)
-        //playerTimeLabel.text = time2.description
-//        seekSlider.value = time2.asFloat / totalDuration.asFloat
-        if let player = delegate?.playerTimeDidChange {
-            player(time2.asDouble, totalDuration.asDouble)
-        }
-    }
-    
-    @objc func clickForwardButton(_ sender: UIButton) {
-        guard let totalDuration  = delegate?.totalDuration, let current = delegate?.currentTime, isActive else { return }
-        let playerCurrentTime = CMTimeGetSeconds(current)
-        let newTime = playerCurrentTime + configuration.seekDuration
-
-        if newTime < CMTimeGetSeconds(totalDuration) {
-            let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
-            delegate?.seekToTime(time2)
-           // playerTimeLabel.text = time2.description
-            //seekSlider.value = time2.asFloat / totalDuration.asFloat
-            if let player = delegate?.playerTimeDidChange {
-                player(time2.asDouble, totalDuration.asDouble)
-            }
-        }
-    }
     
     @objc func resizeButtonTapped(_ sender:UIButton) {
         if let player = delegate?.playerDidChangeSize {
@@ -261,23 +205,7 @@ class PlayListView: UIView {
             self.layoutIfNeeded()
         }
     }
-    
-
-
-
-    
-    private func addForwardBackwardButton() {
-        // backward button
-        addSubview(backButton)
-        //backButton.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -25.0).isActive = true
-        //backButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
-        // forward button
         
-        addSubview(forwardButton)
-        //forwardButton.leadingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: 25.0).isActive = true
-        //forwardButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
-    }
-    
     private func addPlayList() {
         // background view
         addSubview(backgroundView)
