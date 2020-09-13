@@ -3,24 +3,24 @@
 import UIKit
 
 class VideoCollectionViewCell: UICollectionViewCell {
-
+    
     let videoThumbnail: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 10.0
         imageView.contentMode = .scaleAspectFill
-      //  imageView.alpha = 0.8
+        //  imageView.alpha = 0.8
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     let titleLabel: UILabel = {
-       let label = UILabel()
-       label.translatesAutoresizingMaskIntoConstraints = false
-       label.textColor = .white
-       label.textAlignment = .left
-       label.numberOfLines = 1
-       return label
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        label.textAlignment = .left
+        label.numberOfLines = 1
+        return label
     }()
     
     override init(frame: CGRect) {

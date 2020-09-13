@@ -11,8 +11,6 @@ public enum PlayerDimension {
 
 open class SummerPlayerView: UIView {
     
-    // MARK: - Constants
-    
     public var playerStateDidChange: ((SummerPlayerState)->())? = nil
     
     public var playerTimeDidChange: ((TimeInterval, TimeInterval)->())? = nil
@@ -37,13 +35,17 @@ open class SummerPlayerView: UIView {
     
     let playListView = PlayListView()
     
-    var playControlView = PlayerScreenView()
+    var playerScreenView = PlayerScreenView()
     
-    var wholeStandardViewRect = CGRect()
+    var playerControlView = PlayerControllView()
     
     var configuration: SummerPlayerViewConfiguration = InternalConfiguration()
     
     var theme: SummerPlayerViewTheme = MainTheme()
+    
+    var delegate: LegacyDelegate?
+    
+    open var sDelegate: SummerPlayerViewDelegate?
     
     public var fullScreenView: UIView? = nil
     
@@ -134,17 +136,18 @@ open class SummerPlayerView: UIView {
     
     private func setupSummerPlayerView(_ header: UIView? , _ viewRect: CGRect?) {
         if(viewRect != nil) {
-            let wholeStandardRect = getwholeStandardViewRect(viewRect!)
+            let wholeViewRect = getWholeViewRect(viewRect!)
             
             setupPlayer()
             
-            setupInsideViews(header,wholeStandardRect , wholeRect: viewRect)
+            setupInsideViews(header,wholeViewRect , wholeRect: viewRect)
             
             backgroundView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(backgroundView)
             
             bringSubviewToFront(playListView)
-            bringSubviewToFront(playControlView)
+            bringSubviewToFront(playerScreenView)
+            bringSubviewToFront(playerControlView)
             
             backgroundView.pinEdges(to: self)
             
@@ -171,14 +174,16 @@ open class SummerPlayerView: UIView {
         
         if configuration.hideControls {
             playListView.isHidden = true
-            self.playControlView.isHidden = true
+            self.playerScreenView.isHidden = true
+            self.playerControlView.isHidden = true
             backgroundView.isHidden = true
             task?.cancel()
             
             isTouched = true
         } else {
             playListView.isHidden = false
-            self.playControlView.isHidden = false
+            self.playerScreenView.isHidden = false
+            self.playerControlView.isHidden = false
             backgroundView.isHidden = false
             task = DispatchWorkItem {
                 self.backgroundView.isHidden = true
@@ -208,7 +213,7 @@ open class SummerPlayerView: UIView {
             queue: DispatchQueue.main,
             using: { [weak self] (cmtime) in
                 print(cmtime)
-                self?.playControlView.videoDidChange(cmtime)
+                self?.playerScreenView.videoDidChange(cmtime)
         })
         
     }
@@ -219,10 +224,17 @@ open class SummerPlayerView: UIView {
         
         guard (standardRect != nil) else { return }
         
-        self.playControlView = PlayerScreenView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
+        self.playerScreenView = PlayerScreenView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
         
-        self.playControlView.delegate = self
-        addSubview(self.playControlView)
+        self.playerScreenView.delegate = self
+        addSubview(self.playerScreenView)
+        
+        let quarterViewRect = getQuarterViewRect(wholeRect!)
+        
+        self.playerControlView = PlayerControllView(frame: CGRect(x: quarterViewRect!.origin.x, y: 0, width: quarterViewRect!.width, height: quarterViewRect!.height))
+        
+        self.playerControlView.delegate = self
+        addSubview(self.playerControlView)
         
         playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: theme, header: header)
         playListView.delegate = self
@@ -239,7 +251,22 @@ open class SummerPlayerView: UIView {
 
 // MARK: MBVideoPlayerControlsDelegate
 
-extension SummerPlayerView: SummerPlayerControlsDelegate {
+extension SummerPlayerView:PlayerControlViewDelegate {
+    public func didPressedBackButton() {
+        
+        print("didPressedBackButton")
+        
+        self.queuePlayer.pause()
+        self.playerLayer?.removeFromSuperlayer()
+        
+        sDelegate?.didPressedBackButton()
+        
+    }
+    
+    
+}
+
+extension SummerPlayerView: LegacyDelegate {
     
     public func didLoadVideo(_ url: URL) {
         
@@ -249,7 +276,7 @@ extension SummerPlayerView: SummerPlayerControlsDelegate {
         queuePlayer.insert(playerItem, after: nil)
         queuePlayer.play()
         
-        playControlView.videoDidStart()
+        playerScreenView.videoDidStart()
         
         if let player = playerStateDidChange {
             player(.readyToPlay)
@@ -287,12 +314,24 @@ extension UIView {
         bottomAnchor.constraint(equalTo: other.bottomAnchor).isActive = true
     }
     
-    public func getwholeStandardViewRect(_ viewRect:CGRect) -> CGRect? {
+    public func getWholeViewRect(_ viewRect:CGRect) -> CGRect? {
         var wholeStandardRect : CGRect
         let xAXIS = viewRect.size.width * 0.25
         let yAXIS :CGFloat = 0.0
         let WIDTH = viewRect.size.width/2
         let HEIGHT = viewRect.size.height * 0.6
+        
+        wholeStandardRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
+        
+        return wholeStandardRect
+    }
+    
+    public func getQuarterViewRect(_ viewRect:CGRect) -> CGRect? {
+        var wholeStandardRect : CGRect
+        let xAXIS : CGFloat = 0.0
+        let yAXIS : CGFloat = 0.0
+        let WIDTH = viewRect.size.width
+        let HEIGHT = viewRect.size.height * 0.4
         
         wholeStandardRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
         

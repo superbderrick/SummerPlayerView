@@ -8,7 +8,9 @@
 
 import UIKit
 import SummerPlayerView
-class PlayerViewController: UIViewController {
+class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
+
+    
     @IBOutlet weak var videoPlayerView: SummerPlayerView!
 
     override func viewDidLoad() {
@@ -50,8 +52,10 @@ class PlayerViewController: UIViewController {
         }
 
         playerView.playerDidSelectItem = { (index) in
-            
+            //test
         }
+        
+        
         playerView.didSelectOptions = { (index) in
             let controller = UIAlertController(title: "Options", message: "select below options", preferredStyle: .actionSheet)
             let action1 = UIAlertAction(title: "Save video", style: .default) { (action) in
@@ -73,6 +77,19 @@ class PlayerViewController: UIViewController {
             self.present(controller, animated: true, completion: nil)
             
         }
+        
+        playerView.sDelegate = self
+        
+        
+        
+        
+    }
+    
+    func didPressedBackButton() {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MainVC")
+        self.present(controller, animated: true, completion: nil)
         
     }
         

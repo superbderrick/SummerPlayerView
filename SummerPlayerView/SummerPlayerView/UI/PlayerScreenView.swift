@@ -13,7 +13,7 @@ class PlayerScreenView: UIView {
     
     private var isPlaying: Bool = true
     
-    var delegate: SummerPlayerControlsDelegate?
+    var delegate: LegacyDelegate?
     
     lazy private var playerTimeLabel: UILabel = {
         let label = UILabel()
@@ -102,7 +102,7 @@ class PlayerScreenView: UIView {
     }
     
     private func changePauseOrPlay(isPlayig:Bool) {
-    
+        
         if(isPlaying) {
             if let image = UIImage(named: "pause") {
                 playButton.setImage(image, for: .normal)
@@ -153,7 +153,7 @@ class PlayerScreenView: UIView {
     func videoDidStart() {
         playerTimeLabel.text = CMTime.zero.description
         playButton.setImage(UIImage(named: "pause"), for: .normal)
-
+        
         playerSlider.value = 0.0
         fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
     }
