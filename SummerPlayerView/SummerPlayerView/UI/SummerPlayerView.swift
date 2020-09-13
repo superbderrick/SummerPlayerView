@@ -136,7 +136,6 @@ open class SummerPlayerView: UIView {
         if(viewRect != nil) {
             let wholeViewRect = getWholeViewRect(viewRect!)
             
-            
             setupPlayer()
             
             setupInsideViews(header,wholeViewRect , wholeRect: viewRect)
@@ -146,6 +145,7 @@ open class SummerPlayerView: UIView {
             
             bringSubviewToFront(playListView)
             bringSubviewToFront(playerScreenView)
+            bringSubviewToFront(playerControlView)
             
             backgroundView.pinEdges(to: self)
             
@@ -173,6 +173,7 @@ open class SummerPlayerView: UIView {
         if configuration.hideControls {
             playListView.isHidden = true
             self.playerScreenView.isHidden = true
+            self.playerControlView.isHidden = true
             backgroundView.isHidden = true
             task?.cancel()
             
@@ -180,6 +181,7 @@ open class SummerPlayerView: UIView {
         } else {
             playListView.isHidden = false
             self.playerScreenView.isHidden = false
+            self.playerControlView.isHidden = false
             backgroundView.isHidden = false
             task = DispatchWorkItem {
                 self.backgroundView.isHidden = true

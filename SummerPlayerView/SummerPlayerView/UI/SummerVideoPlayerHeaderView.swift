@@ -9,7 +9,7 @@ class SummerVideoPlayerHeaderView: UIView {
     var theme: SummerPlayerViewTheme
     var delegate: SummerPlayerControlsDelegate?
     var item: PlayerItem?
-
+    
     lazy private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -28,14 +28,14 @@ class SummerVideoPlayerHeaderView: UIView {
     }()
     
     lazy private var controlsStackView: UIStackView  = {
-       let stackView = UIStackView()
-       stackView.axis = .horizontal
-       stackView.translatesAutoresizingMaskIntoConstraints = false
-       return stackView
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     private lazy var backgroundView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.black
         view.alpha = 0.3
@@ -87,7 +87,7 @@ class SummerVideoPlayerHeaderView: UIView {
         controlsStackView.addArrangedSubview(titleLabel)
     }
     
-
+    
     
     @objc func optionsBtnPressed(_ sender: UIButton) {
         if let player = delegate?.didSelectOptions, let item = item {
