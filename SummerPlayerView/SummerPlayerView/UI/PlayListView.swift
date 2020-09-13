@@ -151,27 +151,6 @@ class PlayListView: UIView {
     
     // MARK: - Actions
     
-    @objc func changeSeekSlider(_ sender: UISlider) {
-        guard let totalDuration = delegate?.totalDuration else { return }
-        let seekTime = CMTime(seconds: Double(sender.value) * totalDuration.asDouble, preferredTimescale: 100)
-        //playerTimeLabel.text = seekTime.description
-        delegate?.seekToTime(seekTime)
-        if let player = delegate?.playerTimeDidChange {
-            player(seekTime.asDouble, totalDuration.asDouble)
-        }
-    }
-    
-    @objc func clickPlayButton(_ sender: UIButton) {
-        isActive = !isActive
-        delegate?.playPause(isActive)
-        print("clicked -> \(isActive)")
-        if let player = delegate?.playerStateDidChange {
-            player((isActive == true ? .playing : .pause))
-        }
-    }
-    
-    
-    
     @objc func resizeButtonTapped(_ sender:UIButton) {
         if let player = delegate?.playerDidChangeSize {
             player(configuration.dimension)
@@ -255,6 +234,7 @@ extension PlayListView: UICollectionViewDelegate {
         }
         if let item = playerItems?[indexPath.row], let url = URL(string: item.url) {
             delegate?.didLoadVideo(url)
+            delegate?.currentVideoIndex(indexPath.row,url)
             videoPlayerHeader?.setItem(item)
         }
     }

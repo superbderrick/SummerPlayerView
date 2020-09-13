@@ -44,6 +44,7 @@ public protocol LegacyDelegate where Self: UIView {
     func didLoadVideo(_ url: URL)
     func seekToTime(_ seekTime: CMTime)
     func playPause(_ isActive: Bool)
+    func currentVideoIndex(_ index: Int ,_ url: URL )
     
     
     
