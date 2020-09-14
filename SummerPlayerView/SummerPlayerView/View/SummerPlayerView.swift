@@ -27,6 +27,8 @@ open class SummerPlayerView: UIView {
     
     // MARK: - Instance Variables
     
+    private var currentVideoIndex = 0
+    
     private var task: DispatchWorkItem? = nil
     
     private var queuePlayer: AVQueuePlayer!
@@ -146,8 +148,8 @@ open class SummerPlayerView: UIView {
             addSubview(backgroundView)
             
             bringSubviewToFront(playListView)
-            bringSubviewToFront(playerScreenView)
             bringSubviewToFront(playerControlView)
+            bringSubviewToFront(playerScreenView)
             
             backgroundView.pinEdges(to: self)
             
@@ -252,6 +254,15 @@ open class SummerPlayerView: UIView {
 // MARK: MBVideoPlayerControlsDelegate
 
 extension SummerPlayerView:PlayerControlViewDelegate {
+    public func didPressedNextButton() {
+        playerScreenView.resetPlayer()
+
+    }
+    
+    public func didPressedPreviousButton() {
+        
+    }
+    
     public func didPressedBackButton() {
         
         print("didPressedBackButton")
@@ -267,9 +278,26 @@ extension SummerPlayerView:PlayerControlViewDelegate {
 }
 
 extension SummerPlayerView: LegacyDelegate {
+    public func currentVideoIndex(_ index: Int, _ url: URL) {
+        currentVideoIndex = index
+        resetPlayer(url)
+    }
     
     public func didLoadVideo(_ url: URL) {
         
+        resetPlayer(url)
+    }
+    
+    public func seekToTime(_ seekTime: CMTime) {
+        print(seekTime)
+        self.queuePlayer.currentItem?.seek(to: seekTime, completionHandler: nil)
+    }
+    
+    public func playPause(_ isActive: Bool) {
+        isActive ? queuePlayer.play() : queuePlayer.pause()
+    }
+    
+    private func resetPlayer(_ url:URL) {
         queuePlayer.removeAllItems()
         
         let playerItem = AVPlayerItem.init(url: url)
@@ -281,15 +309,6 @@ extension SummerPlayerView: LegacyDelegate {
         if let player = playerStateDidChange {
             player(.readyToPlay)
         }
-    }
-    
-    public func seekToTime(_ seekTime: CMTime) {
-        print(seekTime)
-        self.queuePlayer.currentItem?.seek(to: seekTime, completionHandler: nil)
-    }
-    
-    public func playPause(_ isActive: Bool) {
-        isActive ? queuePlayer.play() : queuePlayer.pause()
     }
 }
 
@@ -331,7 +350,7 @@ extension UIView {
         let xAXIS : CGFloat = 0.0
         let yAXIS : CGFloat = 0.0
         let WIDTH = viewRect.size.width
-        let HEIGHT = viewRect.size.height * 0.4
+        let HEIGHT = viewRect.size.height * 0.6
         
         wholeStandardRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
         

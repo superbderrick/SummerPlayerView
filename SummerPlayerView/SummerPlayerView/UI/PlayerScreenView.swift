@@ -150,6 +150,11 @@ class PlayerScreenView: UIView {
         }
     }
     
+    func resetPlayer() {
+        playerTimeLabel.text = CMTime.zero.description
+        playerSlider.value = 0.0
+    }
+    
     func videoDidStart() {
         playerTimeLabel.text = CMTime.zero.description
         playButton.setImage(UIImage(named: "pause"), for: .normal)

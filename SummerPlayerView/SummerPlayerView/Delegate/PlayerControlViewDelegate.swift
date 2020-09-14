@@ -11,5 +11,7 @@ import UIKit
 public protocol PlayerControlViewDelegate  {
     
     func didPressedBackButton()
+    func didPressedNextButton()
+    func didPressedPreviousButton()
 
 }

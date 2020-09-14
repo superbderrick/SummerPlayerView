@@ -26,25 +26,32 @@ class PlayerControllView: UIView {
         return backwardButton
     }()
     
-    lazy private var forwardButton: UIButton = {
-        let forwardButton = UIButton()
-        forwardButton.translatesAutoresizingMaskIntoConstraints = false
-        forwardButton.addTarget(self, action: #selector(self.clickForwardButton(_:)), for: .touchUpInside)
-        return forwardButton
+    lazy private var nextButton: UIButton = {
+        let nextButton = UIButton()
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        if let image = UIImage(named: "next") {
+            nextButton.setImage(image, for: .normal)
+        }
+        nextButton.addTarget(self, action: #selector(self.clickForwardButton(_:)), for: .touchUpInside)
+        return nextButton
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
+        
     }
     
     private func setupView() {
         addSubview(backButton)
+        addSubview(nextButton)
+        
         setupLayout()
     }
     
@@ -52,6 +59,8 @@ class PlayerControllView: UIView {
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: self.topAnchor),
             backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor , constant: 30),
+            nextButton.topAnchor.constraint(equalTo: self.topAnchor ,constant: self.bounds.size.height - 30),
+            nextButton.trailingAnchor.constraint(equalTo: self.trailingAnchor , constant: -50),
         ])
     }
     
@@ -60,19 +69,7 @@ class PlayerControllView: UIView {
     }
     
     @objc func clickForwardButton(_ sender: UIButton) {
-        //        guard let totalDuration  = delegate?.totalDuration, let current = delegate?.currentTime, isActive else { return }
-        //        let playerCurrentTime = CMTimeGetSeconds(current)
-        //        let newTime = playerCurrentTime + configuration.seekDuration
-        //
-        //        if newTime < CMTimeGetSeconds(totalDuration) {
-        //            let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
-        //            delegate?.seekToTime(time2)
-        //           // playerTimeLabel.text = time2.description
-        //            //seekSlider.value = time2.asFloat / totalDuration.asFloat
-        //            if let player = delegate?.playerTimeDidChange {
-        //                player(time2.asDouble, totalDuration.asDouble)
-        //            }
-        //        }
+        delegate?.didPressedNextButton()
     }
     
 }
