@@ -209,6 +209,7 @@ open class SummerPlayerView: UIView {
         playerLayer?.backgroundColor = UIColor.black.cgColor
         playerLayer?.videoGravity = .resizeAspect
         
+        
         self.layer.addSublayer(playerLayer!)
         queuePlayer.addPeriodicTimeObserver(
             forInterval: CMTime(seconds: 1, preferredTimescale: 100),
@@ -317,7 +318,6 @@ extension SummerPlayerView: LegacyDelegate {
     private func resetPlayer(_ url:URL) {
         queuePlayer.removeAllItems()
         
-        print("resetPlayer \(url)")
         let playerItem = AVPlayerItem.init(url: url)
         queuePlayer.insert(playerItem, after: nil)
         queuePlayer.play()
