@@ -22,9 +22,7 @@ open class SummerPlayerView: UIView {
     public var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? = nil
     
     public var playerDidSelectItem: ((Int)->())? = nil
-    
-    
-    
+
     private var playerItems: [PlayerItem]?
     
     private var task: DispatchWorkItem? = nil
@@ -183,6 +181,8 @@ open class SummerPlayerView: UIView {
             task?.cancel()
             
             isTouched = true
+            
+            print("handleTap is Touched true")
         } else {
             playListView.isHidden = false
             self.playerScreenView.isHidden = false
@@ -193,9 +193,10 @@ open class SummerPlayerView: UIView {
                 self.configuration.hideControls = !self.configuration.hideControls
             }
             
-            
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
             isTouched = false
+            
+            print("handleTap is Touched false")
         }
         configuration.hideControls = !configuration.hideControls
         

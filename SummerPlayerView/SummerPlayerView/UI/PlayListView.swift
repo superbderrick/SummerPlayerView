@@ -51,24 +51,18 @@ class PlayListView: UIView {
     }()
     private var playerItems: [PlayerItem]?
     
-    /// current video item which is playing now
     private var currentItem: PlayerItem?
     
-    /// this controls player state whether it's paused or playing
     private var isActive: Bool = false
     
     var delegate: LegacyDelegate?
     
-    /// custom header which comes as a default header
     var videoPlayerHeader: SummerVideoPlayerHeaderView?
     
-    /// default configuration for player
     var configuration = InternalConfiguration()
     
-    /// default theme for the player
     var theme = MainTheme()
     
-    /// all four constraints of the player from mainContainer which we are using to make it fullScreen
     private var topC: NSLayoutConstraint?
     private var bottomC: NSLayoutConstraint?
     private var rightC: NSLayoutConstraint?
@@ -203,8 +197,6 @@ class PlayListView: UIView {
         collectionView.pinEdges(to: playListStackView)
     }
 }
-
-// MARK: - UICollectionView Delegate & Datasource
 
 extension PlayListView: UICollectionViewDataSource {
     
