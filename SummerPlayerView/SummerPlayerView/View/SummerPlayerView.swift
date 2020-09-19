@@ -257,12 +257,12 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         
     }
     
-    public func didPressedNextButton() {
+    public func didPressedPreviousButton() {
         playerScreenView.resetPlayer()
 
     }
     
-    public func didPressedPreviousButton() {
+    public func didPressedNextButton() {
         
     }
     
