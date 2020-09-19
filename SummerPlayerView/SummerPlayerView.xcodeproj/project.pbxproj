@@ -22,6 +22,7 @@
 		496CACD4250528F800CD454F /* PlayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACCF250528F800CD454F /* PlayListView.swift */; };
 		496CACD82505290A00CD454F /* InternalConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACD62505290A00CD454F /* InternalConfiguration.swift */; };
 		496CACD92505290A00CD454F /* SummerPlayerViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACD72505290A00CD454F /* SummerPlayerViewConfiguration.swift */; };
+		4974ADAA2510AA5C00DC1CA9 /* Utills.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974ADA92510AA5C00DC1CA9 /* Utills.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		496CACCF250528F800CD454F /* PlayListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayListView.swift; sourceTree = "<group>"; };
 		496CACD62505290A00CD454F /* InternalConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalConfiguration.swift; sourceTree = "<group>"; };
 		496CACD72505290A00CD454F /* SummerPlayerViewConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummerPlayerViewConfiguration.swift; sourceTree = "<group>"; };
+		4974ADA92510AA5C00DC1CA9 /* Utills.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utills.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				496CACB0250512C300CD454F /* CMTime+extension.swift */,
+				4974ADA92510AA5C00DC1CA9 /* Utills.swift */,
 			);
 			path = Utills;
 			sourceTree = "<group>";
@@ -126,8 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				491478E9250E62C100B6B782 /* PlayerControllView.swift */,
-				491478E8250E5BB800B6B782 /* CollectionViews */,
 				496CACCD250528F800CD454F /* PlayerScreenView.swift */,
+				491478E8250E5BB800B6B782 /* CollectionViews */,
 				496CACCF250528F800CD454F /* PlayListView.swift */,
 			);
 			path = UI;
@@ -237,6 +240,7 @@
 				496CACD1250528F800CD454F /* SummerVideoPlayerHeaderView.swift in Sources */,
 				491478EA250E62C100B6B782 /* PlayerControllView.swift in Sources */,
 				496CACBB250512C300CD454F /* CMTime+extension.swift in Sources */,
+				4974ADAA2510AA5C00DC1CA9 /* Utills.swift in Sources */,
 				496CACD92505290A00CD454F /* SummerPlayerViewConfiguration.swift in Sources */,
 				496CACD2250528F800CD454F /* PlayerScreenView.swift in Sources */,
 				496CACB6250512C300CD454F /* PlayerItem.swift in Sources */,
@@ -301,7 +305,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -358,7 +362,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

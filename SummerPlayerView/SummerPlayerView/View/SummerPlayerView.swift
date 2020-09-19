@@ -24,9 +24,7 @@ open class SummerPlayerView: UIView {
     public var playerDidSelectItem: ((Int)->())? = nil
     
     public var didSelectOptions: ((PlayerItem) -> ())? = nil
-    
-    // MARK: - Instance Variables
-    
+        
     private var currentVideoIndex = 0
     
     private var task: DispatchWorkItem? = nil
@@ -78,6 +76,7 @@ open class SummerPlayerView: UIView {
         if let configuration = configuration {
             self.configuration = configuration
         }
+        
         setupSummerPlayerView(header,viewRect)
     }
     
@@ -138,7 +137,7 @@ open class SummerPlayerView: UIView {
     
     private func setupSummerPlayerView(_ header: UIView? , _ viewRect: CGRect?) {
         if(viewRect != nil) {
-            let wholeViewRect = getWholeViewRect(viewRect!)
+            let wholeViewRect = Utills.getWholeViewRect(viewRect!)
             
             setupPlayer()
             
@@ -231,7 +230,7 @@ open class SummerPlayerView: UIView {
         self.playerScreenView.delegate = self
         addSubview(self.playerScreenView)
         
-        let quarterViewRect = getQuarterViewRect(wholeRect!)
+        let quarterViewRect = Utills.getQuarterViewRect(wholeRect!)
         
         self.playerControlView = PlayerControllView(frame: CGRect(x: quarterViewRect!.origin.x, y: 0, width: quarterViewRect!.width, height: quarterViewRect!.height))
         
@@ -254,6 +253,10 @@ open class SummerPlayerView: UIView {
 // MARK: MBVideoPlayerControlsDelegate
 
 extension SummerPlayerView:PlayerControlViewDelegate {
+    public func didPressedAirPlayButton() {
+        
+    }
+    
     public func didPressedNextButton() {
         playerScreenView.resetPlayer()
 
@@ -273,8 +276,6 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         sDelegate?.didPressedBackButton()
         
     }
-    
-    
 }
 
 extension SummerPlayerView: LegacyDelegate {
@@ -322,8 +323,6 @@ extension SummerPlayerView: UIGestureRecognizerDelegate {
     }
 }
 
-// MARK: MBVideoPlayerControlsDelegate
-
 extension UIView {
     
     public func pinEdges(to other: UIView) {
@@ -333,29 +332,7 @@ extension UIView {
         bottomAnchor.constraint(equalTo: other.bottomAnchor).isActive = true
     }
     
-    public func getWholeViewRect(_ viewRect:CGRect) -> CGRect? {
-        var wholeStandardRect : CGRect
-        let xAXIS = viewRect.size.width * 0.25
-        let yAXIS :CGFloat = 0.0
-        let WIDTH = viewRect.size.width/2
-        let HEIGHT = viewRect.size.height * 0.6
-        
-        wholeStandardRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
-        
-        return wholeStandardRect
-    }
     
-    public func getQuarterViewRect(_ viewRect:CGRect) -> CGRect? {
-        var wholeStandardRect : CGRect
-        let xAXIS : CGFloat = 0.0
-        let yAXIS : CGFloat = 0.0
-        let WIDTH = viewRect.size.width
-        let HEIGHT = viewRect.size.height * 0.6
-        
-        wholeStandardRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
-        
-        return wholeStandardRect
-    }
 }
 
 
