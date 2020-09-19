@@ -92,10 +92,8 @@ class PlayListView: UIView {
     func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
         
         addSubview(activityView)
-        activityView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activityView.centerYAnchor.constraint(equalTo: centerYAnchor , constant: -50).isActive = true
         activityView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        
-        
         addSubview(bottomControlsStackView)
         bottomControlsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         bottomControlsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
