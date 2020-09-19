@@ -19,13 +19,12 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         let basicConfiguration = BasicConfiguration()
           
         let playerView = SummerPlayerView(configuration: basicConfiguration, theme: nil, header: nil,viewRect: view.bounds)
-
         let playerItems = [
-            PlayerItem(title: "What is this event? ... parker.", url: "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8", thumbnail: "5"),
-            PlayerItem(title: "Apple Live Broadcast WWDC.", url: "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8", thumbnail: "1"),
+            PlayerItem(title: "What is this event? ... parker.", url: "https://content.jwplatform.com/manifests/yp34SRmf.m3u8", thumbnail: "5"),
+            PlayerItem(title: "Apple Live Broadcast WWDC.", url: "https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8", thumbnail: "1"),
             PlayerItem(title: "Driving a Cycle experience.", url: "https://content.jwplatform.com/manifests/yp34SRmf.m3u8", thumbnail: "2"),
             PlayerItem(title: "The Durian Open Movie Project.", url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", thumbnail: "3"),
-            PlayerItem(title: "Table Ronde.", url: "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8", thumbnail: "4"),
+            PlayerItem(title: "Table Ronde.", url: "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8", thumbnail: "4"),
             
         ]
         
@@ -79,10 +78,6 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         }
         
         playerView.sDelegate = self
-        
-        
-        
-        
     }
     
     func didPressedBackButton() {

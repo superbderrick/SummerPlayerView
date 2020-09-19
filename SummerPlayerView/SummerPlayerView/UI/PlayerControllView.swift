@@ -26,13 +26,13 @@ class PlayerControllView: UIView {
         return backwardButton
     }()
     
-    lazy private var forwardButton: UIButton = {
+    lazy private var previousButton: UIButton = {
         let nextButton = UIButton()
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         if let image = UIImage(named: "previous") {
             nextButton.setImage(image, for: .normal)
         }
-        nextButton.addTarget(self, action: #selector(self.clickForwardButton(_:)), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(self.clickPreviousButton(_:)), for: .touchUpInside)
         return nextButton
     }()
     
@@ -46,13 +46,13 @@ class PlayerControllView: UIView {
         return airplayButton
     }()
     
-    lazy private var previousButton: UIButton = {
+    lazy private var nextButton: UIButton = {
         let previousButton = UIButton()
         previousButton.translatesAutoresizingMaskIntoConstraints = false
         if let image = UIImage(named: "next") {
             previousButton.setImage(image, for: .normal)
         }
-        previousButton.addTarget(self, action: #selector(self.clickPreviousButton(_:)), for: .touchUpInside)
+        previousButton.addTarget(self, action: #selector(self.clickNextButton(_:)), for: .touchUpInside)
         return previousButton
     }()
     
@@ -70,9 +70,9 @@ class PlayerControllView: UIView {
     
     private func setupView() {
         addSubview(backButton)
-        addSubview(forwardButton)
-        addSubview(airplayButton)
         addSubview(previousButton)
+        addSubview(airplayButton)
+        addSubview(nextButton)
         
         setupLayout()
     }
@@ -85,11 +85,11 @@ class PlayerControllView: UIView {
             airplayButton.topAnchor.constraint(equalTo: self.topAnchor),
             airplayButton.trailingAnchor.constraint(equalTo: self.trailingAnchor , constant: -50),
             
-            previousButton.topAnchor.constraint(equalTo: self.topAnchor ,constant: self.bounds.size.height - 30),
-            previousButton.trailingAnchor.constraint(equalTo: self.trailingAnchor , constant: -50),
+            nextButton.topAnchor.constraint(equalTo: self.topAnchor ,constant: self.bounds.size.height - 30),
+            nextButton.trailingAnchor.constraint(equalTo: self.trailingAnchor , constant: -50),
             
-            forwardButton.topAnchor.constraint(equalTo: self.topAnchor ,constant: self.bounds.size.height - 30),
-            forwardButton.leadingAnchor.constraint(equalTo: self.leadingAnchor , constant: 30)
+            previousButton.topAnchor.constraint(equalTo: self.topAnchor ,constant: self.bounds.size.height - 30),
+            previousButton.leadingAnchor.constraint(equalTo: self.leadingAnchor , constant: 30)
         ])
     }
     
@@ -98,9 +98,9 @@ class PlayerControllView: UIView {
         delegate?.didPressedBackButton()
     }
     
-    @objc func clickForwardButton(_ sender: UIButton) {
-        print("clickForwardButton")
-        delegate?.didPressedNextButton()
+    @objc func clickPreviousButton(_ sender: UIButton) {
+        print("clickPreviousButton")
+        delegate?.didPressedPreviousButton()
     }
     
     @objc func clickAirPlayButton(_ sender: UIButton) {
@@ -108,9 +108,9 @@ class PlayerControllView: UIView {
         delegate?.didPressedAirPlayButton()
     }
     
-    @objc func clickPreviousButton(_ sender: UIButton) {
-        print("clickPreviousButton")
-        delegate?.didPressedPreviousButton()
+    @objc func clickNextButton(_ sender: UIButton) {
+        print("clickNextButton")
+        delegate?.didPressedNextButton()
     }
     
 }
