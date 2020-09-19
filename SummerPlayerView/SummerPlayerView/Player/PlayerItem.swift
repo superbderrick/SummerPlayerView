@@ -2,8 +2,6 @@
 
 import Foundation
 
-/// data model for video playlist item
-
 public struct PlayerItem {
     let title: String
     let url: String

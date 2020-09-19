@@ -23,9 +23,7 @@ open class SummerPlayerView: UIView {
     
     public var playerDidSelectItem: ((Int)->())? = nil
     
-    public var didSelectOptions: ((PlayerItem) -> ())? = nil
     
-    private var currentVideoIndex = 0
     
     private var playerItems: [PlayerItem]?
     
@@ -51,6 +49,15 @@ open class SummerPlayerView: UIView {
     
     public var fullScreenView: UIView? = nil
     
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black
+        view.alpha = 0.9
+        view.isOpaque = false
+        view.isHidden = true
+        return view
+    }()
+    
     public var totalDuration: CMTime? {
         return self.queuePlayer.currentItem?.asset.duration
     }
@@ -59,14 +66,9 @@ open class SummerPlayerView: UIView {
         return self.queuePlayer.currentTime()
     }
     
-    private lazy var backgroundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
-        view.alpha = 0.1
-        view.isOpaque = false
-        view.isHidden = true
-        return view
-    }()
+    private var currentVideoIndex = 0
+    
+
     
     required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, header: UIView?, viewRect: CGRect) {
         super.init(frame: .zero)

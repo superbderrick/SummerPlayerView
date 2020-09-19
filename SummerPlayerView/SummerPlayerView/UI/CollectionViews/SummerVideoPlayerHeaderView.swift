@@ -90,9 +90,7 @@ class SummerVideoPlayerHeaderView: UIView {
     
     
     @objc func optionsBtnPressed(_ sender: UIButton) {
-        if let player = delegate?.didSelectOptions, let item = item {
-            player(item)
-        }
+
     }
     
 }

@@ -9,7 +9,7 @@
 import UIKit
 import SummerPlayerView
 
-struct BasicConfiguration: SummerPlayerViewConfiguration {
+struct DefaultConfig: SummerPlayerViewConfiguration {
     public var canShowVideoList = true
     public var canShowTime = true
     public var canShowPlayPause = true
