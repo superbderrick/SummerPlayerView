@@ -19,7 +19,6 @@ public protocol LegacyDelegate where Self: UIView {
     var playerDidChangeSize: ((PlayerDimension) -> ())? {get set}
     var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? {get set}
     var playerDidSelectItem: ((Int)->())? {get set}
-    var didSelectOptions: ((PlayerItem) -> ())? { get set }
     
     var totalDuration: CMTime? { get }
     var currentTime: CMTime? { get }
@@ -29,8 +28,6 @@ public protocol LegacyDelegate where Self: UIView {
     func seekToTime(_ seekTime: CMTime)
     func playPause(_ isActive: Bool)
     func currentVideoIndex(_ index: Int ,_ url: URL )
-    
-    
     
 }
 
