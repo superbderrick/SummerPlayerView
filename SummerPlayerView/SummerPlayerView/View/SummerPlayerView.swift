@@ -22,7 +22,7 @@ open class SummerPlayerView: UIView {
     public var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? = nil
     
     public var playerDidSelectItem: ((Int)->())? = nil
-
+    
     private var playerItems: [PlayerItem]?
     
     private var task: DispatchWorkItem? = nil
@@ -45,7 +45,9 @@ open class SummerPlayerView: UIView {
     
     open var sDelegate: SummerPlayerViewDelegate?
     
+    
     public var fullScreenView: UIView? = nil
+    
     
     private lazy var backgroundView: UIView = {
         let view = UIView()
@@ -66,7 +68,7 @@ open class SummerPlayerView: UIView {
     
     private var currentVideoIndex = 0
     
-
+    
     
     required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, header: UIView?, viewRect: CGRect) {
         super.init(frame: .zero)
@@ -173,7 +175,9 @@ open class SummerPlayerView: UIView {
         
         var isTouched = false
         
+        
         if configuration.hideControls {
+            
             playListView.isHidden = true
             self.playerScreenView.isHidden = true
             self.playerControlView.isHidden = true
@@ -182,7 +186,7 @@ open class SummerPlayerView: UIView {
             
             isTouched = true
             
-            print("handleTap is Touched true")
+            
         } else {
             playListView.isHidden = false
             self.playerScreenView.isHidden = false
@@ -196,7 +200,6 @@ open class SummerPlayerView: UIView {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
             isTouched = false
             
-            print("handleTap is Touched false")
         }
         configuration.hideControls = !configuration.hideControls
         
@@ -218,7 +221,6 @@ open class SummerPlayerView: UIView {
             forInterval: CMTime(seconds: 1, preferredTimescale: 100),
             queue: DispatchQueue.main,
             using: { [weak self] (cmtime) in
-                print(cmtime)
                 self?.playerScreenView.videoDidChange(cmtime)
         })
         
@@ -301,6 +303,7 @@ extension SummerPlayerView:PlayerControlViewDelegate {
 
 extension SummerPlayerView: LegacyDelegate {
     public func currentVideoIndex(_ index: Int, _ url: URL) {
+        
         currentVideoIndex = index
         resetPlayer(url)
     }
@@ -333,6 +336,13 @@ extension SummerPlayerView: LegacyDelegate {
     }
 }
 
+extension SummerPlayerView:PlayListViewDelegate {
+    public func didPressedCollectionView(index: Int) {
+        
+    }
+    
+}
+
 extension SummerPlayerView: UIGestureRecognizerDelegate {
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
@@ -349,7 +359,7 @@ extension UIView {
         topAnchor.constraint(equalTo: other.topAnchor).isActive = true
         bottomAnchor.constraint(equalTo: other.bottomAnchor).isActive = true
     }
-
+    
 }
 
 
