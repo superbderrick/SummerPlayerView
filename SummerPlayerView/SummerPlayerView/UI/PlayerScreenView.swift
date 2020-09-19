@@ -150,7 +150,7 @@ class PlayerScreenView: UIView {
         }
     }
     
-    func resetPlayer() {
+    func resetPlayerUI() {
         playerTimeLabel.text = CMTime.zero.description
         playerSlider.value = 0.0
     }

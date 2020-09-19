@@ -24,8 +24,10 @@ open class SummerPlayerView: UIView {
     public var playerDidSelectItem: ((Int)->())? = nil
     
     public var didSelectOptions: ((PlayerItem) -> ())? = nil
-        
+    
     private var currentVideoIndex = 0
+    
+    private var playerItems: [PlayerItem]?
     
     private var task: DispatchWorkItem? = nil
     
@@ -98,7 +100,6 @@ open class SummerPlayerView: UIView {
     }
     
     private func regulatePlayerView(isFullScreen:Bool) {
-        
         var playerViewRect : CGRect
         let xAXIS = self.bounds.size.width * 0.25
         let yAXIS :CGFloat = 0.0
@@ -106,13 +107,10 @@ open class SummerPlayerView: UIView {
         let HEIGHT = self.bounds.size.height * 0.6
         
         if isFullScreen {
-            
             playerViewRect = self.bounds
-            
         } else {
             playerViewRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
         }
-        
         
         playerLayer?.frame = playerViewRect
     }
@@ -126,6 +124,9 @@ open class SummerPlayerView: UIView {
     public func setPlayList(currentItem: PlayerItem, items: [PlayerItem], fullScreenView: UIView? = nil) {
         
         self.fullScreenView = fullScreenView
+        
+        self.playerItems = items
+        self.currentVideoIndex = 0
         
         if let url = URL(string: currentItem.url) {
             didLoadVideo(url)
@@ -160,7 +161,6 @@ open class SummerPlayerView: UIView {
             NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
         }
         
-        
     }
     
     @objc func onOrientationChanged() {
@@ -190,7 +190,8 @@ open class SummerPlayerView: UIView {
                 self.backgroundView.isHidden = true
                 self.configuration.hideControls = !self.configuration.hideControls
             }
-            print("handleTap maybe false ")
+            
+            
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
             isTouched = false
         }
@@ -250,7 +251,6 @@ open class SummerPlayerView: UIView {
     
 }
 
-// MARK: MBVideoPlayerControlsDelegate
 
 extension SummerPlayerView:PlayerControlViewDelegate {
     public func didPressedAirPlayButton() {
@@ -258,18 +258,35 @@ extension SummerPlayerView:PlayerControlViewDelegate {
     }
     
     public func didPressedPreviousButton() {
-        playerScreenView.resetPlayer()
-
+        playerScreenView.resetPlayerUI()
+        
+        if let latestItems = playerItems {
+            if(currentVideoIndex == 0) {
+                currentVideoIndex = latestItems.count-1
+            } else if(currentVideoIndex > 0) {
+                currentVideoIndex -= 1
+            }
+            let newURL = URL(string: latestItems[currentVideoIndex].url)
+            resetPlayer(newURL!)
+        }
     }
     
     public func didPressedNextButton() {
+        playerScreenView.resetPlayerUI()
+        
+        if let latestItems = playerItems {
+            if(currentVideoIndex >= 0 && currentVideoIndex < latestItems.count-1) {
+                currentVideoIndex += 1
+            } else if(currentVideoIndex == latestItems.count-1 ) {
+                currentVideoIndex = 0
+            }
+            let newURL = URL(string: latestItems[currentVideoIndex].url)
+            resetPlayer(newURL!)
+        }
         
     }
     
     public func didPressedBackButton() {
-        
-        print("didPressedBackButton")
-        
         self.queuePlayer.pause()
         self.playerLayer?.removeFromSuperlayer()
         
@@ -285,7 +302,6 @@ extension SummerPlayerView: LegacyDelegate {
     }
     
     public func didLoadVideo(_ url: URL) {
-        
         resetPlayer(url)
     }
     
@@ -301,6 +317,7 @@ extension SummerPlayerView: LegacyDelegate {
     private func resetPlayer(_ url:URL) {
         queuePlayer.removeAllItems()
         
+        print("resetPlayer \(url)")
         let playerItem = AVPlayerItem.init(url: url)
         queuePlayer.insert(playerItem, after: nil)
         queuePlayer.play()
@@ -312,8 +329,6 @@ extension SummerPlayerView: LegacyDelegate {
         }
     }
 }
-
-// MARK: MBVideoPlayerControlsDelegate
 
 extension SummerPlayerView: UIGestureRecognizerDelegate {
     
@@ -331,8 +346,7 @@ extension UIView {
         topAnchor.constraint(equalTo: other.topAnchor).isActive = true
         bottomAnchor.constraint(equalTo: other.bottomAnchor).isActive = true
     }
-    
-    
+
 }
 
 
