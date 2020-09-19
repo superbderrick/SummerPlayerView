@@ -36,6 +36,9 @@ class PlayerScreenView: UIView {
     lazy private var playerSlider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.thumbTintColor = UIColor.red
+        slider.tintColor = UIColor.red
+        slider.maximumTrackTintColor = UIColor(white: 1, alpha: 0.5)
         slider.addTarget(self, action: #selector(self.changeSeekSlider(_:)), for: .valueChanged)
         return slider
     }()
@@ -43,9 +46,10 @@ class PlayerScreenView: UIView {
     lazy private var moreButton: UIButton = {
         let addButton = UIButton()
         if let image = UIImage(named: "more") {
+            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             addButton.setImage(image, for: .normal)
         }
-        
+        addButton.tintColor = UIColor(white: 1, alpha: 1)
         addButton.translatesAutoresizingMaskIntoConstraints = false
         return addButton
     }()
@@ -73,8 +77,10 @@ class PlayerScreenView: UIView {
     lazy private var playButton: UIButton = {
         let playButton = UIButton()
         if let image = UIImage(named: "play") {
+            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             playButton.setImage(image, for: .normal)
         }
+        playButton.tintColor = UIColor(white: 1, alpha: 1)
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.addTarget(self, action: #selector(self.clickPlayButton(_:)), for: .touchUpInside)
         return playButton

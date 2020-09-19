@@ -18,9 +18,11 @@ class PlayerControllView: UIView {
         let backwardButton = UIButton()
         backwardButton.translatesAutoresizingMaskIntoConstraints = false
         if let image = UIImage(named: "back") {
+            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             backwardButton.setImage(image, for: .normal)
         }
         
+        backwardButton.tintColor = UIColor(white:1, alpha:1)
         backwardButton.translatesAutoresizingMaskIntoConstraints = false
         backwardButton.addTarget(self, action: #selector(self.clickBackButton(_:)), for: .touchUpInside)
         return backwardButton
@@ -30,8 +32,10 @@ class PlayerControllView: UIView {
         let nextButton = UIButton()
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         if let image = UIImage(named: "previous") {
+            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             nextButton.setImage(image, for: .normal)
         }
+        nextButton.tintColor = UIColor(white:1, alpha:1)
         nextButton.addTarget(self, action: #selector(self.clickPreviousButton(_:)), for: .touchUpInside)
         return nextButton
     }()
@@ -40,8 +44,10 @@ class PlayerControllView: UIView {
         let airplayButton = UIButton()
         airplayButton.translatesAutoresizingMaskIntoConstraints = false
         if let image = UIImage(named: "airplay") {
+            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             airplayButton.setImage(image, for: .normal)
         }
+        airplayButton.tintColor = UIColor(white:1, alpha:1)
         airplayButton.addTarget(self, action: #selector(self.clickAirPlayButton(_:)), for: .touchUpInside)
         return airplayButton
     }()
@@ -49,9 +55,12 @@ class PlayerControllView: UIView {
     lazy private var nextButton: UIButton = {
         let previousButton = UIButton()
         previousButton.translatesAutoresizingMaskIntoConstraints = false
+        
         if let image = UIImage(named: "next") {
+            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             previousButton.setImage(image, for: .normal)
         }
+        previousButton.tintColor = UIColor(white:1, alpha:1)
         previousButton.addTarget(self, action: #selector(self.clickNextButton(_:)), for: .touchUpInside)
         return previousButton
     }()

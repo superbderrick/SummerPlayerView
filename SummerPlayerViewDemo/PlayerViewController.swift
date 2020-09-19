@@ -21,9 +21,7 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         let playerView = SummerPlayerView(configuration: defaultConfig, theme: nil, header: nil,viewRect: view.bounds)
         
         playerView.sDelegate = self
-        
-        playerView.currentTime
-        
+    
         
         let playerItems = [
             PlayerItem(title: "What is this event? ... parker.", url: "https://content.jwplatform.com/manifests/yp34SRmf.m3u8", thumbnail: "5"),
