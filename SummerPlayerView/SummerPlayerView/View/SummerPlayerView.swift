@@ -52,7 +52,7 @@ open class SummerPlayerView: UIView {
     private lazy var backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black
-        view.alpha = 0.9
+        view.alpha = 0.2
         view.isOpaque = false
         view.isHidden = true
         return view
