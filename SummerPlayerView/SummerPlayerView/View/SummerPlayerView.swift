@@ -74,6 +74,8 @@ open class SummerPlayerView: UIView {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         
+        self.bounds = viewRect
+        
         if let theme = theme {
             self.theme = theme
         }
@@ -97,8 +99,6 @@ open class SummerPlayerView: UIView {
     
     override open func layoutSubviews() {
         super.layoutSubviews()
-        
-        regulatePlayerView(isFullScreen: false)
     }
     
     private func regulatePlayerView(isFullScreen:Bool) {
@@ -214,7 +214,7 @@ open class SummerPlayerView: UIView {
         playerLayer = AVPlayerLayer(player: queuePlayer)
         playerLayer?.backgroundColor = UIColor.black.cgColor
         playerLayer?.videoGravity = .resizeAspect
-        
+        regulatePlayerView(isFullScreen: false)
         
         self.layer.addSublayer(playerLayer!)
         queuePlayer.addPeriodicTimeObserver(
