@@ -1,4 +1,10 @@
-language: osx
-osx_image: xcode12
+# language: osx
+# osx_image: xcode12
+# script:
+#   - xcodebuild  
+
+
+language: objective-c
+osx_image: xcode11
 script:
-  - xcodebuild  
+  - xcodebuild 
