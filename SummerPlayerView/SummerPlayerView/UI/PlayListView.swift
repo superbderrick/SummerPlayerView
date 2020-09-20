@@ -37,8 +37,6 @@ class PlayListView: UIView {
     
     private lazy var collectionView: UICollectionView =  {
         let layout = UICollectionViewFlowLayout()
-        
-        let test:CGFloat = self.frame.size.width * 0.25
         layout.itemSize = CGSize(width: 200, height: 100)
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -49,26 +47,23 @@ class PlayListView: UIView {
         collectionView.dataSource = self
         return collectionView
     }()
+    
+    var sdelegate: PlayListViewDelegate?
+    
     private var playerItems: [PlayerItem]?
     
-    /// current video item which is playing now
     private var currentItem: PlayerItem?
     
-    /// this controls player state whether it's paused or playing
     private var isActive: Bool = false
     
     var delegate: LegacyDelegate?
     
-    /// custom header which comes as a default header
     var videoPlayerHeader: SummerVideoPlayerHeaderView?
     
-    /// default configuration for player
     var configuration = InternalConfiguration()
     
-    /// default theme for the player
     var theme = MainTheme()
     
-    /// all four constraints of the player from mainContainer which we are using to make it fullScreen
     private var topC: NSLayoutConstraint?
     private var bottomC: NSLayoutConstraint?
     private var rightC: NSLayoutConstraint?
@@ -97,9 +92,8 @@ class PlayListView: UIView {
     func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
         
         addSubview(activityView)
-        activityView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activityView.centerYAnchor.constraint(equalTo: centerYAnchor , constant: -50).isActive = true
         activityView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        
         addSubview(bottomControlsStackView)
         bottomControlsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         bottomControlsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
@@ -151,40 +145,6 @@ class PlayListView: UIView {
     
     // MARK: - Actions
     
-    @objc func resizeButtonTapped(_ sender:UIButton) {
-        if let player = delegate?.playerDidChangeSize {
-            player(configuration.dimension)
-        }
-        
-        switch configuration.dimension {
-        case .embed:
-            if let _ = delegate?.fullScreenView?.bounds {
-                if let view = delegate?.fullScreenView {
-                    leftC = delegate?.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-                    rightC = delegate?.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-                    topC = delegate?.topAnchor.constraint(equalTo: view.topAnchor)
-                    bottomC = delegate?.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                    if let leftC = leftC, let rightC = rightC, let bottomC = bottomC, let topC = topC {
-                        NSLayoutConstraint.activate([leftC, rightC, topC, bottomC])
-                        layoutIfNeeded()
-                    }
-                }
-            }
-            
-            configuration.dimension = .fullScreen
-        case .fullScreen:
-            if let leftC = leftC, let rightC = rightC, let bottomC = bottomC, let topC = topC {
-                NSLayoutConstraint.deactivate([leftC, rightC, topC, bottomC])
-                layoutIfNeeded()
-                
-            }
-            configuration.dimension = .embed
-        }
-        UIView.animate(withDuration: 0.3) {
-            self.layoutIfNeeded()
-        }
-    }
-    
     private func addPlayList() {
         // background view
         addSubview(backgroundView)
@@ -203,8 +163,6 @@ class PlayListView: UIView {
         collectionView.pinEdges(to: playListStackView)
     }
 }
-
-// MARK: - UICollectionView Delegate & Datasource
 
 extension PlayListView: UICollectionViewDataSource {
     
@@ -229,6 +187,9 @@ extension PlayListView: UICollectionViewDataSource {
 extension PlayListView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        sdelegate?.didPressedCollectionView(index: indexPath.row)
+        
         if let player = delegate?.playerDidSelectItem {
             player(indexPath.row)
         }

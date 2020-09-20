@@ -29,6 +29,7 @@ public protocol LegacyDelegate where Self: UIView {
     func playPause(_ isActive: Bool)
     func currentVideoIndex(_ index: Int ,_ url: URL )
     
+    func didTappedPlayerScreenView(_ isTapped : Bool)
 }
 
 
