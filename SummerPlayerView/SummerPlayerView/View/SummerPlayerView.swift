@@ -45,9 +45,7 @@ open class SummerPlayerView: UIView {
     
     open var sDelegate: SummerPlayerViewDelegate?
     
-    
     public var fullScreenView: UIView? = nil
-    
     
     private lazy var backgroundView: UIView = {
         let view = UIView()
@@ -67,7 +65,6 @@ open class SummerPlayerView: UIView {
     }
     
     private var currentVideoIndex = 0
-    
     
     
     required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, header: UIView?, viewRect: CGRect) {
@@ -114,6 +111,7 @@ open class SummerPlayerView: UIView {
             playerViewRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
         }
         
+        //self.playerScreenView.frame = playerViewRect
         playerLayer?.frame = playerViewRect
     }
     
@@ -155,10 +153,6 @@ open class SummerPlayerView: UIView {
             
             backgroundView.pinEdges(to: self)
             
-            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-            tap.cancelsTouchesInView = false
-            tap.delegate = self
-            addGestureRecognizer(tap)
             
             NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
         }
@@ -169,42 +163,6 @@ open class SummerPlayerView: UIView {
         if let didChangeOrientation = playerOrientationDidChange {
             didChangeOrientation(configuration.dimension)
         }
-    }
-    
-    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        
-        var isTouched = false
-        
-        
-        if configuration.hideControls {
-            
-            playListView.isHidden = true
-            self.playerScreenView.isHidden = true
-            self.playerControlView.isHidden = true
-            backgroundView.isHidden = true
-            task?.cancel()
-            
-            isTouched = true
-            
-            
-        } else {
-            playListView.isHidden = false
-            self.playerScreenView.isHidden = false
-            self.playerControlView.isHidden = false
-            backgroundView.isHidden = false
-            task = DispatchWorkItem {
-                self.backgroundView.isHidden = true
-                self.configuration.hideControls = !self.configuration.hideControls
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
-            isTouched = false
-            
-        }
-        configuration.hideControls = !configuration.hideControls
-        
-        regulatePlayerView(isFullScreen: isTouched)
-        
     }
     
     
@@ -222,7 +180,7 @@ open class SummerPlayerView: UIView {
             queue: DispatchQueue.main,
             using: { [weak self] (cmtime) in
                 self?.playerScreenView.videoDidChange(cmtime)
-        })
+            })
         
     }
     
@@ -302,6 +260,39 @@ extension SummerPlayerView:PlayerControlViewDelegate {
 }
 
 extension SummerPlayerView: LegacyDelegate {
+    public func didTappedPlayerScreenView(_ isTapped: Bool) {
+        print("didTappedPlayerScreenvIew \(isTapped)")
+        
+        var isTouched = false
+        
+        if configuration.hideControls {
+
+            playListView.isHidden = true
+            self.playerControlView.isHidden = true
+            backgroundView.isHidden = true
+            task?.cancel()
+
+            isTouched = true
+
+
+        } else {
+            playListView.isHidden = false
+            self.playerControlView.isHidden = false
+            backgroundView.isHidden = false
+            task = DispatchWorkItem {
+                self.backgroundView.isHidden = true
+                self.configuration.hideControls = !self.configuration.hideControls
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
+            isTouched = false
+
+        }
+        configuration.hideControls = !configuration.hideControls
+        
+        regulatePlayerView(isFullScreen: isTouched)
+    }
+    
     public func currentVideoIndex(_ index: Int, _ url: URL) {
         
         currentVideoIndex = index
@@ -343,13 +334,6 @@ extension SummerPlayerView:PlayListViewDelegate {
     
 }
 
-extension SummerPlayerView: UIGestureRecognizerDelegate {
-    
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if touch.view?.classForCoder == UIButton.classForCoder() { return false }
-        return true
-    }
-}
 
 extension UIView {
     

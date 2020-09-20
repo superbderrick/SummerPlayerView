@@ -13,6 +13,8 @@ class PlayerScreenView: UIView {
     
     private var isPlaying: Bool = true
     
+    private var isTapped: Bool = false
+    
     var delegate: LegacyDelegate?
     
     lazy private var playerTimeLabel: UILabel = {
@@ -195,12 +197,40 @@ class PlayerScreenView: UIView {
         super.init(coder: coder)
         setupView()
     }
+    fileprivate func hideAllUIComponents(_ willHide:Bool) {
+        self.playerSlider.isHidden = willHide
+        self.moreButton.isHidden = willHide
+        self.playButton.isHidden = willHide
+        self.fullTimeLabel.isHidden = willHide
+        self.playerTimeLabel.isHidden = willHide
+        self.headerTitle.isHidden = willHide
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        print("handleTap")
+        
+        if(isTapped) {
+            isTapped = !isTapped
+            hideAllUIComponents(false)
+        } else {
+            isTapped = true
+            hideAllUIComponents(true)
+        }
+        
+        delegate?.didTappedPlayerScreenView(isTapped)
+        
+    }
     
     private func setupView() {
         addSubview(topView)
         addSubview(bottomView)
         setupTopLayout()
         setupBottomLayout()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        tap.cancelsTouchesInView = false
+        tap.delegate = self
+        addGestureRecognizer(tap)
     }
     
     private func setupTopLayout() {
@@ -266,5 +296,14 @@ class PlayerScreenView: UIView {
         return CGSize(width: 300, height: 300)
     }
     
+}
+
+
+extension PlayerScreenView: UIGestureRecognizerDelegate {
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.classForCoder == UIButton.classForCoder() { return false }
+        return true
+    }
 }
 
