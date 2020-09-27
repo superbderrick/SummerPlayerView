@@ -15,7 +15,6 @@ public protocol LegacyDelegate where Self: UIView {
     
     var playerStateDidChange: ((_ state: SummerPlayerState)->())? {get set}
     var playerTimeDidChange: ((_ newTime: TimeInterval, _ duration: TimeInterval)->())? {get set}
-    var playerOrientationDidChange: ((_ dimension: PlayerDimension) -> ())? {get set}
     var playerDidChangeSize: ((PlayerDimension) -> ())? {get set}
     var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? {get set}
     var playerDidSelectItem: ((Int)->())? {get set}
@@ -28,7 +27,6 @@ public protocol LegacyDelegate where Self: UIView {
     func seekToTime(_ seekTime: CMTime)
     func playPause(_ isActive: Bool)
     func currentVideoIndex(_ index: Int ,_ url: URL )
-    
     func didTappedPlayerScreenView(_ isTapped : Bool)
 }
 

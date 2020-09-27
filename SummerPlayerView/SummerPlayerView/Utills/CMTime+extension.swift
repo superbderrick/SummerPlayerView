@@ -44,7 +44,7 @@ enum Controls {
             return UIImage(systemName: isActive ? "pause.fill" : "play.fill" , withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .heavy, scale: .large))
         case .resize(let dimension):
             switch dimension {
-            case .embed:
+            case .tiny:
                 return UIImage(systemName: "arrow.down.right.and.arrow.up.left", withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .heavy, scale: .large))
             case .fullScreen:
                 return UIImage(systemName: "arrow.up.left.and.arrow.down.right", withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .heavy, scale: .large))

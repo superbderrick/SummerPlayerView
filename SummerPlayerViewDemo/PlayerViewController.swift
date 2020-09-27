@@ -22,7 +22,6 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         
         playerView.sDelegate = self
     
-        
         let playerItems = [
             PlayerItem(title: "What is this event? ... parker.", url: "https://content.jwplatform.com/manifests/yp34SRmf.m3u8", thumbnail: "5"),
             PlayerItem(title: "Apple Live Broadcast WWDC.", url: "https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8", thumbnail: "1"),
@@ -41,9 +40,6 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         
         playerView.playerStateDidChange = { (state) in
             print("playerStateDidChange")
-        }
-        playerView.playerOrientationDidChange = { (orientation) in
-            print("playerOrientationDidChange")
         }
         playerView.playerDidChangeSize = { (dimension) in
             print("playerDidChangeSize")

@@ -90,7 +90,7 @@ class SummerVideoPlayerHeaderView: UIView {
     
     
     @objc func optionsBtnPressed(_ sender: UIButton) {
-
+        
     }
     
 }

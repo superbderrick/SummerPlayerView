@@ -5,7 +5,7 @@ import AVKit
 
 
 public enum PlayerDimension {
-    case embed
+    case tiny
     case fullScreen
 }
 
@@ -14,8 +14,6 @@ open class SummerPlayerView: UIView {
     public var playerStateDidChange: ((SummerPlayerState)->())? = nil
     
     public var playerTimeDidChange: ((TimeInterval, TimeInterval)->())? = nil
-    
-    public var playerOrientationDidChange: ((PlayerDimension) -> ())? = nil
     
     public var playerDidChangeSize: ((PlayerDimension) -> ())? = nil
     
@@ -151,16 +149,8 @@ open class SummerPlayerView: UIView {
             
             backgroundView.pinEdges(to: self)
             
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
         }
         
-    }
-    
-    @objc func onOrientationChanged() {
-        if let didChangeOrientation = playerOrientationDidChange {
-            didChangeOrientation(configuration.dimension)
-        }
     }
     
     
@@ -258,21 +248,23 @@ extension SummerPlayerView:PlayerControlViewDelegate {
 }
 
 extension SummerPlayerView: LegacyDelegate {
+    
+    
     public func didTappedPlayerScreenView(_ isTapped: Bool) {
         print("didTappedPlayerScreenvIew \(isTapped)")
         
         var isTouched = false
         
         if configuration.hideControls {
-
+            
             playListView.isHidden = true
             self.playerControlView.isHidden = true
             backgroundView.isHidden = true
             task?.cancel()
-
+            
             isTouched = true
-
-
+            
+            
         } else {
             playListView.isHidden = false
             self.playerControlView.isHidden = false
@@ -281,10 +273,10 @@ extension SummerPlayerView: LegacyDelegate {
                 self.backgroundView.isHidden = true
                 self.configuration.hideControls = !self.configuration.hideControls
             }
-
+            
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
             isTouched = false
-
+            
         }
         configuration.hideControls = !configuration.hideControls
         
@@ -317,7 +309,7 @@ extension SummerPlayerView: LegacyDelegate {
         queuePlayer.insert(playerItem, after: nil)
         queuePlayer.play()
         
-    
+        
         if let title = self.playerItems?[currentVideoIndex].title {
             playerScreenView.videoDidStart(title: title)
         }
@@ -334,7 +326,6 @@ extension SummerPlayerView:PlayListViewDelegate {
     }
     
 }
-
 
 extension UIView {
     
