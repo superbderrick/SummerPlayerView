@@ -163,12 +163,14 @@ class PlayerScreenView: UIView {
         playerSlider.value = 0.0
     }
     
-    func videoDidStart() {
+    func videoDidStart(title:String) {
         playerTimeLabel.text = CMTime.zero.description
         playButton.setImage(UIImage(named: "pause"), for: .normal)
         
         playerSlider.value = 0.0
         fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
+        
+        headerTitle.text = title
     }
     
     private func applyTheme(_ theme: SummerPlayerViewTheme) {

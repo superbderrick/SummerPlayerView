@@ -111,11 +111,9 @@ open class SummerPlayerView: UIView {
             playerViewRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
         }
         
-        //self.playerScreenView.frame = playerViewRect
         playerLayer?.frame = playerViewRect
     }
     
-    // MARK: - Helper Methods
     
     func didRegisterPlayerItemCell(_ identifier: String, collectioViewCell cell: UICollectionViewCell.Type) {
         playListView.didRegisterPlayerItemCell(identifier, collectioViewCell: cell)
@@ -319,7 +317,10 @@ extension SummerPlayerView: LegacyDelegate {
         queuePlayer.insert(playerItem, after: nil)
         queuePlayer.play()
         
-        playerScreenView.videoDidStart()
+    
+        if let title = self.playerItems?[currentVideoIndex].title {
+            playerScreenView.videoDidStart(title: title)
+        }
         
         if let player = playerStateDidChange {
             player(.readyToPlay)
