@@ -16,6 +16,6 @@ struct DefaultConfig: SummerPlayerViewConfiguration {
     public var canShowTimeBar = true
     public var canShowForwardBack = true
     public var hideControls: Bool = true
-    public var dimension: PlayerDimension = .embed
+    public var dimension: PlayerDimension = .tiny
     public var seekDuration: Float64 = 15.0
 }
