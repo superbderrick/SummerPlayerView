@@ -45,15 +45,6 @@ open class SummerPlayerView: UIView {
     
     public var fullScreenView: UIView? = nil
     
-    private lazy var backgroundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
-        view.alpha = 0.2
-        view.isOpaque = false
-        view.isHidden = true
-        return view
-    }()
-    
     public var totalDuration: CMTime? {
         return self.queuePlayer.currentItem?.asset.duration
     }
@@ -63,7 +54,6 @@ open class SummerPlayerView: UIView {
     }
     
     private var currentVideoIndex = 0
-    
     
     required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, header: UIView?, viewRect: CGRect) {
         super.init(frame: .zero)
@@ -136,14 +126,11 @@ open class SummerPlayerView: UIView {
             
             setupInsideViews(header,wholeViewRect , wholeRect: viewRect)
             
-            backgroundView.translatesAutoresizingMaskIntoConstraints = false
-            addSubview(backgroundView)
             
             bringSubviewToFront(playListView)
             bringSubviewToFront(playerControlView)
             bringSubviewToFront(playerScreenView)
-            
-            backgroundView.pinEdges(to: self)
+        
             
         }
         
@@ -255,8 +242,7 @@ extension SummerPlayerView: LegacyDelegate {
             
             playListView.isHidden = true
             self.playerControlView.isHidden = true
-            backgroundView.isHidden = true
-        //    task?.cancel()
+            //    task?.cancel()
             
             isTouched = true
             
@@ -264,11 +250,10 @@ extension SummerPlayerView: LegacyDelegate {
         } else {
             playListView.isHidden = false
             self.playerControlView.isHidden = false
-            backgroundView.isHidden = false
-//            task = DispatchWorkItem {
-//                self.backgroundView.isHidden = true
-//                self.configuration.hideControls = !self.configuration.hideControls
-//            }
+            //            task = DispatchWorkItem {
+            //                self.backgroundView.isHidden = true
+            //                self.configuration.hideControls = !self.configuration.hideControls
+            //            }
             
             //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
             isTouched = false
