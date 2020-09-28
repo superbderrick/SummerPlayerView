@@ -90,6 +90,7 @@ class PlayerScreenView: UIView {
     
     lazy private var bottomControlsStackView: UIStackView  = {
         let stackView = UIStackView()
+       // stackView.backgroundColor = UIColor.blue
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -181,7 +182,7 @@ class PlayerScreenView: UIView {
     lazy var bottomView: UIView = {
         
         let bottomView = UIView()
-        bottomView.backgroundColor = UIColor.clear
+      //  bottomView.backgroundColor = UIColor.red
         bottomView.alpha = 0.9
         
         bottomView.addSubview(playButton)
@@ -246,7 +247,7 @@ class PlayerScreenView: UIView {
             moreButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
             moreButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -10),
             
-            topView.topAnchor.constraint(equalTo: topAnchor),
+            topView.topAnchor.constraint(equalTo: topAnchor , constant: 25),
             topView.leadingAnchor.constraint(equalTo: leadingAnchor),
             topView.trailingAnchor.constraint(equalTo: trailingAnchor),
             topView.heightAnchor.constraint(equalToConstant: 40),
@@ -280,7 +281,7 @@ class PlayerScreenView: UIView {
             bottomControlsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             bottomControlsStackView.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
             
-            bottomView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            bottomView.bottomAnchor.constraint(equalTo: bottomAnchor , constant: -25),
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: trailingAnchor),
             bottomView.heightAnchor.constraint(equalToConstant: 40),
