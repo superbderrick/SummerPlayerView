@@ -98,15 +98,11 @@ open class SummerPlayerView: UIView {
     
     private func regulatePlayerView(isFullScreen:Bool) {
         var playerViewRect : CGRect
-        let xAXIS = self.bounds.size.width * 0.25
-        let yAXIS :CGFloat = 0.0
-        let WIDTH = self.bounds.size.width/2
-        let HEIGHT = self.bounds.size.height * 0.6
         
         if isFullScreen {
             playerViewRect = self.bounds
         } else {
-            playerViewRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
+            playerViewRect = Utills.getWholeViewRect(self.bounds)!
         }
         
         playerLayer?.frame = playerViewRect
@@ -260,7 +256,7 @@ extension SummerPlayerView: LegacyDelegate {
             playListView.isHidden = true
             self.playerControlView.isHidden = true
             backgroundView.isHidden = true
-            task?.cancel()
+        //    task?.cancel()
             
             isTouched = true
             
@@ -269,12 +265,12 @@ extension SummerPlayerView: LegacyDelegate {
             playListView.isHidden = false
             self.playerControlView.isHidden = false
             backgroundView.isHidden = false
-            task = DispatchWorkItem {
-                self.backgroundView.isHidden = true
-                self.configuration.hideControls = !self.configuration.hideControls
-            }
+//            task = DispatchWorkItem {
+//                self.backgroundView.isHidden = true
+//                self.configuration.hideControls = !self.configuration.hideControls
+//            }
             
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
+            //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
             isTouched = false
             
         }
