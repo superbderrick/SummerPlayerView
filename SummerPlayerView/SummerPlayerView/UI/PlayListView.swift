@@ -50,9 +50,9 @@ class PlayListView: UIView {
     
     var sdelegate: PlayListViewDelegate?
     
-    private var playerItems: [PlayerItem]?
+    private var playerItems: [Content]?
     
-    private var currentItem: PlayerItem?
+    private var currentItem: Content?
     
     private var isActive: Bool = false
     
@@ -82,7 +82,7 @@ class PlayListView: UIView {
         super.init(coder: coder)
     }
     
-    func setPlayList(currentItem: PlayerItem, items: [PlayerItem]) {
+    func setPlayList(currentItem: Content, items: [Content]) {
         playerItems = items
         self.currentItem = currentItem
         collectionView.reloadData()

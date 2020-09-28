@@ -21,7 +21,7 @@ open class SummerPlayerView: UIView {
     
     public var playerDidSelectItem: ((Int)->())? = nil
     
-    private var playerItems: [PlayerItem]?
+    private var playerItems: [Content]?
     
     private var task: DispatchWorkItem? = nil
     
@@ -113,7 +113,7 @@ open class SummerPlayerView: UIView {
         playListView.didRegisterPlayerItemCell(identifier, collectioViewCell: cell)
     }
     
-    public func setPlayList(currentItem: PlayerItem, items: [PlayerItem], fullScreenView: UIView? = nil) {
+    public func setPlayList(currentItem: Content, items: [Content], fullScreenView: UIView? = nil) {
         
         self.fullScreenView = fullScreenView
         

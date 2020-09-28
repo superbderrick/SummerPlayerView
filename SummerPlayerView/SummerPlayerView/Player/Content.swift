@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct PlayerItem {
+public struct Content {
     let title: String
     let url: String
     let thumbnail: String
