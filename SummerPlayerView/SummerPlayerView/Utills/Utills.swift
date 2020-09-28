@@ -16,7 +16,7 @@ class Utills {
         let xAXIS = viewRect.size.width * 0.25
         let yAXIS :CGFloat = 0.0
         let WIDTH = viewRect.size.width/2
-        let HEIGHT = viewRect.size.height * 0.6
+        let HEIGHT = viewRect.size.height * 0.7
         
         wholeStandardRect = CGRect(x: xAXIS, y: yAXIS, width: WIDTH, height: HEIGHT)
         
