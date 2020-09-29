@@ -35,7 +35,7 @@ enum Controls {
     case forward
     case back
     case slider
-    case resize(PlayerDimension)
+    case resize(ScreenMode)
     case options
     
     public var image: UIImage? {
