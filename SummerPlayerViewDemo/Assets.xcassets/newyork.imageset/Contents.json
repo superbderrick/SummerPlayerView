@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "4.jpeg",
+      "filename" : "newyork.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "newyork-1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "newyork-2.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
