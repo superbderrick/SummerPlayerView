@@ -9,7 +9,9 @@
 import Foundation
 
 public struct InternalConfiguration: SummerPlayerViewConfiguration {
-    public var canShowVideoList = true
+
+    public var showIndicator: Bool = true
+    public var showVideoList = true
     public var hideControls: Bool = true
     public var screenMode: ScreenMode = .tiny
 }

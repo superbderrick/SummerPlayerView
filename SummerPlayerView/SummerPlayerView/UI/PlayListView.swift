@@ -99,7 +99,7 @@ class PlayListView: UIView {
         bottomControlsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         bottomControlsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         
-        if configuration.canShowVideoList {
+        if configuration.showVideoList {
             addPlayList()
         }
         
@@ -132,8 +132,7 @@ class PlayListView: UIView {
                     guard let `self` = self else { return }
                     if newStatus == .playing || newStatus == .paused {
                         
-                        self.sdelegate?.changedPlayerStatus(state: (self.isActive ? SummerPlayerState.pause : SummerPlayerState.playing))
-
+                    
                         self.activityView.isHidden = true
                     } else {
                         self.activityView.isHidden = false

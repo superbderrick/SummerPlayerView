@@ -17,6 +17,10 @@ open class SummerPlayerView: UIView {
         return self.queuePlayer.currentItem?.asset.duration
     }
     
+    public var playerStatus: AVPlayer.Status  {
+        return self.queuePlayer.status
+    }
+    
     public var currentTime: CMTime? {
         return self.queuePlayer.currentTime()
     }
@@ -283,10 +287,6 @@ extension SummerPlayerView: LegacyDelegate {
 }
 
 extension SummerPlayerView:PlayListViewDelegate {
-    func changedPlayerStatus(state: SummerPlayerState) {
-        
-    }
-    
     func didPressedCollectionView(index: Int) {
         
     }

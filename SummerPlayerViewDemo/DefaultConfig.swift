@@ -10,7 +10,8 @@ import UIKit
 import SummerPlayerView
 
 struct DefaultConfig: SummerPlayerViewConfiguration {
-    public var canShowVideoList = true
+    public var showIndicator = true
+    public var showVideoList = true
     public var screenMode: ScreenMode = .tiny
     public var hideControls: Bool = true
 }

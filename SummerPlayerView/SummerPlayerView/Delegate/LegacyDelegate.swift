@@ -3,14 +3,6 @@
 import UIKit
 import AVKit
 
-public enum SummerPlayerState {
-    case readyToPlay
-    case playing
-    case pause
-    case playedToTheEnd
-    case error
-}
-
  protocol LegacyDelegate where Self: UIView {
     
     var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? {get set}
