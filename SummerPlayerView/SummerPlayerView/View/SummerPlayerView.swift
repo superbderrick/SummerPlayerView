@@ -4,7 +4,7 @@ import Foundation
 import AVKit
 
 
-public enum PlayerDimension {
+public enum ScreenMode {
     case tiny
     case fullScreen
 }

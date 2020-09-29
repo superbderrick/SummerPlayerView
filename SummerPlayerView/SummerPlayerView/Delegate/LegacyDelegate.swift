@@ -14,10 +14,8 @@ public enum SummerPlayerState {
  protocol LegacyDelegate where Self: UIView {
     
     var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? {get set}
-    
     var totalDuration: CMTime? { get }
     var currentTime: CMTime? { get }
-    
     func didLoadVideo(_ url: URL)
     func seekToTime(_ seekTime: CMTime)
     func playPause(_ isActive: Bool)
