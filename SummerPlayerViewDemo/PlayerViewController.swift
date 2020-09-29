@@ -23,11 +23,11 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         playerView.sDelegate = self
     
         let playerItems = [
-            Content(title: "What is this event? ... parker.", url: "https://content.jwplatform.com/manifests/yp34SRmf.m3u8", thumbnail: "5"),
-            Content(title: "Apple Live Broadcast WWDC.", url: "https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8", thumbnail: "1"),
-            Content(title: "Driving a Cycle experience.", url: "https://content.jwplatform.com/manifests/yp34SRmf.m3u8", thumbnail: "2"),
-            Content(title: "The Durian Open Movie Project.", url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", thumbnail: "3"),
-            Content(title: "Table Ronde.", url: "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8", thumbnail: "4"),
+            Content(title: "Paris", url: "https://content.jwplatform.com/manifests/yp34SRmf.m3u8", thumbnail: "paris"),
+            Content(title: "Busan", url: "https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8", thumbnail: "busan"),
+            Content(title: "Copenhagen", url: "https://content.jwplatform.com/manifests/yp34SRmf.m3u8", thumbnail: "cofenhagen"),
+            Content(title: "SF", url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", thumbnail: "sf"),
+            Content(title: "Newyork", url: "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8", thumbnail: "newyork"),
         ]
         
         if let currentItem = playerItems.first {
