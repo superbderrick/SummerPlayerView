@@ -8,7 +8,7 @@
 
 import UIKit
 import SummerPlayerView
-class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
+class PlayerViewController: UIViewController  {
     
     
     override func viewDidLoad() {
@@ -30,9 +30,6 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         
         playerView.pinEdges(to: view)
         
-        playerView.playerDidChangeSize = { (dimension) in
-            print("playerDidChangeSize")
-        }
         playerView.playerTimeDidChange = { (newTime, duration) in
             print("playerTimeDidChange \(newTime)")
         }
@@ -46,7 +43,7 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
     
 
 
-extension PlayerViewController {
+extension PlayerViewController : SummerPlayerViewDelegate {
     
     func didPressedBackButton() {
         moveViewController()

@@ -12,9 +12,7 @@ public enum PlayerDimension {
 open class SummerPlayerView: UIView {
     
     public var playerTimeDidChange: ((TimeInterval, TimeInterval)->())? = nil
-    
-    public var playerDidChangeSize: ((PlayerDimension) -> ())? = nil
-    
+        
     public var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? = nil
     
     public var playerDidSelectItem: ((Int)->())? = nil
@@ -27,20 +25,19 @@ open class SummerPlayerView: UIView {
     
     private var playerLayer: AVPlayerLayer?
     
-    let playListView = PlayListView()
+    private let playListView = PlayListView()
     
-    var playerScreenView = PlayerScreenView()
+    private var playerScreenView = PlayerScreenView()
     
-    var playerControlView = PlayerControllView()
+    private var playerControlView = PlayerControllView()
     
-    var configuration: SummerPlayerViewConfiguration = InternalConfiguration()
+    private var configuration: SummerPlayerViewConfiguration = InternalConfiguration()
     
-    var theme: SummerPlayerViewTheme = MainTheme()
+    private var theme: SummerPlayerViewTheme = MainTheme()
     
-    var delegate: LegacyDelegate?
+    private var delegate: LegacyDelegate?
     
     open var sDelegate: SummerPlayerViewDelegate?
-    
     
 
     public var totalDuration: CMTime? {
