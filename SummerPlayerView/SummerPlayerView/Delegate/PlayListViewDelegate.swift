@@ -10,5 +10,6 @@ import UIKit
 
 public protocol PlayListViewDelegate {
     func didPressedCollectionView(index: Int)
+    func changedPlayerStatus(state:SummerPlayerState)
 }
 

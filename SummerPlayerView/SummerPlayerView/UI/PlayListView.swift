@@ -131,9 +131,9 @@ class PlayListView: UIView {
                 DispatchQueue.main.async {[weak self] in
                     guard let `self` = self else { return }
                     if newStatus == .playing || newStatus == .paused {
-                        if let player = self.delegate?.playerStateDidChange {
-                            player((self.isActive ? SummerPlayerState.pause : SummerPlayerState.playing))
-                        }
+                        
+                        self.sdelegate?.changedPlayerStatus(state: (self.isActive ? SummerPlayerState.pause : SummerPlayerState.playing))
+
                         self.activityView.isHidden = true
                     } else {
                         self.activityView.isHidden = false

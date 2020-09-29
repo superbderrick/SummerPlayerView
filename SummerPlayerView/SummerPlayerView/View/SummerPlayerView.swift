@@ -11,8 +11,6 @@ public enum PlayerDimension {
 
 open class SummerPlayerView: UIView {
     
-    public var playerStateDidChange: ((SummerPlayerState)->())? = nil
-    
     public var playerTimeDidChange: ((TimeInterval, TimeInterval)->())? = nil
     
     public var playerDidChangeSize: ((PlayerDimension) -> ())? = nil
@@ -228,9 +226,7 @@ extension SummerPlayerView:PlayerControlViewDelegate {
 
 extension SummerPlayerView: LegacyDelegate {
     
-    
     public func didTappedPlayerScreenView(_ isTapped: Bool) {
-        print("didTappedPlayerScreenvIew \(isTapped)")
         
         if configuration.hideControls {
             
@@ -262,7 +258,6 @@ extension SummerPlayerView: LegacyDelegate {
     }
     
     public func seekToTime(_ seekTime: CMTime) {
-        print(seekTime)
         self.queuePlayer.currentItem?.seek(to: seekTime, completionHandler: nil)
     }
     
@@ -282,13 +277,17 @@ extension SummerPlayerView: LegacyDelegate {
             playerScreenView.videoDidStart(title: title)
         }
         
-        if let player = playerStateDidChange {
-            player(.readyToPlay)
-        }
+//        if let player = playerStateDidChange {
+//            player(.readyToPlay)
+//        }
     }
 }
 
 extension SummerPlayerView:PlayListViewDelegate {
+    public func changedPlayerStatus(state: SummerPlayerState) {
+        
+    }
+    
     public func didPressedCollectionView(index: Int) {
         
     }

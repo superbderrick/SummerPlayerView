@@ -30,9 +30,6 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         
         playerView.pinEdges(to: view)
         
-        playerView.playerStateDidChange = { (state) in
-            print("playerStateDidChange")
-        }
         playerView.playerDidChangeSize = { (dimension) in
             print("playerDidChangeSize")
         }

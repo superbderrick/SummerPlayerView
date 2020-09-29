@@ -13,7 +13,6 @@ public enum SummerPlayerState {
 
 public protocol LegacyDelegate where Self: UIView {
     
-    var playerStateDidChange: ((_ state: SummerPlayerState)->())? {get set}
     var playerTimeDidChange: ((_ newTime: TimeInterval, _ duration: TimeInterval)->())? {get set}
     var playerDidChangeSize: ((PlayerDimension) -> ())? {get set}
     var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? {get set}

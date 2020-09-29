@@ -1,5 +1,5 @@
 //
-//  PlayerControlView.swift
+//  PlayerScreenView.swift
 //  SummerPlayerViewDemo
 //
 //  Created by derrick on 2020/09/04.
@@ -12,7 +12,6 @@ import AVKit
 class PlayerScreenView: UIView {
     
     private var isPlaying: Bool = true
-    
     private var isTapped: Bool = false
     
     var delegate: LegacyDelegate?
@@ -90,7 +89,6 @@ class PlayerScreenView: UIView {
     
     lazy private var bottomControlsStackView: UIStackView  = {
         let stackView = UIStackView()
-        // stackView.backgroundColor = UIColor.blue
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -101,10 +99,6 @@ class PlayerScreenView: UIView {
         
         isPlaying = !isPlaying
         delegate?.playPause(isPlaying)
-        
-        if let player = delegate?.playerStateDidChange {
-            player((isPlaying == true ? .playing : .pause))
-        }
         
         changePauseOrPlay(isPlayig: isPlaying)
         
@@ -138,27 +132,7 @@ class PlayerScreenView: UIView {
     func videoDidChange(_ time: CMTime) {
         playerTimeLabel.text = time.description
     }
-    
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == "timeControlStatus", let change = change, let newValue = change[NSKeyValueChangeKey.newKey] as? Int, let oldValue = change[NSKeyValueChangeKey.oldKey] as? Int {
-            let oldStatus = AVPlayer.TimeControlStatus(rawValue: oldValue)
-            let newStatus = AVPlayer.TimeControlStatus(rawValue: newValue)
-            if newStatus != oldStatus {
-                DispatchQueue.main.async {[weak self] in
-                    guard let `self` = self else { return }
-                    if newStatus == .playing || newStatus == .paused {
-                        if let player = self.delegate?.playerStateDidChange {
-                            player((self.isPlaying ? SummerPlayerState.pause : SummerPlayerState.playing))
-                        }
-                    } else {
-                        
-                    }
-                }
-            }
-        }
-    }
-    
     func resetPlayerUI() {
         playerTimeLabel.text = CMTime.zero.description
         playerSlider.value = 0.0
@@ -182,7 +156,6 @@ class PlayerScreenView: UIView {
     lazy var bottomView: UIView = {
         
         let bottomView = UIView()
-        //  bottomView.backgroundColor = UIColor.red
         bottomView.alpha = 0.9
         
         bottomView.addSubview(playButton)
