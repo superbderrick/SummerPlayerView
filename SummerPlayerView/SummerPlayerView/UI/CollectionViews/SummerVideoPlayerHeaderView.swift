@@ -8,7 +8,7 @@ class SummerVideoPlayerHeaderView: UIView {
     var configuration: SummerPlayerViewConfiguration
     var theme: SummerPlayerViewTheme
     var delegate: LegacyDelegate?
-    var item: PlayerItem?
+    var item: Content?
     
     lazy private var titleLabel: UILabel = {
         let label = UILabel()
@@ -56,7 +56,7 @@ class SummerVideoPlayerHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setItem(_ currentItem: PlayerItem) {
+    func setItem(_ currentItem: Content) {
         item = currentItem
         titleLabel.text = currentItem.title
     }

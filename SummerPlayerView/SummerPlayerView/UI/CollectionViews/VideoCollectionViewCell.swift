@@ -44,7 +44,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
         titleLabel.textColor = theme.playListItemsTextColor
         titleLabel.font = theme.playListItemsFont
     }
-    func setData(_ playListItem: PlayerItem?, theme: SummerPlayerViewTheme = MainTheme()) {
+    func setData(_ playListItem: Content?, theme: SummerPlayerViewTheme = MainTheme()) {
         guard let playListItem = playListItem else {
             return
         }
