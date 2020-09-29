@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		495EA93424EC14A300914D91 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EA93324EC14A300914D91 /* PlayerViewController.swift */; };
+		495F4D30252341A500CE2EB6 /* ContentsMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F4D2F252341A500CE2EB6 /* ContentsMaker.swift */; };
 		4968EF3D248BB4CB0043C5DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF3C248BB4CB0043C5DE /* AppDelegate.swift */; };
 		4968EF3F248BB4CB0043C5DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF3E248BB4CB0043C5DE /* SceneDelegate.swift */; };
 		4968EF44248BB4CB0043C5DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4968EF42248BB4CB0043C5DE /* Main.storyboard */; };
@@ -16,7 +17,7 @@
 		4968EF79248BB5AB0043C5DE /* SummerPlayerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4968EF78248BB5A60043C5DE /* SummerPlayerView.framework */; };
 		4968EF7A248BB5AB0043C5DE /* SummerPlayerView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4968EF78248BB5A60043C5DE /* SummerPlayerView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		496CACC52505150B00CD454F /* DefaultConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACC42505150B00CD454F /* DefaultConfig.swift */; };
-		49841344250DFB44009C2232 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49841343250DFB44009C2232 /* MainViewController.swift */; };
+		49841344250DFB44009C2232 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49841343250DFB44009C2232 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		495EA93324EC14A300914D91 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		495F4D2F252341A500CE2EB6 /* ContentsMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsMaker.swift; sourceTree = "<group>"; };
 		4968EF39248BB4CB0043C5DE /* SummerPlayerViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SummerPlayerViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4968EF3C248BB4CB0043C5DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4968EF3E248BB4CB0043C5DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,7 +56,7 @@
 		4968EF4A248BB4CC0043C5DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4968EF73248BB5A60043C5DE /* SummerPlayerView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SummerPlayerView.xcodeproj; path = SummerPlayerView/SummerPlayerView.xcodeproj; sourceTree = "<group>"; };
 		496CACC42505150B00CD454F /* DefaultConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConfig.swift; sourceTree = "<group>"; };
-		49841343250DFB44009C2232 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		49841343250DFB44009C2232 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +100,8 @@
 				4968EF4A248BB4CC0043C5DE /* Info.plist */,
 				495EA93324EC14A300914D91 /* PlayerViewController.swift */,
 				496CACC42505150B00CD454F /* DefaultConfig.swift */,
-				49841343250DFB44009C2232 /* MainViewController.swift */,
+				49841343250DFB44009C2232 /* ViewController.swift */,
+				495F4D2F252341A500CE2EB6 /* ContentsMaker.swift */,
 			);
 			path = SummerPlayerViewDemo;
 			sourceTree = "<group>";
@@ -206,11 +209,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495F4D30252341A500CE2EB6 /* ContentsMaker.swift in Sources */,
 				4968EF3D248BB4CB0043C5DE /* AppDelegate.swift in Sources */,
 				496CACC52505150B00CD454F /* DefaultConfig.swift in Sources */,
 				495EA93424EC14A300914D91 /* PlayerViewController.swift in Sources */,
 				4968EF3F248BB4CB0043C5DE /* SceneDelegate.swift in Sources */,
-				49841344250DFB44009C2232 /* MainViewController.swift in Sources */,
+				49841344250DFB44009C2232 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

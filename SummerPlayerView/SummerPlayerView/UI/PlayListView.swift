@@ -89,7 +89,7 @@ class PlayListView: UIView {
         videoPlayerHeader?.setItem(currentItem)
     }
     
-    func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
+    func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme) {
         
         addSubview(activityView)
         activityView.centerYAnchor.constraint(equalTo: centerYAnchor , constant: -50).isActive = true
@@ -131,9 +131,9 @@ class PlayListView: UIView {
                 DispatchQueue.main.async {[weak self] in
                     guard let `self` = self else { return }
                     if newStatus == .playing || newStatus == .paused {
-                        if let player = self.delegate?.playerStateDidChange {
-                            player((self.isActive ? SummerPlayerState.pause : SummerPlayerState.playing))
-                        }
+                        
+                        self.sdelegate?.changedPlayerStatus(state: (self.isActive ? SummerPlayerState.pause : SummerPlayerState.playing))
+
                         self.activityView.isHidden = true
                     } else {
                         self.activityView.isHidden = false
@@ -190,9 +190,7 @@ extension PlayListView: UICollectionViewDelegate {
         
         sdelegate?.didPressedCollectionView(index: indexPath.row)
         
-        if let player = delegate?.playerDidSelectItem {
-            player(indexPath.row)
-        }
+        delegate?.didSelectItem(indexPath.row)
         if let item = playerItems?[indexPath.row], let url = URL(string: item.url) {
             delegate?.didLoadVideo(url)
             delegate?.currentVideoIndex(indexPath.row,url)
