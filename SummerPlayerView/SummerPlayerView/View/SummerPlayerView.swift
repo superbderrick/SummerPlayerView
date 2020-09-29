@@ -11,11 +11,7 @@ public enum PlayerDimension {
 
 open class SummerPlayerView: UIView {
     
-    public var playerTimeDidChange: ((TimeInterval, TimeInterval)->())? = nil
-        
     public var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? = nil
-    
-    public var playerDidSelectItem: ((Int)->())? = nil
     
     private var playerItems: [Content]?
     
@@ -35,9 +31,9 @@ open class SummerPlayerView: UIView {
     
     private var theme: SummerPlayerViewTheme = MainTheme()
     
-    private var delegate: LegacyDelegate?
+    private var internalDelegate: LegacyDelegate?
     
-    open var sDelegate: SummerPlayerViewDelegate?
+    open var delegate: SummerPlayerViewDelegate?
     
 
     public var totalDuration: CMTime? {
@@ -179,11 +175,11 @@ open class SummerPlayerView: UIView {
 
 
 extension SummerPlayerView:PlayerControlViewDelegate {
-    public func didPressedAirPlayButton() {
+     func didPressedAirPlayButton() {
         
     }
     
-    public func didPressedPreviousButton() {
+    func didPressedPreviousButton() {
         playerScreenView.resetPlayerUI()
         
         if let latestItems = playerItems {
@@ -197,7 +193,7 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         }
     }
     
-    public func didPressedNextButton() {
+    func didPressedNextButton() {
         playerScreenView.resetPlayerUI()
         
         if let latestItems = playerItems {
@@ -212,18 +208,22 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         
     }
     
-    public func didPressedBackButton() {
+    func didPressedBackButton() {
         self.queuePlayer.pause()
         self.playerLayer?.removeFromSuperlayer()
         
-        sDelegate?.didPressedBackButton()
+        delegate?.didPressedBackButton()
         
     }
 }
 
 extension SummerPlayerView: LegacyDelegate {
+    func didSelectItem(_ index: Int) {
+        
+    }
     
-    public func didTappedPlayerScreenView(_ isTapped: Bool) {
+    
+    func didTappedPlayerScreenView(_ isTapped: Bool) {
         
         if configuration.hideControls {
             
@@ -244,21 +244,21 @@ extension SummerPlayerView: LegacyDelegate {
         regulatePlayerView(isFullScreen: isTouched)
     }
     
-    public func currentVideoIndex(_ index: Int, _ url: URL) {
+    func currentVideoIndex(_ index: Int, _ url: URL) {
         
         currentVideoIndex = index
         resetPlayer(url)
     }
     
-    public func didLoadVideo(_ url: URL) {
+    func didLoadVideo(_ url: URL) {
         resetPlayer(url)
     }
     
-    public func seekToTime(_ seekTime: CMTime) {
+    func seekToTime(_ seekTime: CMTime) {
         self.queuePlayer.currentItem?.seek(to: seekTime, completionHandler: nil)
     }
     
-    public func playPause(_ isActive: Bool) {
+    func playPause(_ isActive: Bool) {
         isActive ? queuePlayer.play() : queuePlayer.pause()
     }
     
@@ -274,18 +274,15 @@ extension SummerPlayerView: LegacyDelegate {
             playerScreenView.videoDidStart(title: title)
         }
         
-//        if let player = playerStateDidChange {
-//            player(.readyToPlay)
-//        }
     }
 }
 
 extension SummerPlayerView:PlayListViewDelegate {
-    public func changedPlayerStatus(state: SummerPlayerState) {
+    func changedPlayerStatus(state: SummerPlayerState) {
         
     }
     
-    public func didPressedCollectionView(index: Int) {
+    func didPressedCollectionView(index: Int) {
         
     }
     

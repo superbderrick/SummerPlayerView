@@ -123,9 +123,6 @@ class PlayerScreenView: UIView {
         let seekTime = CMTime(seconds: Double(sender.value) * totalDuration.asDouble, preferredTimescale: 100)
         playerTimeLabel.text = seekTime.description
         delegate?.seekToTime(seekTime)
-        if let player = delegate?.playerTimeDidChange {
-            player(seekTime.asDouble, totalDuration.asDouble)
-        }
         
     }
     

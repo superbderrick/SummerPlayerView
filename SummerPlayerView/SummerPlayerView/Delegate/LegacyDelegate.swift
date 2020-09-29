@@ -11,11 +11,9 @@ public enum SummerPlayerState {
     case error
 }
 
-public protocol LegacyDelegate where Self: UIView {
+ protocol LegacyDelegate where Self: UIView {
     
-    var playerTimeDidChange: ((_ newTime: TimeInterval, _ duration: TimeInterval)->())? {get set}
     var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? {get set}
-    var playerDidSelectItem: ((Int)->())? {get set}
     
     var totalDuration: CMTime? { get }
     var currentTime: CMTime? { get }
@@ -25,6 +23,7 @@ public protocol LegacyDelegate where Self: UIView {
     func playPause(_ isActive: Bool)
     func currentVideoIndex(_ index: Int ,_ url: URL )
     func didTappedPlayerScreenView(_ isTapped : Bool)
+    func didSelectItem(_ index:Int)
 }
 
 

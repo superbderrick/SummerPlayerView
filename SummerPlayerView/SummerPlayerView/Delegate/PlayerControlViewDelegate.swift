@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol PlayerControlViewDelegate  {
+ protocol PlayerControlViewDelegate  {
     func didPressedBackButton()
     func didPressedPreviousButton()
     func didPressedNextButton()

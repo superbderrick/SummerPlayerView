@@ -190,9 +190,7 @@ extension PlayListView: UICollectionViewDelegate {
         
         sdelegate?.didPressedCollectionView(index: indexPath.row)
         
-        if let player = delegate?.playerDidSelectItem {
-            player(indexPath.row)
-        }
+        delegate?.didSelectItem(indexPath.row)
         if let item = playerItems?[indexPath.row], let url = URL(string: item.url) {
             delegate?.didLoadVideo(url)
             delegate?.currentVideoIndex(indexPath.row,url)

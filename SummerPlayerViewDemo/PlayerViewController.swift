@@ -15,12 +15,12 @@ class PlayerViewController: UIViewController  {
         super.viewDidLoad()
         
         let defaultConfig = DefaultConfig()
+        let contents = ContentsMaker.getContents()
         
         let playerView = SummerPlayerView(configuration: defaultConfig, theme: nil,viewRect: view.bounds)
         
-        playerView.sDelegate = self
+        playerView.delegate = self
         
-        let contents = ContentsMaker.getContents()
         
         if let currentItem = contents.first {
             playerView.setPlayList(currentItem: currentItem, items: contents)
@@ -30,17 +30,10 @@ class PlayerViewController: UIViewController  {
         
         playerView.pinEdges(to: view)
         
-        playerView.playerTimeDidChange = { (newTime, duration) in
-            print("playerTimeDidChange \(newTime)")
-        }
-        
-        playerView.playerDidSelectItem = { (index) in
-            print("Current Index \(index)")
-        }
     }
     
 }
-    
+
 
 
 extension PlayerViewController : SummerPlayerViewDelegate {
@@ -49,7 +42,7 @@ extension PlayerViewController : SummerPlayerViewDelegate {
         moveViewController()
     }
     func changedPlayerState() {
-
+        
     }
     
 }
