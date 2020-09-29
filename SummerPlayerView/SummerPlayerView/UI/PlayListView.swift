@@ -89,7 +89,7 @@ class PlayListView: UIView {
         videoPlayerHeader?.setItem(currentItem)
     }
     
-    func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, header: UIView?) {
+    func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme) {
         
         addSubview(activityView)
         activityView.centerYAnchor.constraint(equalTo: centerYAnchor , constant: -50).isActive = true

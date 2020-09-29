@@ -55,7 +55,7 @@ open class SummerPlayerView: UIView {
     
     private var currentVideoIndex = 0
     
-    required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, header: UIView?, viewRect: CGRect) {
+    required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, viewRect: CGRect) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -68,18 +68,18 @@ open class SummerPlayerView: UIView {
             self.configuration = configuration
         }
         
-        setupSummerPlayerView(header,viewRect)
+        setupSummerPlayerView(viewRect)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        setupSummerPlayerView(nil,nil)
+        setupSummerPlayerView(nil)
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupSummerPlayerView(nil,nil)
+        setupSummerPlayerView(nil)
     }
     
     override open func layoutSubviews() {
@@ -118,13 +118,13 @@ open class SummerPlayerView: UIView {
     }
     
     
-    private func setupSummerPlayerView(_ header: UIView? , _ viewRect: CGRect?) {
+    private func setupSummerPlayerView( _ viewRect: CGRect?) {
         if(viewRect != nil) {
             let wholeViewRect = Utills.getWholeViewRect(viewRect!)
             
             setupPlayer()
             
-            setupInsideViews(header,wholeViewRect , wholeRect: viewRect)
+            setupInsideViews(wholeViewRect , wholeRect: viewRect)
             
             bringSubviewToFront(playListView)
             bringSubviewToFront(playerControlView)
@@ -153,7 +153,7 @@ open class SummerPlayerView: UIView {
         
     }
     
-    private func setupInsideViews(_ header: UIView?,_ standardRect: CGRect? , wholeRect : CGRect?) {
+    private func setupInsideViews(_ standardRect: CGRect? , wholeRect : CGRect?) {
         
         guard configuration.hideControls else { return }
         
@@ -171,7 +171,8 @@ open class SummerPlayerView: UIView {
         self.playerControlView.delegate = self
         addSubview(self.playerControlView)
         
-        playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: theme, header: header)
+        playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: theme)
+        
         playListView.delegate = self
         playListView.translatesAutoresizingMaskIntoConstraints = false
         playListView.isHidden = false
