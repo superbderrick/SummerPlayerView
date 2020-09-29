@@ -10,4 +10,5 @@ import UIKit
 
 public protocol SummerPlayerViewDelegate {
     func didPressedBackButton()
+    func changedPlayerState()
 }

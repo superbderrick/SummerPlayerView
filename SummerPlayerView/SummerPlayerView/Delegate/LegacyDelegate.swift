@@ -21,7 +21,6 @@ public protocol LegacyDelegate where Self: UIView {
     
     var totalDuration: CMTime? { get }
     var currentTime: CMTime? { get }
-    var fullScreenView: UIView? { get set }
     
     func didLoadVideo(_ url: URL)
     func seekToTime(_ seekTime: CMTime)

@@ -10,6 +10,7 @@ import UIKit
 import SummerPlayerView
 class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,10 +20,10 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         
         playerView.sDelegate = self
         
-        let playerItems = ContentsMaker.getContents()
+        let contents = ContentsMaker.getContents()
         
-        if let currentItem = playerItems.first {
-            playerView.setPlayList(currentItem: currentItem, items: playerItems, fullScreenView: view)
+        if let currentItem = contents.first {
+            playerView.setPlayList(currentItem: currentItem, items: contents)
         }
         
         view.addSubview(playerView)
@@ -44,12 +45,20 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         }
     }
     
+}
+    
+
+
+extension PlayerViewController {
+    
     func didPressedBackButton() {
         moveViewController()
     }
+    func changedPlayerState() {
+
+    }
     
 }
-
 
 extension PlayerViewController {
     

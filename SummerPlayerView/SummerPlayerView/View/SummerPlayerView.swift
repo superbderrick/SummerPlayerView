@@ -43,8 +43,8 @@ open class SummerPlayerView: UIView {
     
     open var sDelegate: SummerPlayerViewDelegate?
     
-    public var fullScreenView: UIView? = nil
     
+
     public var totalDuration: CMTime? {
         return self.queuePlayer.currentItem?.asset.duration
     }
@@ -103,9 +103,7 @@ open class SummerPlayerView: UIView {
         playListView.didRegisterPlayerItemCell(identifier, collectioViewCell: cell)
     }
     
-    public func setPlayList(currentItem: Content, items: [Content], fullScreenView: UIView? = nil) {
-        
-        self.fullScreenView = fullScreenView
+    public func setPlayList(currentItem: Content, items: [Content]) {
         
         self.playerItems = items
         self.currentVideoIndex = 0
