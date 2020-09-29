@@ -90,7 +90,7 @@ class PlayerScreenView: UIView {
     
     lazy private var bottomControlsStackView: UIStackView  = {
         let stackView = UIStackView()
-       // stackView.backgroundColor = UIColor.blue
+        // stackView.backgroundColor = UIColor.blue
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -182,7 +182,7 @@ class PlayerScreenView: UIView {
     lazy var bottomView: UIView = {
         
         let bottomView = UIView()
-      //  bottomView.backgroundColor = UIColor.red
+        //  bottomView.backgroundColor = UIColor.red
         bottomView.alpha = 0.9
         
         bottomView.addSubview(playButton)
