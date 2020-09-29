@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		495EA93424EC14A300914D91 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EA93324EC14A300914D91 /* PlayerViewController.swift */; };
+		495F4D30252341A500CE2EB6 /* ContentsMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F4D2F252341A500CE2EB6 /* ContentsMaker.swift */; };
 		4968EF3D248BB4CB0043C5DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF3C248BB4CB0043C5DE /* AppDelegate.swift */; };
 		4968EF3F248BB4CB0043C5DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968EF3E248BB4CB0043C5DE /* SceneDelegate.swift */; };
 		4968EF44248BB4CB0043C5DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4968EF42248BB4CB0043C5DE /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		495EA93324EC14A300914D91 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		495F4D2F252341A500CE2EB6 /* ContentsMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsMaker.swift; sourceTree = "<group>"; };
 		4968EF39248BB4CB0043C5DE /* SummerPlayerViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SummerPlayerViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4968EF3C248BB4CB0043C5DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4968EF3E248BB4CB0043C5DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				495EA93324EC14A300914D91 /* PlayerViewController.swift */,
 				496CACC42505150B00CD454F /* DefaultConfig.swift */,
 				49841343250DFB44009C2232 /* ViewController.swift */,
+				495F4D2F252341A500CE2EB6 /* ContentsMaker.swift */,
 			);
 			path = SummerPlayerViewDemo;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495F4D30252341A500CE2EB6 /* ContentsMaker.swift in Sources */,
 				4968EF3D248BB4CB0043C5DE /* AppDelegate.swift in Sources */,
 				496CACC52505150B00CD454F /* DefaultConfig.swift in Sources */,
 				495EA93424EC14A300914D91 /* PlayerViewController.swift in Sources */,
