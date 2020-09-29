@@ -16,7 +16,7 @@
 		4968EF79248BB5AB0043C5DE /* SummerPlayerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4968EF78248BB5A60043C5DE /* SummerPlayerView.framework */; };
 		4968EF7A248BB5AB0043C5DE /* SummerPlayerView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4968EF78248BB5A60043C5DE /* SummerPlayerView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		496CACC52505150B00CD454F /* DefaultConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACC42505150B00CD454F /* DefaultConfig.swift */; };
-		49841344250DFB44009C2232 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49841343250DFB44009C2232 /* MainViewController.swift */; };
+		49841344250DFB44009C2232 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49841343250DFB44009C2232 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 		4968EF4A248BB4CC0043C5DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4968EF73248BB5A60043C5DE /* SummerPlayerView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SummerPlayerView.xcodeproj; path = SummerPlayerView/SummerPlayerView.xcodeproj; sourceTree = "<group>"; };
 		496CACC42505150B00CD454F /* DefaultConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConfig.swift; sourceTree = "<group>"; };
-		49841343250DFB44009C2232 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		49841343250DFB44009C2232 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +98,7 @@
 				4968EF4A248BB4CC0043C5DE /* Info.plist */,
 				495EA93324EC14A300914D91 /* PlayerViewController.swift */,
 				496CACC42505150B00CD454F /* DefaultConfig.swift */,
-				49841343250DFB44009C2232 /* MainViewController.swift */,
+				49841343250DFB44009C2232 /* ViewController.swift */,
 			);
 			path = SummerPlayerViewDemo;
 			sourceTree = "<group>";
@@ -210,7 +210,7 @@
 				496CACC52505150B00CD454F /* DefaultConfig.swift in Sources */,
 				495EA93424EC14A300914D91 /* PlayerViewController.swift in Sources */,
 				4968EF3F248BB4CB0043C5DE /* SceneDelegate.swift in Sources */,
-				49841344250DFB44009C2232 /* MainViewController.swift in Sources */,
+				49841344250DFB44009C2232 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

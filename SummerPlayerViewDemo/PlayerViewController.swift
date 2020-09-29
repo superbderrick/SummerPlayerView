@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PlayerViewController.swift
 //  SummerPlayerViewDemo
 //
 //  Created by derrick on 2020/08/18.
@@ -10,8 +10,7 @@ import UIKit
 import SummerPlayerView
 class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
     
-    
-    @IBOutlet weak var videoPlayerView: SummerPlayerView!
+    @IBOutlet weak var summerPlayerView: SummerPlayerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +20,7 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
         let playerView = SummerPlayerView(configuration: defaultConfig, theme: nil, header: nil,viewRect: view.bounds)
         
         playerView.sDelegate = self
-    
+        
         let playerItems = [
             Content(title: "Paris", url: "https://content.jwplatform.com/manifests/yp34SRmf.m3u8", thumbnail: "paris" , totalTime: "11:32"),
             Content(title: "Busan", url: "https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8", thumbnail: "busan",totalTime: "4:32"),
@@ -54,6 +53,15 @@ class PlayerViewController: UIViewController, SummerPlayerViewDelegate  {
     }
     
     func didPressedBackButton() {
+        moveViewController()
+    }
+    
+}
+
+
+extension PlayerViewController {
+    
+    fileprivate func moveViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "MainVC")
         self.present(controller, animated: true, completion: nil)
