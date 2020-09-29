@@ -23,7 +23,7 @@ open class SummerPlayerView: UIView {
     
     private var playerItems: [Content]?
     
-    private var task: DispatchWorkItem? = nil
+    private var isTouched = false
     
     private var queuePlayer: AVQueuePlayer!
     
@@ -126,11 +126,9 @@ open class SummerPlayerView: UIView {
             
             setupInsideViews(header,wholeViewRect , wholeRect: viewRect)
             
-            
             bringSubviewToFront(playListView)
             bringSubviewToFront(playerControlView)
             bringSubviewToFront(playerScreenView)
-        
             
         }
         
@@ -182,7 +180,6 @@ open class SummerPlayerView: UIView {
         playListView.pinEdges(to: self)
         
     }
-    
     
 }
 
@@ -236,27 +233,18 @@ extension SummerPlayerView: LegacyDelegate {
     public func didTappedPlayerScreenView(_ isTapped: Bool) {
         print("didTappedPlayerScreenvIew \(isTapped)")
         
-        var isTouched = false
-        
         if configuration.hideControls {
             
-            playListView.isHidden = true
+            self.playListView.isHidden = true
             self.playerControlView.isHidden = true
-            //    task?.cancel()
             
             isTouched = true
             
-            
         } else {
-            playListView.isHidden = false
+            self.playListView.isHidden = false
             self.playerControlView.isHidden = false
-            //            task = DispatchWorkItem {
-            //                self.backgroundView.isHidden = true
-            //                self.configuration.hideControls = !self.configuration.hideControls
-            //            }
-            
-            //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: task!)
             isTouched = false
+            
             
         }
         configuration.hideControls = !configuration.hideControls
