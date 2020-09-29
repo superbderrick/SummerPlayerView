@@ -21,7 +21,6 @@ class PlayerViewController: UIViewController  {
         
         playerView.delegate = self
         
-        
         if let currentItem = contents.first {
             playerView.setPlayList(currentItem: currentItem, items: contents)
         }
