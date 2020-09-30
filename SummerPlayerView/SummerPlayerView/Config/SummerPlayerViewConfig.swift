@@ -9,11 +9,11 @@
 import Foundation
 
 
-public protocol SummerPlayerViewConfiguration {
-    var showVideoList: Bool { get }
+public protocol SummerPlayerViewConfig {
+    var showVideoList: Bool { get set}
     var hideControls: Bool { get set }
-    var screenMode: ScreenMode { get }
+    var screenMode: ScreenMode { get set}
     var showIndicator : Bool {get set}
 }
 
-
+ 

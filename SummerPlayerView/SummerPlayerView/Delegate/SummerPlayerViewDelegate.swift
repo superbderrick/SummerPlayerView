@@ -9,6 +9,11 @@
 import UIKit
 
 public protocol SummerPlayerViewDelegate {
-    func didPressedBackButton()
-    func changedPlayerState()
+    func didPressBackButton()
+    func didPressNextButton()
+    func didPressPreviousButton()
+    func didPressAirPlayButton()
+    func didPressMoreButton()
+    func didPressContentsListView(index:Int)
+    func didPressPlayButton(isActive:Bool)
 }

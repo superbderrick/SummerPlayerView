@@ -14,7 +14,7 @@ class PlayerScreenView: UIView {
     private var isPlaying: Bool = true
     private var isTapped: Bool = false
     
-    var delegate: LegacyDelegate?
+    var delegate: PlayerScreenViewDelegate?
     
     lazy private var playerTimeLabel: UILabel = {
         let label = UILabel()
@@ -45,14 +45,15 @@ class PlayerScreenView: UIView {
     }()
     
     lazy private var moreButton: UIButton = {
-        let addButton = UIButton()
+        let moreButton = UIButton()
         if let image = UIImage(named: "more") {
             image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            addButton.setImage(image, for: .normal)
+            moreButton.setImage(image, for: .normal)
         }
-        addButton.tintColor = UIColor(white: 1, alpha: 1)
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        return addButton
+        moreButton.tintColor = UIColor(white: 1, alpha: 1)
+        moreButton.translatesAutoresizingMaskIntoConstraints = false
+        moreButton.addTarget(self, action: #selector(self.clickMoreButton(_:)), for: .touchUpInside)
+        return moreButton
     }()
     
     lazy private var headerTitle: UILabel = {
@@ -102,6 +103,11 @@ class PlayerScreenView: UIView {
         
         changePauseOrPlay(isPlayig: isPlaying)
         
+    }
+    
+    @objc func clickMoreButton(_ sender: UIButton) {
+        
+        delegate?.didPressedMoreButton()
     }
     
     private func changePauseOrPlay(isPlayig:Bool) {
@@ -265,7 +271,6 @@ class PlayerScreenView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        //preferred content size, calculate it if some internal state changes
         return CGSize(width: 300, height: 300)
     }
     

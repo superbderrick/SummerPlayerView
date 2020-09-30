@@ -27,7 +27,7 @@ class PlayerViewController: UIViewController  {
         
         view.addSubview(playerView)
         
-        playerView.pinEdges(to: view)
+        playerView.pinEdges(targetView: view)
         
     }
     
@@ -36,14 +36,35 @@ class PlayerViewController: UIViewController  {
 
 
 extension PlayerViewController : SummerPlayerViewDelegate {
-    
-    func didPressedBackButton() {
+    func didPressBackButton() {
         moveViewController()
     }
-    func changedPlayerState() {
+    
+    func didPressNextButton() {
+                    
+    }
+    
+    func didPressPreviousButton() {
         
     }
     
+    func didPressAirPlayButton() {
+        
+    }
+    
+    func didPressMoreButton() {
+        
+    }
+    
+    func didPressContentsListView(index: Int) {
+        
+    }
+    
+    func didPressPlayButton(isActive: Bool) {
+        
+    }
+    
+
 }
 
 extension PlayerViewController {

@@ -5,9 +5,9 @@ import UIKit
 class SummerVideoPlayerHeaderView: UIView {
     
     // MARK: - Instance Variables
-    var configuration: SummerPlayerViewConfiguration
+    var configuration: SummerPlayerViewConfig
     var theme: SummerPlayerViewTheme
-    var delegate: LegacyDelegate?
+    var delegate: PlayerScreenViewDelegate?
     var item: Content?
     
     lazy private var titleLabel: UILabel = {
@@ -44,7 +44,7 @@ class SummerVideoPlayerHeaderView: UIView {
     
     // MARK: - View Initializers
     
-    required init(configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, delegate: LegacyDelegate?) {
+    required init(configuration: SummerPlayerViewConfig, theme: SummerPlayerViewTheme, delegate: PlayerScreenViewDelegate?) {
         self.configuration = configuration
         self.theme = theme
         self.delegate = delegate
@@ -69,8 +69,8 @@ class SummerVideoPlayerHeaderView: UIView {
         addSubview(backgroundView)
         addSubview(controlsStackView)
         
-        backgroundView.pinEdges(to: controlsStackView)
-        controlsStackView.pinEdges(to: self)
+        backgroundView.pinEdges(targetView: controlsStackView)
+        controlsStackView.pinEdges(targetView: self)
         controlsStackView.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
         applyTheme(theme)

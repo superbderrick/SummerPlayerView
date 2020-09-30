@@ -11,6 +11,8 @@ public enum ScreenMode {
 
 open class SummerPlayerView: UIView {
     
+    open var delegate: SummerPlayerViewDelegate?
+    
     public var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? = nil
     
     public var totalDuration: CMTime? {
@@ -35,25 +37,19 @@ open class SummerPlayerView: UIView {
     
     private var playerLayer: AVPlayerLayer?
     
-    private let playListView = PlayListView()
+    private let playListView = ContentListView()
     
     private var playerScreenView = PlayerScreenView()
     
     private var playerControlView = PlayerControllView()
     
-    private var configuration: SummerPlayerViewConfiguration = InternalConfiguration()
+    private var configuration: SummerPlayerViewConfig = InternalConfiguration()
     
     private var theme: SummerPlayerViewTheme = MainTheme()
     
-    private var internalDelegate: LegacyDelegate?
+    private var internalDelegate: PlayerScreenViewDelegate?
     
-    open var delegate: SummerPlayerViewDelegate?
-    
-    
-    
-    
-    
-    required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, viewRect: CGRect) {
+    required public init(configuration: SummerPlayerViewConfig?, theme: SummerPlayerViewTheme?, viewRect: CGRect) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -99,7 +95,7 @@ open class SummerPlayerView: UIView {
     }
     
     
-    func didRegisterPlayerItemCell(_ identifier: String, collectioViewCell cell: UICollectionViewCell.Type) {
+    private func didRegisterPlayerItemCell(_ identifier: String, collectioViewCell cell: UICollectionViewCell.Type) {
         playListView.didRegisterPlayerItemCell(identifier, collectioViewCell: cell)
     }
     
@@ -158,6 +154,7 @@ open class SummerPlayerView: UIView {
         guard (standardRect != nil) else { return }
         
         self.playerScreenView = PlayerScreenView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
+        
         self.playerScreenView.delegate = self
         
         addSubview(self.playerScreenView)
@@ -165,6 +162,7 @@ open class SummerPlayerView: UIView {
         let quarterViewRect = Utills.getQuarterViewRect(wholeRect!)
         
         self.playerControlView = PlayerControllView(frame: CGRect(x: quarterViewRect!.origin.x, y: 0, width: quarterViewRect!.width, height: quarterViewRect!.height))
+        
         self.playerControlView.delegate = self
         
         addSubview(self.playerControlView)
@@ -175,8 +173,9 @@ open class SummerPlayerView: UIView {
         playListView.translatesAutoresizingMaskIntoConstraints = false
         playListView.isHidden = false
         addSubview(playListView)
+        
         playListView.backgroundColor = .clear
-        playListView.pinEdges(to: self)
+        playListView.pinEdges(targetView: self)
         
     }
     
@@ -185,12 +184,10 @@ open class SummerPlayerView: UIView {
 
 extension SummerPlayerView:PlayerControlViewDelegate {
     func didPressedAirPlayButton() {
-        
+        delegate?.didPressAirPlayButton()
     }
     
-    func didPressedPreviousButton() {
-        playerScreenView.resetPlayerUI()
-        
+    fileprivate func playPreviousContent() {
         if let latestItems = contents {
             if(currentVideoIndex == 0) {
                 currentVideoIndex = latestItems.count-1
@@ -202,9 +199,14 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         }
     }
     
-    func didPressedNextButton() {
+    func didPressedPreviousButton() {
         playerScreenView.resetPlayerUI()
         
+        playPreviousContent()
+        delegate?.didPressPreviousButton()
+    }
+    
+    fileprivate func playNextContent() {
         if let latestItems = contents {
             if(currentVideoIndex >= 0 && currentVideoIndex < latestItems.count-1) {
                 currentVideoIndex += 1
@@ -214,6 +216,14 @@ extension SummerPlayerView:PlayerControlViewDelegate {
             let newURL = URL(string: latestItems[currentVideoIndex].url)
             resetPlayer(newURL!)
         }
+    }
+    
+    func didPressedNextButton() {
+        playerScreenView.resetPlayerUI()
+        
+        playNextContent()
+        
+        delegate?.didPressNextButton()
         
     }
     
@@ -221,16 +231,23 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         self.queuePlayer.pause()
         self.playerLayer?.removeFromSuperlayer()
         
-        delegate?.didPressedBackButton()
+        delegate?.didPressBackButton()
         
     }
 }
 
-extension SummerPlayerView: LegacyDelegate {
-    func didSelectItem(_ index: Int) {
+extension SummerPlayerView: PlayerScreenViewDelegate {
+    func didChangeSliderValue(_ seekTime: CMTime) {
         
     }
     
+    func didPressedMoreButton() {
+        delegate?.didPressMoreButton()
+    }
+    
+    func didSelectItem(_ index: Int) {
+        delegate?.didPressContentsListView(index: index)
+    }
     
     func didTappedPlayerScreenView(_ isTapped: Bool) {
         
@@ -269,6 +286,8 @@ extension SummerPlayerView: LegacyDelegate {
     
     func playPause(_ isActive: Bool) {
         isActive ? queuePlayer.play() : queuePlayer.pause()
+        
+        delegate?.didPressPlayButton(isActive: isActive)
     }
     
     private func resetPlayer(_ url:URL) {
@@ -286,20 +305,13 @@ extension SummerPlayerView: LegacyDelegate {
     }
 }
 
-extension SummerPlayerView:PlayListViewDelegate {
-    func didPressedCollectionView(index: Int) {
-        
-    }
-    
-}
-
 extension UIView {
     
-    public func pinEdges(to other: UIView) {
-        leadingAnchor.constraint(equalTo: other.leadingAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: other.trailingAnchor).isActive = true
-        topAnchor.constraint(equalTo: other.topAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: other.bottomAnchor).isActive = true
+    public func pinEdges(targetView: UIView) {
+        leadingAnchor.constraint(equalTo: targetView.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: targetView.trailingAnchor).isActive = true
+        topAnchor.constraint(equalTo: targetView.topAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: targetView.bottomAnchor).isActive = true
     }
     
 }

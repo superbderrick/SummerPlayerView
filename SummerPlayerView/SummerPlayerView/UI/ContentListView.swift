@@ -4,7 +4,7 @@ import UIKit
 import AVKit
 
 
-class PlayListView: UIView {
+class ContentListView: UIView {
     
     lazy private var activityView: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .large)
@@ -48,7 +48,6 @@ class PlayListView: UIView {
         return collectionView
     }()
     
-    var sdelegate: PlayListViewDelegate?
     
     private var playerItems: [Content]?
     
@@ -56,7 +55,7 @@ class PlayListView: UIView {
     
     private var isActive: Bool = false
     
-    var delegate: LegacyDelegate?
+    var delegate: PlayerScreenViewDelegate?
     
     var videoPlayerHeader: SummerVideoPlayerHeaderView?
     
@@ -89,7 +88,7 @@ class PlayListView: UIView {
         videoPlayerHeader?.setItem(currentItem)
     }
     
-    func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme) {
+    func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfig, theme: SummerPlayerViewTheme) {
         
         addSubview(activityView)
         activityView.centerYAnchor.constraint(equalTo: centerYAnchor , constant: -50).isActive = true
@@ -132,7 +131,7 @@ class PlayListView: UIView {
                     guard let `self` = self else { return }
                     if newStatus == .playing || newStatus == .paused {
                         
-                    
+                        
                         self.activityView.isHidden = true
                     } else {
                         self.activityView.isHidden = false
@@ -149,7 +148,7 @@ class PlayListView: UIView {
         addSubview(backgroundView)
         addSubview(playListStackView)
         
-        backgroundView.pinEdges(to: playListStackView)
+        backgroundView.pinEdges(targetView: playListStackView)
         // videos stackview
         playListStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         playListStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
@@ -159,11 +158,11 @@ class PlayListView: UIView {
         // collectionView
         playListStackView.addSubview(collectionView)
         //
-        collectionView.pinEdges(to: playListStackView)
+        collectionView.pinEdges(targetView: playListStackView)
     }
 }
 
-extension PlayListView: UICollectionViewDataSource {
+extension ContentListView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return playerItems?.count ?? 0
@@ -183,11 +182,9 @@ extension PlayListView: UICollectionViewDataSource {
     
 }
 
-extension PlayListView: UICollectionViewDelegate {
+extension ContentListView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        sdelegate?.didPressedCollectionView(index: indexPath.row)
         
         delegate?.didSelectItem(indexPath.row)
         if let item = playerItems?[indexPath.row], let url = URL(string: item.url) {

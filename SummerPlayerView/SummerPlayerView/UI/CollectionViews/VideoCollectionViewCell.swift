@@ -38,7 +38,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
         addSubview(videoThumbnail)
         addSubview(titleLabel)
         
-        videoThumbnail.pinEdges(to: self)
+        videoThumbnail.pinEdges(targetView: self)
         titleLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
