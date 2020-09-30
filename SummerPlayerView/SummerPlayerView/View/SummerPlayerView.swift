@@ -237,6 +237,10 @@ extension SummerPlayerView:PlayerControlViewDelegate {
 }
 
 extension SummerPlayerView: PlayerScreenViewDelegate {
+    func didChangeSliderValue(_ seekTime: CMTime) {
+        
+    }
+    
     func didPressedMoreButton() {
         delegate?.didPressedMoreButton()
     }

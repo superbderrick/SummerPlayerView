@@ -15,7 +15,7 @@ import AVKit
     func didTappedPlayerScreenView(_ isTapped : Bool)
     
     
-    
+    func didChangeSliderValue(_ seekTime: CMTime)
     func didSelectItem(_ index:Int)
     func didPressedMoreButton()
 }
