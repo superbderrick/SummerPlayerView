@@ -295,6 +295,7 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
         
         let playerItem = AVPlayerItem.init(url: url)
         queuePlayer.insert(playerItem, after: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidPlayToEndTime), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
         queuePlayer.play()
         
         
@@ -302,6 +303,10 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
             playerScreenView.videoDidStart(title: title)
         }
         
+    }
+    
+    @objc private func playerItemDidPlayToEndTime() {
+      print("finished")
     }
 }
 
