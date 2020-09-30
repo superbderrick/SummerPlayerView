@@ -36,28 +36,35 @@ class PlayerViewController: UIViewController  {
 
 
 extension PlayerViewController : SummerPlayerViewDelegate {
-    func didPressedPlayButton(isActive: Bool) {
-     
-    }
-    
-    func didPressedPlayListView(index: Int) {
-    }
-    
-    func didPressedMoreButton() {
-    }
-    
-    func didPressedNextButton() {
-    }
-    
-    func didPressedPreviousButton() {
-    }
-    
-    func didPressedAirPlayButton() {
-    }
-    
-    func didPressedBackButton() {
+    func didPressBackButton() {
         moveViewController()
     }
+    
+    func didPressNextButton() {
+                    
+    }
+    
+    func didPressPreviousButton() {
+        
+    }
+    
+    func didPressAirPlayButton() {
+        
+    }
+    
+    func didPressMoreButton() {
+        
+    }
+    
+    func didPressContentsListView(index: Int) {
+        
+    }
+    
+    func didPressPlayButton(isActive: Bool) {
+        
+    }
+    
+
 }
 
 extension PlayerViewController {

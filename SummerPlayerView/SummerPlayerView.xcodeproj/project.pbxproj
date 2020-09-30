@@ -19,7 +19,7 @@
 		496CACD1250528F800CD454F /* SummerVideoPlayerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACCC250528F800CD454F /* SummerVideoPlayerHeaderView.swift */; };
 		496CACD2250528F800CD454F /* PlayerScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACCD250528F800CD454F /* PlayerScreenView.swift */; };
 		496CACD3250528F800CD454F /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACCE250528F800CD454F /* VideoCollectionViewCell.swift */; };
-		496CACD4250528F800CD454F /* PlayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACCF250528F800CD454F /* PlayListView.swift */; };
+		496CACD4250528F800CD454F /* ContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACCF250528F800CD454F /* ContentListView.swift */; };
 		496CACD82505290A00CD454F /* InternalConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACD62505290A00CD454F /* InternalConfiguration.swift */; };
 		496CACD92505290A00CD454F /* SummerPlayerViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496CACD72505290A00CD454F /* SummerPlayerViewConfig.swift */; };
 		4974ADAA2510AA5C00DC1CA9 /* Utills.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974ADA92510AA5C00DC1CA9 /* Utills.swift */; };
@@ -40,7 +40,7 @@
 		496CACCC250528F800CD454F /* SummerVideoPlayerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummerVideoPlayerHeaderView.swift; sourceTree = "<group>"; };
 		496CACCD250528F800CD454F /* PlayerScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerScreenView.swift; sourceTree = "<group>"; };
 		496CACCE250528F800CD454F /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
-		496CACCF250528F800CD454F /* PlayListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayListView.swift; sourceTree = "<group>"; };
+		496CACCF250528F800CD454F /* ContentListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentListView.swift; sourceTree = "<group>"; };
 		496CACD62505290A00CD454F /* InternalConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalConfiguration.swift; sourceTree = "<group>"; };
 		496CACD72505290A00CD454F /* SummerPlayerViewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummerPlayerViewConfig.swift; sourceTree = "<group>"; };
 		4974ADA92510AA5C00DC1CA9 /* Utills.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utills.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 				491478E9250E62C100B6B782 /* PlayerControllView.swift */,
 				496CACCD250528F800CD454F /* PlayerScreenView.swift */,
 				491478E8250E5BB800B6B782 /* CollectionViews */,
-				496CACCF250528F800CD454F /* PlayListView.swift */,
+				496CACCF250528F800CD454F /* ContentListView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -233,7 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				496CACD4250528F800CD454F /* PlayListView.swift in Sources */,
+				496CACD4250528F800CD454F /* ContentListView.swift in Sources */,
 				491478E4250E578800B6B782 /* PlayerScreenViewDelegate.swift in Sources */,
 				491478EC250E65FE00B6B782 /* SummerPlayerView.swift in Sources */,
 				496CACD3250528F800CD454F /* VideoCollectionViewCell.swift in Sources */,

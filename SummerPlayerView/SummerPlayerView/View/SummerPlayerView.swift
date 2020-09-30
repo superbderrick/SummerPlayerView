@@ -37,7 +37,7 @@ open class SummerPlayerView: UIView {
     
     private var playerLayer: AVPlayerLayer?
     
-    private let playListView = PlayListView()
+    private let playListView = ContentListView()
     
     private var playerScreenView = PlayerScreenView()
     
@@ -184,7 +184,7 @@ open class SummerPlayerView: UIView {
 
 extension SummerPlayerView:PlayerControlViewDelegate {
     func didPressedAirPlayButton() {
-        delegate?.didPressedAirPlayButton()
+        delegate?.didPressAirPlayButton()
     }
     
     fileprivate func playPreviousContent() {
@@ -203,7 +203,7 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         playerScreenView.resetPlayerUI()
         
         playPreviousContent()
-        delegate?.didPressedPreviousButton()
+        delegate?.didPressPreviousButton()
     }
     
     fileprivate func playNextContent() {
@@ -223,7 +223,7 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         
         playNextContent()
         
-        delegate?.didPressedNextButton()
+        delegate?.didPressNextButton()
         
     }
     
@@ -231,7 +231,7 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         self.queuePlayer.pause()
         self.playerLayer?.removeFromSuperlayer()
         
-        delegate?.didPressedBackButton()
+        delegate?.didPressBackButton()
         
     }
 }
@@ -242,11 +242,11 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
     }
     
     func didPressedMoreButton() {
-        delegate?.didPressedMoreButton()
+        delegate?.didPressMoreButton()
     }
     
     func didSelectItem(_ index: Int) {
-        delegate?.didPressedPlayListView(index: index)
+        delegate?.didPressContentsListView(index: index)
     }
     
     func didTappedPlayerScreenView(_ isTapped: Bool) {
@@ -287,7 +287,7 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
     func playPause(_ isActive: Bool) {
         isActive ? queuePlayer.play() : queuePlayer.pause()
         
-        delegate?.didPressedPlayButton(isActive: isActive)
+        delegate?.didPressPlayButton(isActive: isActive)
     }
     
     private func resetPlayer(_ url:URL) {

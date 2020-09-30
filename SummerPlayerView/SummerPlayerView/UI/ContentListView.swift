@@ -4,7 +4,7 @@ import UIKit
 import AVKit
 
 
-class PlayListView: UIView {
+class ContentListView: UIView {
     
     lazy private var activityView: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .large)
@@ -162,7 +162,7 @@ class PlayListView: UIView {
     }
 }
 
-extension PlayListView: UICollectionViewDataSource {
+extension ContentListView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return playerItems?.count ?? 0
@@ -182,7 +182,7 @@ extension PlayListView: UICollectionViewDataSource {
     
 }
 
-extension PlayListView: UICollectionViewDelegate {
+extension ContentListView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
