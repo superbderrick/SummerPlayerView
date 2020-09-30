@@ -17,14 +17,14 @@ class PlayerViewController: UIViewController  {
         super.viewDidLoad()
         
         let defaultConfig = DefaultConfig()
-        let contents = ContentsMaker.getContents()
-        
-        let summerPlayerView = SummerPlayerView(configuration: defaultConfig, theme: nil,targetView: view)
+        let testContents = ContentsMaker.getContents()
+        let sampleTheme = ThemeMaker.getTheme()
+        let summerPlayerView = SummerPlayerView(configuration: defaultConfig, theme: sampleTheme,targetView: view)
         
         summerPlayerView.delegate = self
         
-        if let currentItem = contents.first {
-            summerPlayerView.setPlayList(currentItem: currentItem, items: contents)
+        if let currentItem = testContents.first {
+            summerPlayerView.setPlayList(currentItem: currentItem, items: testContents)
         }
         
         view.addSubview(summerPlayerView)

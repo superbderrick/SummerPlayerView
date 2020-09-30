@@ -56,18 +56,15 @@ open class SummerPlayerView: UIView {
     
     private var internalDelegate: PlayerScreenViewDelegate?
     
-    required public init(configuration: SummerPlayerViewConfig?, theme: SummerPlayerViewTheme?, targetView: UIView) {
+    required public init(configuration: SummerPlayerViewConfig, theme: SummerPlayerViewTheme, targetView: UIView) {
+        
         super.init(frame: .zero)
+        
         translatesAutoresizingMaskIntoConstraints = false
         
         self.bounds = targetView.bounds
-        
-        if let theme = theme {
-            self.theme = theme
-        }
-        if let configuration = configuration {
-            self.configuration = configuration
-        }
+        self.theme = theme
+        self.configuration = configuration
         
         setupPlayer()
         setupSummerPlayerView(targetView.bounds)
