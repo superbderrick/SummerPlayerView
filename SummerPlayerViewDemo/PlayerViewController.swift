@@ -39,6 +39,10 @@ class PlayerViewController: UIViewController  {
 
 
 extension PlayerViewController : SummerPlayerViewDelegate {
+    func didFinishVideo() {
+        print("didFinishVideo")
+    }
+    
     func didStartVideo() {
         print("didStartVideo")
     }

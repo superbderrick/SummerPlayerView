@@ -11,7 +11,7 @@ import AVKit
 
 class PlayerScreenView: UIView {
     
-    private var isPlaying: Bool = true
+    public var isPlaying: Bool = true
     private var isTapped: Bool = false
     
     var delegate: PlayerScreenViewDelegate?
@@ -101,7 +101,7 @@ class PlayerScreenView: UIView {
         isPlaying = !isPlaying
         delegate?.playPause(isPlaying)
         
-        changePauseOrPlay(isPlayig: isPlaying)
+        changePauseOrPlay(isActive: isPlaying)
         
     }
     
@@ -110,7 +110,7 @@ class PlayerScreenView: UIView {
         delegate?.didPressedMoreButton()
     }
     
-    private func changePauseOrPlay(isPlayig:Bool) {
+    public func changePauseOrPlay(isActive:Bool) {
         
         if(isPlaying) {
             if let image = UIImage(named: "pause") {
@@ -136,7 +136,7 @@ class PlayerScreenView: UIView {
     func videoDidChange(_ time: CMTime) {
         playerTimeLabel.text = time.description
     }
-        
+    
     func resetPlayerUI() {
         playerTimeLabel.text = CMTime.zero.description
         playerSlider.value = 0.0
@@ -187,7 +187,6 @@ class PlayerScreenView: UIView {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        print("handleTap")
         
         if(isTapped) {
             isTapped = !isTapped

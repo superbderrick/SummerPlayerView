@@ -9,6 +9,13 @@ public enum ScreenMode {
     case fullScreen
 }
 
+public enum PlaybackMode {
+    case quit
+    case loopPlay
+    case nextPlay
+}
+
+
 open class SummerPlayerView: UIView {
     
     open var delegate: SummerPlayerViewDelegate?
@@ -127,6 +134,7 @@ open class SummerPlayerView: UIView {
     }
     
     
+    
     private func setupPlayer() {
         queuePlayer = AVQueuePlayer()
         queuePlayer.addObserver(playListView, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
@@ -206,6 +214,14 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         delegate?.didPressPreviousButton()
     }
     
+    fileprivate func loopPlayContent() {
+        if let latestItems = contents {
+            let newURL = URL(string: latestItems[currentVideoIndex].url)
+            resetPlayer(newURL!)
+        }
+    }
+    
+    
     fileprivate func playNextContent() {
         if let latestItems = contents {
             if(currentVideoIndex >= 0 && currentVideoIndex < latestItems.count-1) {
@@ -228,10 +244,20 @@ extension SummerPlayerView:PlayerControlViewDelegate {
     }
     
     func didPressedBackButton() {
+        
+        finishVideo()
+        delegate?.didPressBackButton()
+        
+    }
+    
+    private func finishVideo() {
         self.queuePlayer.pause()
         self.playerLayer?.removeFromSuperlayer()
         
-        delegate?.didPressBackButton()
+    }
+    
+    private func pauseVideo() {
+        self.queuePlayer.pause()
         
     }
 }
@@ -296,6 +322,8 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
         let playerItem = AVPlayerItem.init(url: url)
         queuePlayer.insert(playerItem, after: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidPlayToEndTime), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
+        
+
         queuePlayer.play()
         
         
@@ -306,8 +334,25 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
     }
     
     @objc private func playerItemDidPlayToEndTime() {
-      print("finished")
+        
+        pauseVideo()
+        playerScreenView.resetPlayerUI()
+        
+        if(configuration.playbackMode == PlaybackMode.loopPlay) {
+//            playerScreenView.isPlaying = true
+//            playerScreenView.changePauseOrPlay(isActive: false)
+            loopPlayContent()
+        } else if(configuration.playbackMode == PlaybackMode.nextPlay) {
+            
+        } else if(configuration.playbackMode == PlaybackMode.quit) {
+            
+        }
+        
+    
+        delegate?.didFinishVideo()
     }
+    
+
 }
 
 extension UIView {

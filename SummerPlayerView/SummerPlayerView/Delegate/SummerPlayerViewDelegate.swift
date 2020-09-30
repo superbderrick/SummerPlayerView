@@ -19,4 +19,5 @@ public protocol SummerPlayerViewDelegate {
     func didPressPlayButton(isActive:Bool)
     func didChangeSliderValue(_ seekTime: CMTime)
     func didStartVideo()
+    func didFinishVideo()
 }

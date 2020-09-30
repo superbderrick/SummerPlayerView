@@ -131,7 +131,6 @@ class ContentListView: UIView {
                     guard let `self` = self else { return }
                     if newStatus == .playing || newStatus == .paused {
                         
-                        
                         self.activityView.isHidden = true
                     } else {
                         self.activityView.isHidden = false

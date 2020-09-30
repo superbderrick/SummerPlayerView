@@ -10,6 +10,7 @@ import UIKit
 import SummerPlayerView
 
 struct DefaultConfig: SummerPlayerViewConfig {
+    var playbackMode: PlaybackMode = PlaybackMode.loopPlay
     public var showIndicator = true
     public var showVideoList = true
     public var screenMode: ScreenMode = .tiny
