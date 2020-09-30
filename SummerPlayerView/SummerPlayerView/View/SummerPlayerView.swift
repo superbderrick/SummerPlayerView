@@ -185,7 +185,7 @@ open class SummerPlayerView: UIView {
 
 extension SummerPlayerView:PlayerControlViewDelegate {
     func didPressedAirPlayButton() {
-        
+        delegate?.didPressedAirPlayButton()
     }
     
     func didPressedPreviousButton() {
@@ -200,6 +200,7 @@ extension SummerPlayerView:PlayerControlViewDelegate {
             let newURL = URL(string: latestItems[currentVideoIndex].url)
             resetPlayer(newURL!)
         }
+        delegate?.didPressedPreviousButton()
     }
     
     func didPressedNextButton() {
@@ -214,6 +215,8 @@ extension SummerPlayerView:PlayerControlViewDelegate {
             let newURL = URL(string: latestItems[currentVideoIndex].url)
             resetPlayer(newURL!)
         }
+        
+        delegate?.didPressedNextButton()
         
     }
     

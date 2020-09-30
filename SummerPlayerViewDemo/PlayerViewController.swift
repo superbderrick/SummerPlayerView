@@ -36,14 +36,29 @@ class PlayerViewController: UIViewController  {
 
 
 extension PlayerViewController : SummerPlayerViewDelegate {
+    func didPressedMoreButton() {
+        print("didPressedMoreButton")
+    }
+    
+    func didPressedNextButton() {
+        print("didPressedNextButton")
+     
+    }
+    
+    func didPressedPreviousButton() {
+        print("didPressedPreviousButton")
+     
+    }
+    
+    func didPressedAirPlayButton() {
+        print("didPressedAirPlayButton")
+     
+    }
+    
     
     func didPressedBackButton() {
         moveViewController()
     }
-    func changedPlayerState() {
-        
-    }
-    
 }
 
 extension PlayerViewController {
