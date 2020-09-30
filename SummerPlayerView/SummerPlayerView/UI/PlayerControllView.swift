@@ -17,6 +17,7 @@ class PlayerControllView: UIView {
     lazy private var backButton: UIButton = {
         let backwardButton = UIButton()
         backwardButton.translatesAutoresizingMaskIntoConstraints = false
+        
         if let image = UIImage(named: "back") {
             image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             backwardButton.setImage(image, for: .normal)
@@ -73,7 +74,6 @@ class PlayerControllView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
-        
     }
     
     private func setupView() {
@@ -102,22 +102,18 @@ class PlayerControllView: UIView {
     }
     
     @objc func clickBackButton(_ sender: UIButton) {
-        print("clickBackButton")
         delegate?.didPressedBackButton()
     }
     
     @objc func clickPreviousButton(_ sender: UIButton) {
-        print("clickPreviousButton")
         delegate?.didPressedPreviousButton()
     }
     
     @objc func clickAirPlayButton(_ sender: UIButton) {
-        print("clickAirPlay")
         delegate?.didPressedAirPlayButton()
     }
     
     @objc func clickNextButton(_ sender: UIButton) {
-        print("clickNextButton")
         delegate?.didPressedNextButton()
     }
     

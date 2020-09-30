@@ -271,7 +271,6 @@ class PlayerScreenView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        //preferred content size, calculate it if some internal state changes
         return CGSize(width: 300, height: 300)
     }
     

@@ -43,13 +43,13 @@ open class SummerPlayerView: UIView {
     
     private var playerControlView = PlayerControllView()
     
-    private var configuration: SummerPlayerViewConfiguration = InternalConfiguration()
+    private var configuration: SummerPlayerViewConfig = InternalConfiguration()
     
     private var theme: SummerPlayerViewTheme = MainTheme()
     
     private var internalDelegate: PlayerScreenViewDelegate?
     
-    required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, viewRect: CGRect) {
+    required public init(configuration: SummerPlayerViewConfig?, theme: SummerPlayerViewTheme?, viewRect: CGRect) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -242,7 +242,7 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
     }
     
     func didSelectItem(_ index: Int) {
-        delegate?.didPressedCollectionView(index: index)
+        delegate?.didPressedPlayListView(index: index)
     }
     
     func didTappedPlayerScreenView(_ isTapped: Bool) {
@@ -282,6 +282,8 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
     
     func playPause(_ isActive: Bool) {
         isActive ? queuePlayer.play() : queuePlayer.pause()
+        
+        delegate?.didPressedPlayButton(isActive: isActive)
     }
     
     private func resetPlayer(_ url:URL) {
@@ -297,13 +299,6 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
         }
         
     }
-}
-
-extension SummerPlayerView:PlayListViewDelegate {
-    func didPressedCollectionView(index: Int) {
-        
-    }
-    
 }
 
 extension UIView {

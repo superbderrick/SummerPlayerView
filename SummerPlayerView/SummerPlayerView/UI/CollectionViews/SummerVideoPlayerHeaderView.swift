@@ -5,7 +5,7 @@ import UIKit
 class SummerVideoPlayerHeaderView: UIView {
     
     // MARK: - Instance Variables
-    var configuration: SummerPlayerViewConfiguration
+    var configuration: SummerPlayerViewConfig
     var theme: SummerPlayerViewTheme
     var delegate: PlayerScreenViewDelegate?
     var item: Content?
@@ -44,7 +44,7 @@ class SummerVideoPlayerHeaderView: UIView {
     
     // MARK: - View Initializers
     
-    required init(configuration: SummerPlayerViewConfiguration, theme: SummerPlayerViewTheme, delegate: PlayerScreenViewDelegate?) {
+    required init(configuration: SummerPlayerViewConfig, theme: SummerPlayerViewTheme, delegate: PlayerScreenViewDelegate?) {
         self.configuration = configuration
         self.theme = theme
         self.delegate = delegate

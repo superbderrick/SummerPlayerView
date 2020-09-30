@@ -13,6 +13,9 @@ import AVKit
     func playPause(_ isActive: Bool)
     func currentVideoIndex(_ index: Int ,_ url: URL )
     func didTappedPlayerScreenView(_ isTapped : Bool)
+    
+    
+    
     func didSelectItem(_ index:Int)
     func didPressedMoreButton()
 }

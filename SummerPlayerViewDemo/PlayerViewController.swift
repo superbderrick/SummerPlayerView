@@ -36,12 +36,14 @@ class PlayerViewController: UIViewController  {
 
 
 extension PlayerViewController : SummerPlayerViewDelegate {
-    func didPressedCollectionView(index: Int) {
-        
+    func didPressedPlayButton(isActive: Bool) {
+     
+    }
+    
+    func didPressedPlayListView(index: Int) {
     }
     
     func didPressedMoreButton() {
-        //
     }
     
     func didPressedNextButton() {
@@ -54,6 +56,7 @@ extension PlayerViewController : SummerPlayerViewDelegate {
     }
     
     func didPressedBackButton() {
+        moveViewController()
     }
 }
 
