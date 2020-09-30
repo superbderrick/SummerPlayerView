@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import AVKit
 import SummerPlayerView
+
 class PlayerViewController: UIViewController  {
     
     
@@ -36,6 +38,9 @@ class PlayerViewController: UIViewController  {
 
 
 extension PlayerViewController : SummerPlayerViewDelegate {
+    func didChangeSliderValue(_ seekTime: CMTime) {
+        
+    }
     func didPressBackButton() {
         moveViewController()
     }
