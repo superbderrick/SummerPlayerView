@@ -13,7 +13,7 @@ class ContentListView: UIView {
         return activity
     }()
     
-    lazy private var playListStackView: UIStackView = {
+    lazy private var contentListStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,29 +49,26 @@ class ContentListView: UIView {
     }()
     
     
-    private var playerItems: [Content]?
+    private var contents: [Content]?
     
-    private var currentItem: Content?
+    private var currentContent: Content?
     
     private var isActive: Bool = false
     
     var delegate: PlayerScreenViewDelegate?
     
-    var videoPlayerHeader: SummerVideoPlayerHeaderView?
+    
     
     var configuration = InternalConfiguration()
     
-    var theme = MainTheme()
+    var theme:SummerPlayerViewTheme = defaultTheme()
     
     private var topC: NSLayoutConstraint?
     private var bottomC: NSLayoutConstraint?
     private var rightC: NSLayoutConstraint?
     private var leftC: NSLayoutConstraint?
     
-    // default collectionviewcellid
     private var cellId = "videoCellId"
-    
-    // MARK: - View Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -82,14 +79,15 @@ class ContentListView: UIView {
     }
     
     func setPlayList(currentItem: Content, items: [Content]) {
-        playerItems = items
-        self.currentItem = currentItem
+        contents = items
+        self.currentContent = currentItem
         collectionView.reloadData()
-        videoPlayerHeader?.setItem(currentItem)
+        
     }
     
     func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfig, theme: SummerPlayerViewTheme) {
         
+        self.theme = theme
         addSubview(activityView)
         activityView.centerYAnchor.constraint(equalTo: centerYAnchor , constant: -50).isActive = true
         activityView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -107,7 +105,8 @@ class ContentListView: UIView {
     
     private func applyTheme(_ theme: SummerPlayerViewTheme) {
         activityView.color = theme.activityViewColor
-        collectionView.backgroundColor = theme.playListItemsBackgroundColor
+        collectionView.backgroundColor = theme.contentsListviewBackground
+        
     }
     
     private func setHeaderView(_ header: UIView) {
@@ -140,31 +139,28 @@ class ContentListView: UIView {
         }
     }
     
-    // MARK: - Actions
     
     private func addPlayList() {
-        // background view
         addSubview(backgroundView)
-        addSubview(playListStackView)
+        addSubview(contentListStackView)
         
-        backgroundView.pinEdges(targetView: playListStackView)
-        // videos stackview
-        playListStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        playListStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        playListStackView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
-        playListStackView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -15).isActive = true
+        backgroundView.pinEdges(targetView: contentListStackView)
         
-        // collectionView
-        playListStackView.addSubview(collectionView)
-        //
-        collectionView.pinEdges(targetView: playListStackView)
+        contentListStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        contentListStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        contentListStackView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
+        contentListStackView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -15).isActive = true
+        
+        
+        contentListStackView.addSubview(collectionView)
+        collectionView.pinEdges(targetView: contentListStackView)
     }
 }
 
 extension ContentListView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return playerItems?.count ?? 0
+        return contents?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -174,7 +170,7 @@ extension ContentListView: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? VideoCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.setData(playerItems?[indexPath.row], theme: theme)
+            cell.setData(contents?[indexPath.row], theme: self.theme)
             return cell
         }
     }
@@ -186,10 +182,10 @@ extension ContentListView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         delegate?.didSelectItem(indexPath.row)
-        if let item = playerItems?[indexPath.row], let url = URL(string: item.url) {
+        if let item = contents?[indexPath.row], let url = URL(string: item.url) {
             delegate?.didLoadVideo(url)
             delegate?.currentVideoIndex(indexPath.row,url)
-            videoPlayerHeader?.setItem(item)
+         
         }
     }
     

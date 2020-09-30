@@ -12,7 +12,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    let titleLabel: UILabel = {
+    let totalTimeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
@@ -36,22 +36,24 @@ class VideoCollectionViewCell: UICollectionViewCell {
     
     func setupUI() {
         addSubview(videoThumbnail)
-        addSubview(titleLabel)
+        addSubview(totalTimeLabel)
         
         videoThumbnail.pinEdges(targetView: self)
-        titleLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo:trailingAnchor, constant: -10).isActive = true
+        totalTimeLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        totalTimeLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        totalTimeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        totalTimeLabel.trailingAnchor.constraint(equalTo:trailingAnchor, constant: -10).isActive = true
     }
     private func applyTheme(_ theme: SummerPlayerViewTheme) {
-        titleLabel.textColor = theme.playListItemsTextColor
+        totalTimeLabel.textColor = theme.totalTimeLabelTextColor
+        totalTimeLabel.font = theme.totalTimeLableTextFont
+        totalTimeLabel.backgroundColor = theme.totalTimeLableBackground
     }
-    func setData(_ playListItem: Content?, theme: SummerPlayerViewTheme = MainTheme()) {
+    func setData(_ playListItem: Content?, theme: SummerPlayerViewTheme) {
         guard let playListItem = playListItem else {
             return
         }
-        titleLabel.text = playListItem.totalTime
+        totalTimeLabel.text = playListItem.totalTime
         videoThumbnail.image = UIImage(named: playListItem.thumbnail)
         applyTheme(theme)
     }
