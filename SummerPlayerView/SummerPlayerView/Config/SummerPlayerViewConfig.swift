@@ -14,6 +14,7 @@ public protocol SummerPlayerViewConfig {
     var hideControls: Bool { get set }
     var screenMode: ScreenMode { get set}
     var showIndicator : Bool {get set}
+    var playbackMode: PlaybackMode{get set}
 }
 
  

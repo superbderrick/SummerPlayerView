@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import AVKit
 import SummerPlayerView
+
 class PlayerViewController: UIViewController  {
     
     
@@ -17,31 +19,41 @@ class PlayerViewController: UIViewController  {
         let defaultConfig = DefaultConfig()
         let contents = ContentsMaker.getContents()
         
-        let playerView = SummerPlayerView(configuration: defaultConfig, theme: nil,viewRect: view.bounds)
+        let summerPlayerView = SummerPlayerView(configuration: defaultConfig, theme: nil,targetView: view)
         
-        playerView.delegate = self
+        summerPlayerView.delegate = self
         
         if let currentItem = contents.first {
-            playerView.setPlayList(currentItem: currentItem, items: contents)
+            summerPlayerView.setPlayList(currentItem: currentItem, items: contents)
         }
         
-        view.addSubview(playerView)
+        view.addSubview(summerPlayerView)
         
-        playerView.pinEdges(targetView: view)
+        summerPlayerView.pinEdges(targetView: view)
+        
         
     }
     
 }
 
-
-
 extension PlayerViewController : SummerPlayerViewDelegate {
+    func didFinishVideo() {
+        
+    }
+    
+    func didStartVideo() {
+        
+    }
+    
+    func didChangeSliderValue(_ seekTime: CMTime) {
+        
+    }
     func didPressBackButton() {
         moveViewController()
     }
     
     func didPressNextButton() {
-                    
+        
     }
     
     func didPressPreviousButton() {
@@ -64,7 +76,7 @@ extension PlayerViewController : SummerPlayerViewDelegate {
         
     }
     
-
+    
 }
 
 extension PlayerViewController {

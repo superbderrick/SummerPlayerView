@@ -9,6 +9,7 @@
 import Foundation
 
 public struct InternalConfiguration: SummerPlayerViewConfig {
+    public var playbackMode: PlaybackMode = PlaybackMode.loopPlay
     public var showIndicator: Bool = true
     public var showVideoList = true
     public var hideControls: Bool = true

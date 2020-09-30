@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 public protocol SummerPlayerViewDelegate {
     func didPressBackButton()
@@ -16,4 +17,7 @@ public protocol SummerPlayerViewDelegate {
     func didPressMoreButton()
     func didPressContentsListView(index:Int)
     func didPressPlayButton(isActive:Bool)
+    func didChangeSliderValue(_ seekTime: CMTime)
+    func didStartVideo()
+    func didFinishVideo()
 }
