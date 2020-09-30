@@ -27,7 +27,7 @@ class PlayerViewController: UIViewController  {
         
         view.addSubview(playerView)
         
-        playerView.pinEdges(to: view)
+        playerView.pinEdges(targetView: view)
         
     }
     

@@ -176,7 +176,7 @@ open class SummerPlayerView: UIView {
         playListView.isHidden = false
         addSubview(playListView)
         playListView.backgroundColor = .clear
-        playListView.pinEdges(to: self)
+        playListView.pinEdges(targetView: self)
         
     }
     
@@ -295,11 +295,11 @@ extension SummerPlayerView:PlayListViewDelegate {
 
 extension UIView {
     
-    public func pinEdges(to other: UIView) {
-        leadingAnchor.constraint(equalTo: other.leadingAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: other.trailingAnchor).isActive = true
-        topAnchor.constraint(equalTo: other.topAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: other.bottomAnchor).isActive = true
+    public func pinEdges(targetView: UIView) {
+        leadingAnchor.constraint(equalTo: targetView.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: targetView.trailingAnchor).isActive = true
+        topAnchor.constraint(equalTo: targetView.topAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: targetView.bottomAnchor).isActive = true
     }
     
 }

@@ -149,7 +149,7 @@ class PlayListView: UIView {
         addSubview(backgroundView)
         addSubview(playListStackView)
         
-        backgroundView.pinEdges(to: playListStackView)
+        backgroundView.pinEdges(targetView: playListStackView)
         // videos stackview
         playListStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         playListStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
@@ -159,7 +159,7 @@ class PlayListView: UIView {
         // collectionView
         playListStackView.addSubview(collectionView)
         //
-        collectionView.pinEdges(to: playListStackView)
+        collectionView.pinEdges(targetView: playListStackView)
     }
 }
 
