@@ -13,8 +13,24 @@ import SummerPlayerView
 struct ThemeMaker {
     public static func getTheme() -> SummerPlayerViewTheme {
         
-        let darkTheme : SummerPlayerViewTheme = DarkTheme()
-        
-        return darkTheme
+        var theme:SummerPlayerViewTheme = LightTheme()
+        if #available(iOS 13.0, *) {
+            switch UIScreen.main.traitCollection.userInterfaceStyle {
+            case .dark:
+                theme  = DarkTheme()
+                break
+            case .light:
+                theme  = LightTheme()
+                break
+                
+            case .unspecified:
+                theme  = LightTheme()
+                break
+                
+            @unknown default:
+                theme  = LightTheme()
+            }
+        }
+        return theme
     }
 }

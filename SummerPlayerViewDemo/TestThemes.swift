@@ -11,7 +11,7 @@ import SummerPlayerView
 import UIKit
 
 
-public struct WhiteTheme: SummerPlayerViewTheme {
+public struct LightTheme: SummerPlayerViewTheme {
     public var resizeButtonImage: UIImage!
     
     public var playButtonImage: UIImage!

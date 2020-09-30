@@ -19,6 +19,7 @@ class PlayerViewController: UIViewController  {
         let defaultConfig = DefaultConfig()
         let testContents = ContentsMaker.getContents()
         let sampleTheme = ThemeMaker.getTheme()
+        
         let summerPlayerView = SummerPlayerView(configuration: defaultConfig, theme: sampleTheme,targetView: view)
         
         summerPlayerView.delegate = self
@@ -30,8 +31,8 @@ class PlayerViewController: UIViewController  {
         view.addSubview(summerPlayerView)
         
         summerPlayerView.pinEdges(targetView: view)
-        
-        
+        print("Playerstatus \(summerPlayerView.playerStatus)")
+        print("Playerstatus \(String(describing: summerPlayerView.totalDuration))")
     }
     
 }

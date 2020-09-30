@@ -71,7 +71,7 @@ class ContentListView: UIView {
     // default collectionviewcellid
     private var cellId = "videoCellId"
     
-    // MARK: - View Initializers
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -140,7 +140,6 @@ class ContentListView: UIView {
         }
     }
     
-    // MARK: - Actions
     
     private func addPlayList() {
         // background view

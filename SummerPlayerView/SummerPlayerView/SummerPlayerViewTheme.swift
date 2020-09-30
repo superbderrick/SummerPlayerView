@@ -16,7 +16,6 @@ public protocol SummerPlayerViewTheme {
     var activityViewColor: UIColor { get }
     var playListItemsBackgroundColor: UIColor { get }
     
-    var resizeButtonImage: UIImage! { get }
     var playButtonImage: UIImage! { get }
     var pauseButtonImage: UIImage! { get }
     var forwardButtonImage: UIImage! { get }
@@ -37,7 +36,6 @@ public struct MainTheme: SummerPlayerViewTheme {
     public var playListItemsBackgroundColor: UIColor = .clear
     public var playListCurrentItemFont = UIFont.systemFont(ofSize: 17.0)
     public var playListItemsFont = UIFont.systemFont(ofSize: 12.0)
-    public var resizeButtonImage: UIImage! = Controls.resize(.fullScreen).image
     public var playButtonImage: UIImage! = Controls.playpause(false).image
     public var pauseButtonImage: UIImage! = Controls.playpause(true).image
     public var forwardButtonImage: UIImage! = Controls.forward.image
