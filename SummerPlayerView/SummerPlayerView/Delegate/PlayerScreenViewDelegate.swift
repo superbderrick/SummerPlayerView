@@ -13,6 +13,8 @@ import AVKit
     func currentVideoIndex(_ index: Int ,_ url: URL )
     func didTappedPlayerScreenView(_ isTapped : Bool)
     
+    func seekToTime(_ seekTime: CMTime)
+
     func didChangeSliderValue(_ seekTime: CMTime)
     func didSelectItem(_ index:Int)
     func didPressedMoreButton()
