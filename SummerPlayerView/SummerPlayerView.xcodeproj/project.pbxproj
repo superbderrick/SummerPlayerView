@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		491478E1250E511000B6B782 /* PlayerControlViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491478E0250E511000B6B782 /* PlayerControlViewDelegate.swift */; };
-		491478E4250E578800B6B782 /* LegacyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491478E3250E578800B6B782 /* LegacyDelegate.swift */; };
+		491478E4250E578800B6B782 /* PlayerScreenViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491478E3250E578800B6B782 /* PlayerScreenViewDelegate.swift */; };
 		491478E6250E57B600B6B782 /* SummerPlayerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491478E5250E57B600B6B782 /* SummerPlayerViewDelegate.swift */; };
 		491478EA250E62C100B6B782 /* PlayerControllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491478E9250E62C100B6B782 /* PlayerControllView.swift */; };
 		491478EC250E65FE00B6B782 /* SummerPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491478EB250E65FE00B6B782 /* SummerPlayerView.swift */; };
@@ -28,7 +28,7 @@
 
 /* Begin PBXFileReference section */
 		491478E0250E511000B6B782 /* PlayerControlViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlViewDelegate.swift; sourceTree = "<group>"; };
-		491478E3250E578800B6B782 /* LegacyDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyDelegate.swift; sourceTree = "<group>"; };
+		491478E3250E578800B6B782 /* PlayerScreenViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerScreenViewDelegate.swift; sourceTree = "<group>"; };
 		491478E5250E57B600B6B782 /* SummerPlayerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummerPlayerViewDelegate.swift; sourceTree = "<group>"; };
 		491478E9250E62C100B6B782 /* PlayerControllView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerControllView.swift; sourceTree = "<group>"; };
 		491478EB250E65FE00B6B782 /* SummerPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummerPlayerView.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		491478DF250E50DB00B6B782 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				491478E3250E578800B6B782 /* LegacyDelegate.swift */,
+				491478E3250E578800B6B782 /* PlayerScreenViewDelegate.swift */,
 				491478E0250E511000B6B782 /* PlayerControlViewDelegate.swift */,
 				491478E5250E57B600B6B782 /* SummerPlayerViewDelegate.swift */,
 				4985045125161FFF00A84509 /* PlayListViewDelegate.swift */,
@@ -237,7 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				496CACD4250528F800CD454F /* PlayListView.swift in Sources */,
-				491478E4250E578800B6B782 /* LegacyDelegate.swift in Sources */,
+				491478E4250E578800B6B782 /* PlayerScreenViewDelegate.swift in Sources */,
 				491478EC250E65FE00B6B782 /* SummerPlayerView.swift in Sources */,
 				496CACD3250528F800CD454F /* VideoCollectionViewCell.swift in Sources */,
 				496CACD1250528F800CD454F /* SummerVideoPlayerHeaderView.swift in Sources */,

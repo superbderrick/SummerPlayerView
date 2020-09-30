@@ -11,6 +11,8 @@ public enum ScreenMode {
 
 open class SummerPlayerView: UIView {
     
+    open var delegate: SummerPlayerViewDelegate?
+    
     public var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? = nil
     
     public var totalDuration: CMTime? {
@@ -45,13 +47,7 @@ open class SummerPlayerView: UIView {
     
     private var theme: SummerPlayerViewTheme = MainTheme()
     
-    private var internalDelegate: LegacyDelegate?
-    
-    open var delegate: SummerPlayerViewDelegate?
-    
-    
-    
-    
+    private var internalDelegate: PlayerScreenViewDelegate?
     
     required public init(configuration: SummerPlayerViewConfiguration?, theme: SummerPlayerViewTheme?, viewRect: CGRect) {
         super.init(frame: .zero)
@@ -99,7 +95,7 @@ open class SummerPlayerView: UIView {
     }
     
     
-    func didRegisterPlayerItemCell(_ identifier: String, collectioViewCell cell: UICollectionViewCell.Type) {
+    private func didRegisterPlayerItemCell(_ identifier: String, collectioViewCell cell: UICollectionViewCell.Type) {
         playListView.didRegisterPlayerItemCell(identifier, collectioViewCell: cell)
     }
     
@@ -158,6 +154,7 @@ open class SummerPlayerView: UIView {
         guard (standardRect != nil) else { return }
         
         self.playerScreenView = PlayerScreenView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
+        
         self.playerScreenView.delegate = self
         
         addSubview(self.playerScreenView)
@@ -165,6 +162,7 @@ open class SummerPlayerView: UIView {
         let quarterViewRect = Utills.getQuarterViewRect(wholeRect!)
         
         self.playerControlView = PlayerControllView(frame: CGRect(x: quarterViewRect!.origin.x, y: 0, width: quarterViewRect!.width, height: quarterViewRect!.height))
+        
         self.playerControlView.delegate = self
         
         addSubview(self.playerControlView)
@@ -175,6 +173,7 @@ open class SummerPlayerView: UIView {
         playListView.translatesAutoresizingMaskIntoConstraints = false
         playListView.isHidden = false
         addSubview(playListView)
+        
         playListView.backgroundColor = .clear
         playListView.pinEdges(targetView: self)
         
@@ -188,9 +187,7 @@ extension SummerPlayerView:PlayerControlViewDelegate {
         delegate?.didPressedAirPlayButton()
     }
     
-    func didPressedPreviousButton() {
-        playerScreenView.resetPlayerUI()
-        
+    fileprivate func playPreviousContent() {
         if let latestItems = contents {
             if(currentVideoIndex == 0) {
                 currentVideoIndex = latestItems.count-1
@@ -200,12 +197,16 @@ extension SummerPlayerView:PlayerControlViewDelegate {
             let newURL = URL(string: latestItems[currentVideoIndex].url)
             resetPlayer(newURL!)
         }
+    }
+    
+    func didPressedPreviousButton() {
+        playerScreenView.resetPlayerUI()
+        
+        playPreviousContent()
         delegate?.didPressedPreviousButton()
     }
     
-    func didPressedNextButton() {
-        playerScreenView.resetPlayerUI()
-        
+    fileprivate func playNextContent() {
         if let latestItems = contents {
             if(currentVideoIndex >= 0 && currentVideoIndex < latestItems.count-1) {
                 currentVideoIndex += 1
@@ -215,6 +216,12 @@ extension SummerPlayerView:PlayerControlViewDelegate {
             let newURL = URL(string: latestItems[currentVideoIndex].url)
             resetPlayer(newURL!)
         }
+    }
+    
+    func didPressedNextButton() {
+        playerScreenView.resetPlayerUI()
+        
+        playNextContent()
         
         delegate?.didPressedNextButton()
         
@@ -229,11 +236,14 @@ extension SummerPlayerView:PlayerControlViewDelegate {
     }
 }
 
-extension SummerPlayerView: LegacyDelegate {
-    func didSelectItem(_ index: Int) {
-        
+extension SummerPlayerView: PlayerScreenViewDelegate {
+    func didPressedMoreButton() {
+        delegate?.didPressedMoreButton()
     }
     
+    func didSelectItem(_ index: Int) {
+        delegate?.didPressedCollectionView(index: index)
+    }
     
     func didTappedPlayerScreenView(_ isTapped: Bool) {
         

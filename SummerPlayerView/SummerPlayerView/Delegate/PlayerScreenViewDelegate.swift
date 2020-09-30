@@ -3,7 +3,7 @@
 import UIKit
 import AVKit
 
- protocol LegacyDelegate where Self: UIView {
+ protocol PlayerScreenViewDelegate where Self: UIView {
     
     var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? {get set}
     var totalDuration: CMTime? { get }
@@ -14,6 +14,7 @@ import AVKit
     func currentVideoIndex(_ index: Int ,_ url: URL )
     func didTappedPlayerScreenView(_ isTapped : Bool)
     func didSelectItem(_ index:Int)
+    func didPressedMoreButton()
 }
 
 

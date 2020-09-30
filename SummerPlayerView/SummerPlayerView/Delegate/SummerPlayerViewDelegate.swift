@@ -14,4 +14,5 @@ public protocol SummerPlayerViewDelegate {
     func didPressedPreviousButton()
     func didPressedAirPlayButton()
     func didPressedMoreButton()
+    func didPressedCollectionView(index:Int)
 }

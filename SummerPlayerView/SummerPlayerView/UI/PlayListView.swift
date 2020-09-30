@@ -56,7 +56,7 @@ class PlayListView: UIView {
     
     private var isActive: Bool = false
     
-    var delegate: LegacyDelegate?
+    var delegate: PlayerScreenViewDelegate?
     
     var videoPlayerHeader: SummerVideoPlayerHeaderView?
     
