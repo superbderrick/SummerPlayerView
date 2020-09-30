@@ -52,7 +52,7 @@ open class SummerPlayerView: UIView {
     
     private var configuration: SummerPlayerViewConfig = InternalConfiguration()
     
-    private var theme: SummerPlayerViewTheme = MainTheme()
+    private var theme: SummerPlayerViewTheme = defaultTheme()
     
     private var internalDelegate: PlayerScreenViewDelegate?
     
@@ -172,7 +172,7 @@ open class SummerPlayerView: UIView {
         
         addSubview(self.playerControlView)
         
-        playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: theme)
+        playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: self.theme)
         
         playListView.delegate = self
         playListView.translatesAutoresizingMaskIntoConstraints = false

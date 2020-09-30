@@ -31,6 +31,7 @@ class PlayerViewController: UIViewController  {
         view.addSubview(summerPlayerView)
         
         summerPlayerView.pinEdges(targetView: view)
+        
         print("Playerstatus \(summerPlayerView.playerStatus)")
         print("Playerstatus \(String(describing: summerPlayerView.totalDuration))")
     }

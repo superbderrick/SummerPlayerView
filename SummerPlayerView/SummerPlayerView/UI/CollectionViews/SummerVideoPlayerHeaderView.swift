@@ -18,14 +18,6 @@ class SummerVideoPlayerHeaderView: UIView {
         return label
     }()
     
-    lazy private var optionsButton: UIButton! = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(Controls.options.image, for: .normal)
-        button.addTarget(self, action: #selector(self.optionsBtnPressed(_:)), for: .touchUpInside)
-        return button
-    }()
-    
     lazy private var controlsStackView: UIStackView  = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -76,20 +68,12 @@ class SummerVideoPlayerHeaderView: UIView {
     }
     
     private func applyTheme(_ theme: SummerPlayerViewTheme) {
-        optionsButton.setImage(theme.optionsButtonImage, for: .normal)
-        optionsButton.tintColor = theme.buttonTintColor
         titleLabel.textColor = theme.playListCurrentItemTextColor
         titleLabel.font = theme.playListCurrentItemFont
     }
     
     private func addTitleLabel() {
         controlsStackView.addArrangedSubview(titleLabel)
-    }
-    
-    
-    
-    @objc func optionsBtnPressed(_ sender: UIButton) {
-        
     }
     
 }
