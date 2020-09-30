@@ -43,5 +43,5 @@ public struct MainTheme: SummerPlayerViewTheme {
     public var forwardButtonImage: UIImage! = Controls.forward.image
     public var backButtonImage: UIImage! = Controls.back.image
     public var optionsButtonImage: UIImage! = Controls.options.image
-    
+
 }
