@@ -57,7 +57,7 @@ class ContentListView: UIView {
     
     var delegate: PlayerScreenViewDelegate?
     
-    var videoPlayerHeader: SummerVideoPlayerHeaderView?
+    
     
     var configuration = InternalConfiguration()
     
@@ -82,7 +82,7 @@ class ContentListView: UIView {
         contents = items
         self.currentContent = currentItem
         collectionView.reloadData()
-        videoPlayerHeader?.setItem(currentItem)
+        
     }
     
     func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfig, theme: SummerPlayerViewTheme) {
@@ -185,7 +185,7 @@ extension ContentListView: UICollectionViewDelegate {
         if let item = contents?[indexPath.row], let url = URL(string: item.url) {
             delegate?.didLoadVideo(url)
             delegate?.currentVideoIndex(indexPath.row,url)
-            videoPlayerHeader?.setItem(item)
+         
         }
     }
     

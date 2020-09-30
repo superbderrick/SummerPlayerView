@@ -133,6 +133,8 @@ class PlayerScreenView: UIView {
         
     }
     
+    
+    
     func videoDidChange(_ time: CMTime) {
         playerTimeLabel.text = time.description
     }
@@ -150,11 +152,15 @@ class PlayerScreenView: UIView {
         fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description
         
         headerTitle.text = title
+        
+        
     }
     
-    private func applyTheme(_ theme: SummerPlayerViewTheme) {
+    public func applyTheme(_ theme: SummerPlayerViewTheme) {
         playerSlider.tintColor = theme.sliderTintColor
         playerSlider.thumbTintColor = theme.sliderThumbColor
+        
+        
     }
     
     lazy var bottomView: UIView = {

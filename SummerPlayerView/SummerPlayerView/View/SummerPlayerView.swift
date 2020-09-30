@@ -159,6 +159,7 @@ open class SummerPlayerView: UIView {
         guard (standardRect != nil) else { return }
         
         self.playerScreenView = PlayerScreenView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
+        self.playerScreenView.applyTheme(self.theme)
         
         self.playerScreenView.delegate = self
         
