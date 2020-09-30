@@ -19,7 +19,7 @@ class PlayerViewController: UIViewController  {
         let defaultConfig = DefaultConfig()
         let contents = ContentsMaker.getContents()
         
-        let summerPlayerView = SummerPlayerView(configuration: defaultConfig, theme: nil,viewRect: view.bounds)
+        let summerPlayerView = SummerPlayerView(configuration: defaultConfig, theme: nil,targetView: view)
         
         summerPlayerView.delegate = self
         
@@ -31,20 +31,18 @@ class PlayerViewController: UIViewController  {
         
         summerPlayerView.pinEdges(targetView: view)
         
-    
+        
     }
     
 }
 
-
-
 extension PlayerViewController : SummerPlayerViewDelegate {
     func didFinishVideo() {
-        print("didFinishVideo")
+        
     }
     
     func didStartVideo() {
-        print("didStartVideo")
+        
     }
     
     func didChangeSliderValue(_ seekTime: CMTime) {
@@ -55,7 +53,7 @@ extension PlayerViewController : SummerPlayerViewDelegate {
     }
     
     func didPressNextButton() {
-                    
+        
     }
     
     func didPressPreviousButton() {
@@ -78,7 +76,7 @@ extension PlayerViewController : SummerPlayerViewDelegate {
         
     }
     
-
+    
 }
 
 extension PlayerViewController {
