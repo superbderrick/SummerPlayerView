@@ -68,6 +68,10 @@ open class SummerPlayerView: UIView {
         
         setupPlayer()
         setupSummerPlayerView(targetView.bounds)
+            
+
+        self.backgroundColor = self.theme.backgroundViewColor
+        
     }
     
     override init(frame: CGRect) {
@@ -363,6 +367,8 @@ extension UIView {
     }
     
 }
+
+
 
 
 

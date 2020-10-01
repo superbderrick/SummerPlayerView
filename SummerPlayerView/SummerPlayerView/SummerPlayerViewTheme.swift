@@ -4,6 +4,7 @@ import UIKit
 
 public protocol SummerPlayerViewTheme {
     
+    var backgroundViewColor:UIColor{get}
     var sliderTintColor: UIColor { get }
     var sliderThumbColor: UIColor { get }
     var contentsListviewBackground: UIColor { get }
@@ -14,7 +15,6 @@ public protocol SummerPlayerViewTheme {
     var playerScreenTimelabelsBackground: UIColor { get }
     var playerScreenTimelabelsTextFont: UIFont { get }
     var playerScreenTimelabelsTextColor: UIColor { get }
-    
     var playerScreenTitleLabelBackground: UIColor { get }
     var playerScreenTitleLabelTextFont: UIFont { get }
     var playerScreenTitleLabelTextColor: UIColor { get }
@@ -22,6 +22,8 @@ public protocol SummerPlayerViewTheme {
 }
 
 public struct defaultTheme: SummerPlayerViewTheme {
+    public var backgroundViewColor: UIColor =  .black
+    
     public var totalTimeLableTextFont = UIFont.boldSystemFont(ofSize: 13)
     public var contentsListviewBackground: UIColor = .black
     public var activityViewColor: UIColor = .black
