@@ -10,6 +10,7 @@ class ContentListView: UIView {
         let activity = UIActivityIndicatorView(style: .large)
         activity.translatesAutoresizingMaskIntoConstraints = false
         activity.startAnimating()
+        activity.isHidden = true
         return activity
     }()
     
@@ -57,9 +58,7 @@ class ContentListView: UIView {
     
     var delegate: PlayerScreenViewDelegate?
     
-    
-    
-    var configuration = InternalConfiguration()
+    var configuration:SummerPlayerViewConfig = InternalConfiguration()
     
     var theme:SummerPlayerViewTheme = defaultTheme()
     
@@ -88,6 +87,9 @@ class ContentListView: UIView {
     func createOverlayViewWith(wholeViewWidth: CGFloat,configuration: SummerPlayerViewConfig, theme: SummerPlayerViewTheme) {
         
         self.theme = theme
+        
+        self.configuration = configuration
+        
         addSubview(activityView)
         activityView.centerYAnchor.constraint(equalTo: centerYAnchor , constant: -50).isActive = true
         activityView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -96,9 +98,9 @@ class ContentListView: UIView {
         bottomControlsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         bottomControlsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         
-        if configuration.showVideoList {
-            addPlayList()
-        }
+        
+        addPlayList()
+        
         
         applyTheme(theme)
     }
@@ -128,12 +130,19 @@ class ContentListView: UIView {
             if newStatus != oldStatus {
                 DispatchQueue.main.async {[weak self] in
                     guard let `self` = self else { return }
-                    if newStatus == .playing || newStatus == .paused {
+                    
+                    if(self.configuration.showIndicator) {
                         
-                        self.activityView.isHidden = true
-                    } else {
-                        self.activityView.isHidden = false
+                        if newStatus == .playing || newStatus == .paused {
+                            
+                            self.activityView.isHidden = true
+                        } else {
+                            self.activityView.isHidden = false
+                        }
+                        
                     }
+                    
+                    
                 }
             }
         }

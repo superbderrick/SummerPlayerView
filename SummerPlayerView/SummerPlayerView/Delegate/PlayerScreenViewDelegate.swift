@@ -8,7 +8,6 @@ import AVKit
     var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? {get set}
     var totalDuration: CMTime? { get }
     var currentTime: CMTime? { get }
-    
     func didLoadVideo(_ url: URL)
     func playPause(_ isActive: Bool)
     func currentVideoIndex(_ index: Int ,_ url: URL )

@@ -3,12 +3,6 @@
 import Foundation
 import AVKit
 
-
-public enum ScreenMode {
-    case tiny
-    case fullScreen
-}
-
 public enum PlaybackMode {
     case quit
     case loopPlay
@@ -38,6 +32,10 @@ open class SummerPlayerView: UIView {
     
     private var isTouched = false
     
+    private var hideControl = true
+    
+    private var playbackMode:PlaybackMode = .loopPlay
+    
     private var currentVideoIndex = 0
     
     private var queuePlayer: AVQueuePlayer!
@@ -63,15 +61,15 @@ open class SummerPlayerView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         self.bounds = targetView.bounds
+        
         self.theme = theme
         self.configuration = configuration
+        self.backgroundColor = self.theme.backgroundViewColor
+        self.playbackMode = self.configuration.playbackMode
         
         setupPlayer()
         setupSummerPlayerView(targetView.bounds)
             
-
-        self.backgroundColor = self.theme.backgroundViewColor
-        
     }
     
     override init(frame: CGRect) {
@@ -119,7 +117,6 @@ open class SummerPlayerView: UIView {
         playListView.setPlayList(currentItem: currentItem, items: items)
     }
     
-    
     private func setupSummerPlayerView( _ viewRect: CGRect?) {
         if(viewRect != nil) {
             let wholeViewRect = Utills.getWholeViewRect(viewRect!)
@@ -129,12 +126,9 @@ open class SummerPlayerView: UIView {
             bringSubviewToFront(playListView)
             bringSubviewToFront(playerControlView)
             bringSubviewToFront(playerScreenView)
-            
         }
         
     }
-    
-    
     
     private func setupPlayer() {
         queuePlayer = AVQueuePlayer()
@@ -153,44 +147,44 @@ open class SummerPlayerView: UIView {
             using: { [weak self] (cmtime) in
                 self?.playerScreenView.videoDidChange(cmtime)
             })
-        
     }
     
-    private func setupInsideViews(_ standardRect: CGRect? , wholeRect : CGRect?) {
-        
-        guard configuration.hideControls else { return }
-        
-        guard (standardRect != nil) else { return }
-        
+    fileprivate func setupPlayerScreenView(_ standardRect: CGRect?) {
         self.playerScreenView = PlayerScreenView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
         self.playerScreenView.applyTheme(self.theme)
-        
         self.playerScreenView.delegate = self
-        
         addSubview(self.playerScreenView)
-        
+    }
+    
+    fileprivate func setupPlayerControllView(_ wholeRect: CGRect?) {
         let quarterViewRect = Utills.getQuarterViewRect(wholeRect!)
-        
         self.playerControlView = PlayerControllView(frame: CGRect(x: quarterViewRect!.origin.x, y: 0, width: quarterViewRect!.width, height: quarterViewRect!.height))
-        
         self.playerControlView.delegate = self
-        
         addSubview(self.playerControlView)
-        
+    }
+    
+    fileprivate func setupContentsListView(_ wholeRect: CGRect?) {
         playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: self.theme)
-        
         playListView.delegate = self
         playListView.translatesAutoresizingMaskIntoConstraints = false
         playListView.isHidden = false
         addSubview(playListView)
-        
         playListView.backgroundColor = .clear
         playListView.pinEdges(targetView: self)
+    }
+    
+    private func setupInsideViews(_ standardRect: CGRect? , wholeRect : CGRect?) {
+        guard (standardRect != nil) else { return }
+        
+        setupPlayerScreenView(standardRect)
+        
+        setupPlayerControllView(wholeRect)
+        
+        setupContentsListView(wholeRect)
         
     }
     
 }
-
 
 extension SummerPlayerView:PlayerControlViewDelegate {
     func didPressedAirPlayButton() {
@@ -279,7 +273,7 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
     
     func didTappedPlayerScreenView(_ isTapped: Bool) {
         
-        if configuration.hideControls {
+        if self.hideControl {
             
             self.playListView.isHidden = true
             self.playerControlView.isHidden = true
@@ -293,7 +287,7 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
             
             
         }
-        configuration.hideControls = !configuration.hideControls
+        self.hideControl = !self.hideControl
         
         regulatePlayerView(isFullScreen: isTouched)
     }
@@ -341,13 +335,14 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
         playerScreenView.resetPlayerUI()
         
         if(configuration.playbackMode == PlaybackMode.loopPlay) {
-//            playerScreenView.isPlaying = true
-//            playerScreenView.changePauseOrPlay(isActive: false)
             loopPlayContent()
         } else if(configuration.playbackMode == PlaybackMode.nextPlay) {
             
-        } else if(configuration.playbackMode == PlaybackMode.quit) {
+            playerScreenView.resetPlayerUI()
+            playNextContent()
             
+        } else if(configuration.playbackMode == PlaybackMode.quit) {
+            finishVideo()
         }
         
     
