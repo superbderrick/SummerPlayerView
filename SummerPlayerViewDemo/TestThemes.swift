@@ -35,15 +35,15 @@ public struct DarkTheme: SummerPlayerViewTheme {
     public var totalTimeLableTextFont = UIFont.boldSystemFont(ofSize: 13)
     public var contentsListviewBackground: UIColor = .systemGray5
     public var activityViewColor: UIColor = .white
-    public var totalTimeLabelTextColor: UIColor = .white
-    public var totalTimeLableBackground: UIColor = .black
+    public var totalTimeLabelTextColor: UIColor = .systemOrange
+    public var totalTimeLableBackground: UIColor = .systemGray6
     public var sliderTintColor: UIColor = .systemOrange
     public var sliderThumbColor: UIColor = .systemOrange
     public var playerScreenTimelabelsBackground: UIColor = .clear
     public var playerScreenTimelabelsTextFont: UIFont = UIFont.boldSystemFont(ofSize: 12)
     public var playerScreenTimelabelsTextColor: UIColor = .white
     public var playerScreenTitleLabelBackground: UIColor = .clear
-    public var playerScreenTitleLabelTextFont: UIFont = UIFont.boldSystemFont(ofSize: 17)
-    public var playerScreenTitleLabelTextColor: UIColor = .black
+    public var playerScreenTitleLabelTextFont: UIFont = UIFont.boldSystemFont(ofSize: 20)
+    public var playerScreenTitleLabelTextColor: UIColor = .systemOrange
 
 }
