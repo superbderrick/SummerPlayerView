@@ -12,6 +12,8 @@ import UIKit
 
 
 public struct LightTheme: SummerPlayerViewTheme {
+    public var backgroundViewColor: UIColor = .black
+    
     public var totalTimeLableTextFont = UIFont.boldSystemFont(ofSize: 13)
     public var contentsListviewBackground: UIColor = .black
     public var activityViewColor: UIColor = .black
@@ -32,6 +34,8 @@ public struct LightTheme: SummerPlayerViewTheme {
 
 
 public struct DarkTheme: SummerPlayerViewTheme {
+    public var backgroundViewColor: UIColor = .black
+    
     public var totalTimeLableTextFont = UIFont.boldSystemFont(ofSize: 13)
     public var contentsListviewBackground: UIColor = .white
     public var activityViewColor: UIColor = .white
