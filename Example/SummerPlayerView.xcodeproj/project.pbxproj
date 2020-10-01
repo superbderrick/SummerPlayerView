@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		49F13B002526248700C61BED /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F13AFF2526248700C61BED /* PlayerViewController.swift */; };
+		49F13B372526291D00C61BED /* ThemeMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F13B332526291D00C61BED /* ThemeMaker.swift */; };
+		49F13B382526291D00C61BED /* ContentsMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F13B342526291D00C61BED /* ContentsMaker.swift */; };
+		49F13B392526291D00C61BED /* DefaultConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F13B352526291D00C61BED /* DefaultConfig.swift */; };
+		49F13B3A2526291D00C61BED /* TestThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F13B362526291D00C61BED /* TestThemes.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -22,6 +26,10 @@
 		27DB802481AB88461D94AD40 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		388CE285B28AD4FC72B3AFA0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		49F13AFF2526248700C61BED /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		49F13B332526291D00C61BED /* ThemeMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeMaker.swift; sourceTree = "<group>"; };
+		49F13B342526291D00C61BED /* ContentsMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsMaker.swift; sourceTree = "<group>"; };
+		49F13B352526291D00C61BED /* DefaultConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultConfig.swift; sourceTree = "<group>"; };
+		49F13B362526291D00C61BED /* TestThemes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestThemes.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* SummerPlayerView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SummerPlayerView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +78,10 @@
 		607FACD21AFB9204008FA782 /* Example for SummerPlayerView */ = {
 			isa = PBXGroup;
 			children = (
+				49F13B342526291D00C61BED /* ContentsMaker.swift */,
+				49F13B352526291D00C61BED /* DefaultConfig.swift */,
+				49F13B362526291D00C61BED /* TestThemes.swift */,
+				49F13B332526291D00C61BED /* ThemeMaker.swift */,
 				49F13AFF2526248700C61BED /* PlayerViewController.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
@@ -239,7 +251,11 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				49F13B372526291D00C61BED /* ThemeMaker.swift in Sources */,
 				49F13B002526248700C61BED /* PlayerViewController.swift in Sources */,
+				49F13B382526291D00C61BED /* ContentsMaker.swift in Sources */,
+				49F13B392526291D00C61BED /* DefaultConfig.swift in Sources */,
+				49F13B3A2526291D00C61BED /* TestThemes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
