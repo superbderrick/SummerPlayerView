@@ -8,11 +8,11 @@
 
 import UIKit
 import AVKit
+
 import SummerPlayerView
 
 class PlayerViewController: UIViewController  {
     
-   
     let defaultConfig = DefaultConfig()
     
     override func viewDidLoad() {
@@ -20,16 +20,17 @@ class PlayerViewController: UIViewController  {
         
         let testContents = ContentsMaker.getContents()
         let sampleTheme = ThemeMaker.getTheme()
-
+        
         let summerPlayerView = SummerPlayerView(configuration: defaultConfig, theme: sampleTheme,targetView: view)
+        
         summerPlayerView.delegate = self
-
+        
         if let currentItem = testContents.first {
             summerPlayerView.setPlayList(currentItem: currentItem, items: testContents)
         }
-
+        
         view.addSubview(summerPlayerView)
-
+        
         summerPlayerView.pinEdges(targetView: view)
         
     }
@@ -38,49 +39,47 @@ class PlayerViewController: UIViewController  {
 
 extension PlayerViewController : SummerPlayerViewDelegate {
     func didFinishVideo() {
-
-        if(self.defaultConfig.playbackMode == .quit) {
-            moveViewController()
+        
+        if self.defaultConfig.playbackMode == .quit {
+            moveViewController()   
         }
-
-
     }
-
+    
     func didStartVideo() {
-
+        
     }
-
+    
     func didChangeSliderValue(_ seekTime: CMTime) {
-
+        
     }
     func didPressBackButton() {
         moveViewController()
     }
-
+    
     func didPressNextButton() {
-
+        
     }
-
+    
     func didPressPreviousButton() {
-
+        
     }
-
+    
     func didPressAirPlayButton() {
-
+        
     }
-
+    
     func didPressMoreButton() {
-
+        
     }
-
+    
     func didPressContentsListView(index: Int) {
-
+        
     }
-
+    
     func didPressPlayButton(isActive: Bool) {
-
+        
     }
-
+    
 }
 
 extension PlayerViewController {

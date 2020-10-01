@@ -11,7 +11,7 @@ public enum PlaybackMode {
 
 public class SummerPlayerView: UIView {
     
-    open var delegate: SummerPlayerViewDelegate?
+    public var delegate: SummerPlayerViewDelegate?
 
     public var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? = nil
 
@@ -41,7 +41,7 @@ public class SummerPlayerView: UIView {
 
     private var playerLayer: AVPlayerLayer?
 
-    private let playListView = ContentListView()
+    private let contentsListView = ContentListView()
 
     private var playerScreenView = PlayerScreenView()
 
@@ -51,7 +51,7 @@ public class SummerPlayerView: UIView {
 
     private var theme: SummerPlayerViewTheme = defaultTheme()
 
-    private var internalDelegate: PlayerScreenViewDelegate?
+    private var playerScreenDelegate: PlayerScreenViewDelegate?
 
     required public init(configuration: SummerPlayerViewConfig, theme: SummerPlayerViewTheme, targetView: UIView) {
 
@@ -101,7 +101,7 @@ public class SummerPlayerView: UIView {
 
 
     private func didRegisterPlayerItemCell(_ identifier: String, collectioViewCell cell: UICollectionViewCell.Type) {
-        playListView.didRegisterPlayerItemCell(identifier, collectioViewCell: cell)
+        contentsListView.didRegisterPlayerItemCell(identifier, collectioViewCell: cell)
     }
 
     public func setPlayList(currentItem: Content, items: [Content]) {
@@ -113,7 +113,7 @@ public class SummerPlayerView: UIView {
             didLoadVideo(url)
         }
 
-        playListView.setPlayList(currentItem: currentItem, items: items)
+        contentsListView.setPlayList(currentItem: currentItem, items: items)
     }
 
     private func setupSummerPlayerView( _ viewRect: CGRect?) {
@@ -122,7 +122,7 @@ public class SummerPlayerView: UIView {
 
             setupInsideViews(wholeViewRect , wholeRect: viewRect)
 
-            bringSubviewToFront(playListView)
+            bringSubviewToFront(contentsListView)
             bringSubviewToFront(playerControlView)
             bringSubviewToFront(playerScreenView)
         }
@@ -131,7 +131,7 @@ public class SummerPlayerView: UIView {
 
     private func setupPlayer() {
         queuePlayer = AVQueuePlayer()
-        queuePlayer.addObserver(playListView, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+        queuePlayer.addObserver(contentsListView, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
         playerLayer = AVPlayerLayer(player: queuePlayer)
         playerLayer?.backgroundColor = UIColor.black.cgColor
         playerLayer?.videoGravity = .resizeAspect
@@ -163,13 +163,13 @@ public class SummerPlayerView: UIView {
     }
 
     fileprivate func setupContentsListView(_ wholeRect: CGRect?) {
-        playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: self.theme)
-        playListView.delegate = self
-        playListView.translatesAutoresizingMaskIntoConstraints = false
-        playListView.isHidden = false
-        addSubview(playListView)
-        playListView.backgroundColor = .clear
-        playListView.pinEdges(targetView: self)
+        contentsListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: self.theme)
+        contentsListView.delegate = self
+        contentsListView.translatesAutoresizingMaskIntoConstraints = false
+        contentsListView.isHidden = false
+        addSubview(contentsListView)
+        contentsListView.backgroundColor = .clear
+        contentsListView.pinEdges(targetView: self)
     }
 
     private func setupInsideViews(_ standardRect: CGRect? , wholeRect : CGRect?) {
@@ -274,13 +274,13 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
 
         if self.hideControl {
 
-            self.playListView.isHidden = true
+            self.contentsListView.isHidden = true
             self.playerControlView.isHidden = true
 
             isTouched = true
 
         } else {
-            self.playListView.isHidden = false
+            self.contentsListView.isHidden = false
             self.playerControlView.isHidden = false
             isTouched = false
 
@@ -350,8 +350,6 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
 
 
 }
-
-
 
 
 extension UIView {
