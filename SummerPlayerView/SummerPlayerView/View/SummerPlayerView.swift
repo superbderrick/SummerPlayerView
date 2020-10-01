@@ -31,7 +31,10 @@ open class SummerPlayerView: UIView {
     private var contents: [Content]?
     
     private var isTouched = false
+    
     private var hideControl = true
+    
+    private var playbackMode:PlaybackMode = .loopPlay
     
     private var currentVideoIndex = 0
     
@@ -61,12 +64,12 @@ open class SummerPlayerView: UIView {
         
         self.theme = theme
         self.configuration = configuration
+        self.backgroundColor = self.theme.backgroundViewColor
+        self.playbackMode = self.configuration.playbackMode
         
         setupPlayer()
         setupSummerPlayerView(targetView.bounds)
             
-        self.backgroundColor = self.theme.backgroundViewColor
-        
     }
     
     override init(frame: CGRect) {
@@ -114,7 +117,6 @@ open class SummerPlayerView: UIView {
         playListView.setPlayList(currentItem: currentItem, items: items)
     }
     
-    
     private func setupSummerPlayerView( _ viewRect: CGRect?) {
         if(viewRect != nil) {
             let wholeViewRect = Utills.getWholeViewRect(viewRect!)
@@ -124,12 +126,9 @@ open class SummerPlayerView: UIView {
             bringSubviewToFront(playListView)
             bringSubviewToFront(playerControlView)
             bringSubviewToFront(playerScreenView)
-            
         }
         
     }
-    
-    
     
     private func setupPlayer() {
         queuePlayer = AVQueuePlayer()
@@ -148,41 +147,44 @@ open class SummerPlayerView: UIView {
             using: { [weak self] (cmtime) in
                 self?.playerScreenView.videoDidChange(cmtime)
             })
-        
+    }
+    
+    fileprivate func setupPlayerScreenView(_ standardRect: CGRect?) {
+        self.playerScreenView = PlayerScreenView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
+        self.playerScreenView.applyTheme(self.theme)
+        self.playerScreenView.delegate = self
+        addSubview(self.playerScreenView)
+    }
+    
+    fileprivate func setupPlayerControllView(_ wholeRect: CGRect?) {
+        let quarterViewRect = Utills.getQuarterViewRect(wholeRect!)
+        self.playerControlView = PlayerControllView(frame: CGRect(x: quarterViewRect!.origin.x, y: 0, width: quarterViewRect!.width, height: quarterViewRect!.height))
+        self.playerControlView.delegate = self
+        addSubview(self.playerControlView)
+    }
+    
+    fileprivate func setupContentsListView(_ wholeRect: CGRect?) {
+        playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: self.theme)
+        playListView.delegate = self
+        playListView.translatesAutoresizingMaskIntoConstraints = false
+        playListView.isHidden = false
+        addSubview(playListView)
+        playListView.backgroundColor = .clear
+        playListView.pinEdges(targetView: self)
     }
     
     private func setupInsideViews(_ standardRect: CGRect? , wholeRect : CGRect?) {
         guard (standardRect != nil) else { return }
         
-        self.playerScreenView = PlayerScreenView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
-        self.playerScreenView.applyTheme(self.theme)
+        setupPlayerScreenView(standardRect)
         
-        self.playerScreenView.delegate = self
+        setupPlayerControllView(wholeRect)
         
-        addSubview(self.playerScreenView)
-        
-        let quarterViewRect = Utills.getQuarterViewRect(wholeRect!)
-        
-        self.playerControlView = PlayerControllView(frame: CGRect(x: quarterViewRect!.origin.x, y: 0, width: quarterViewRect!.width, height: quarterViewRect!.height))
-        
-        self.playerControlView.delegate = self
-        
-        addSubview(self.playerControlView)
-        
-        playListView.createOverlayViewWith(wholeViewWidth: wholeRect!.size.width,configuration: configuration, theme: self.theme)
-        
-        playListView.delegate = self
-        playListView.translatesAutoresizingMaskIntoConstraints = false
-        playListView.isHidden = false
-        addSubview(playListView)
-        
-        playListView.backgroundColor = .clear
-        playListView.pinEdges(targetView: self)
+        setupContentsListView(wholeRect)
         
     }
     
 }
-
 
 extension SummerPlayerView:PlayerControlViewDelegate {
     func didPressedAirPlayButton() {
@@ -333,13 +335,14 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
         playerScreenView.resetPlayerUI()
         
         if(configuration.playbackMode == PlaybackMode.loopPlay) {
-//            playerScreenView.isPlaying = true
-//            playerScreenView.changePauseOrPlay(isActive: false)
             loopPlayContent()
         } else if(configuration.playbackMode == PlaybackMode.nextPlay) {
             
-        } else if(configuration.playbackMode == PlaybackMode.quit) {
+            playerScreenView.resetPlayerUI()
+            playNextContent()
             
+        } else if(configuration.playbackMode == PlaybackMode.quit) {
+            finishVideo()
         }
         
     

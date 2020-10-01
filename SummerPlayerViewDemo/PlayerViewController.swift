@@ -12,15 +12,16 @@ import SummerPlayerView
 
 class PlayerViewController: UIViewController  {
     
+    let defaultConfig = DefaultConfig()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let defaultConfig = DefaultConfig()
+        
         let testContents = ContentsMaker.getContents()
         let sampleTheme = ThemeMaker.getTheme()
         
         let summerPlayerView = SummerPlayerView(configuration: defaultConfig, theme: sampleTheme,targetView: view)
-        
         summerPlayerView.delegate = self
         
         if let currentItem = testContents.first {
@@ -31,14 +32,17 @@ class PlayerViewController: UIViewController  {
         
         summerPlayerView.pinEdges(targetView: view)
         
-        print("Playerstatus \(summerPlayerView.playerStatus)")
-        print("Playerstatus \(String(describing: summerPlayerView.totalDuration))")
     }
     
 }
 
 extension PlayerViewController : SummerPlayerViewDelegate {
     func didFinishVideo() {
+        
+        if(self.defaultConfig.playbackMode == .quit) {
+            moveViewController()
+        }
+        
         
     }
     
@@ -77,7 +81,6 @@ extension PlayerViewController : SummerPlayerViewDelegate {
         
     }
     
-    
 }
 
 extension PlayerViewController {
@@ -87,5 +90,4 @@ extension PlayerViewController {
         let controller = storyboard.instantiateViewController(withIdentifier: "MainVC")
         self.present(controller, animated: true, completion: nil)
     }
-    
 }
