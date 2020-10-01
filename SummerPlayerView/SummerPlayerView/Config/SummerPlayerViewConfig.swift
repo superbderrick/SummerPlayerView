@@ -10,7 +10,6 @@ import Foundation
 
 
 public protocol SummerPlayerViewConfig {
-    var hideControls: Bool { get set }
     var showIndicator : Bool {get set}
     var playbackMode: PlaybackMode{get set}
 }

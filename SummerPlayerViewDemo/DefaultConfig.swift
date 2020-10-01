@@ -12,5 +12,4 @@ import SummerPlayerView
 struct DefaultConfig: SummerPlayerViewConfig {
     public var playbackMode: PlaybackMode = PlaybackMode.loopPlay
     public var showIndicator = true
-    public var hideControls: Bool = true
 }

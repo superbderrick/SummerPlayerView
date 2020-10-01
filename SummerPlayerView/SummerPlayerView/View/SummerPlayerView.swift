@@ -31,6 +31,7 @@ open class SummerPlayerView: UIView {
     private var contents: [Content]?
     
     private var isTouched = false
+    private var hideControl = true
     
     private var currentVideoIndex = 0
     
@@ -151,9 +152,6 @@ open class SummerPlayerView: UIView {
     }
     
     private func setupInsideViews(_ standardRect: CGRect? , wholeRect : CGRect?) {
-        
-        guard configuration.hideControls else { return }
-        
         guard (standardRect != nil) else { return }
         
         self.playerScreenView = PlayerScreenView(frame: CGRect(x: standardRect!.origin.x, y: 0, width: standardRect!.width, height: standardRect!.height))
@@ -273,7 +271,7 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
     
     func didTappedPlayerScreenView(_ isTapped: Bool) {
         
-        if configuration.hideControls {
+        if self.hideControl {
             
             self.playListView.isHidden = true
             self.playerControlView.isHidden = true
@@ -287,7 +285,7 @@ extension SummerPlayerView: PlayerScreenViewDelegate {
             
             
         }
-        configuration.hideControls = !configuration.hideControls
+        self.hideControl = !self.hideControl
         
         regulatePlayerView(isFullScreen: isTouched)
     }
