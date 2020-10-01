@@ -8,15 +8,15 @@
 
 import UIKit
 import AVKit
-
+import SummerPlayerView
 
 class PlayerViewController: UIViewController  {
     
+   
   //  let defaultConfig = DefaultConfig()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
 //        let testContents = ContentsMaker.getContents()
 //        let sampleTheme = ThemeMaker.getTheme()
