@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SummerPlayerView_Example' do
+  pod 'SummerPlayerView', :path => '../'
+
+  target 'SummerPlayerView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
