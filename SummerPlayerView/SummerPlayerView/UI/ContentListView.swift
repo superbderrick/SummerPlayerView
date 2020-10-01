@@ -96,9 +96,9 @@ class ContentListView: UIView {
         bottomControlsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         bottomControlsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         
-        if configuration.showVideoList {
-            addPlayList()
-        }
+        
+        addPlayList()
+        
         
         applyTheme(theme)
     }

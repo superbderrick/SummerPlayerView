@@ -3,12 +3,6 @@
 import Foundation
 import AVKit
 
-
-public enum ScreenMode {
-    case tiny
-    case fullScreen
-}
-
 public enum PlaybackMode {
     case quit
     case loopPlay
@@ -63,13 +57,13 @@ open class SummerPlayerView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         self.bounds = targetView.bounds
+        
         self.theme = theme
         self.configuration = configuration
         
         setupPlayer()
         setupSummerPlayerView(targetView.bounds)
             
-
         self.backgroundColor = self.theme.backgroundViewColor
         
     }
