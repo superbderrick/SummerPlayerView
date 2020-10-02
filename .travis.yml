@@ -2,4 +2,4 @@ language: swift
 osx_image: xcode11
 xcode_workspace: Example/SummerPlayerView.xcworkspace
 script:
-  - xcodebuild clean && xcodebuild build -sdk iphonesimulator13.0 -workspace Example/SummerPlayerView.xcworkspace -scheme SummerPlayerView_Example CODE_SIGNING_REQUIRED=NO
+  - xcodebuild build -sdk iphonesimulator13.0 -workspace Example/SummerPlayerView.xcworkspace -scheme SummerPlayerView-Example CODE_SIGNING_REQUIRED=NO
