@@ -80,20 +80,21 @@ class PlayerViewController: UIViewController  {
 
 #### Configuration and theme
 
-Configure the summerPlayerView's theme and 
+- Configure SummerPlayerView's theme and 
 configurations, and target view where the video will appear like sample code
-Currently, only landscape mode is supported
+
+- Currently, only landscape mode is supported
 
 #### Concepts
+
 It tried to make it as similar as possible a Youtube kids App Player UI
-Through summerplayerview, you can understand the following basic player actions
+Through SummerPlayerView, you can understand the following basic player actions
+
 - Basic playback
 - Loop play
 - Next or Previous actions
 - Seek 
 - HLS playback with AVQueueplayer
-
-
 
 ## Author
 
