@@ -1,5 +1,5 @@
 PODS:
-  - SummerPlayerView (0.1.3)
+  - SummerPlayerView (0.1.4)
 
 DEPENDENCIES:
   - SummerPlayerView (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SummerPlayerView: 4b179c3b0a951cee81363113e9312877a04541a6
+  SummerPlayerView: b6fce371b15f74b58ad01e6e374488f6381a5e75
 
 PODFILE CHECKSUM: 1ec09e7ce5f6a158704bb6ead4f1cb6d8978a492
 
