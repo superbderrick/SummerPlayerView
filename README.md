@@ -16,6 +16,8 @@ It Tried to make it as similar as possible a Youtube kids App's Player UI
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+## Demo
+
 ## Requirements
 -	Swift 5.0+
 -	iOS 13.0+
