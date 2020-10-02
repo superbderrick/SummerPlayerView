@@ -1,0 +1,16 @@
+PODS:
+  - SummerPlayerView (0.1.0)
+
+DEPENDENCIES:
+  - SummerPlayerView (from `../`)
+
+EXTERNAL SOURCES:
+  SummerPlayerView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SummerPlayerView: 24d875876da182b26623a46a3ea6ff6813ec7dd0
+
+PODFILE CHECKSUM: 1ec09e7ce5f6a158704bb6ead4f1cb6d8978a492
+
+COCOAPODS: 1.9.0
