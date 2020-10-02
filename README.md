@@ -8,6 +8,10 @@
 
 ![](https://github.com/superbderrick/SummerSlider/blob/master/Image/logo.jpeg)
 
+## SummerPlayerView
+SummerPlayerView is an iOS Custom VideoPlayerView
+It Tried to make it as similar as possible a Youtube kids App's Player UI
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
