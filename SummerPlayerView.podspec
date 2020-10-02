@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SummerPlayerView'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'VideoPlayerView for kids, Tried to make it as similar as possible a Youtube kids App Player UI'
   s.description      = <<-DESC
   VideoPlayerView for kids, Tried to make it as similar as possible a Youtube kids App Player UI
@@ -21,6 +21,9 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/superbderrick/SummerPlayerView.git', :tag => s.version.to_s }
   s.ios.deployment_target = '13.0'
   s.source_files = 'SummerPlayerView/Classes/**/*'
+  s.resource_bundles = {
+    'SummerPlayerView' => ['SummerPlayerView/Assets/*.imageset']
+  }
   s.frameworks = 'UIKit', 'AVKit'
 end
 
