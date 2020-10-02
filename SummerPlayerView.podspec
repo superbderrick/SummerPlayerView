@@ -8,11 +8,11 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SummerPlayerView'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'VideoPlayerView for kids, Tried to make it as similar as possible a Youtube kids App Player UI'
   s.description      = <<-DESC
   VideoPlayerView for kids, Tried to make it as similar as possible a Youtube kids App Player UI
-                       DESC
+                         DESC
 
   s.homepage         = 'https://github.com/Derrick/SummerPlayerView'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -23,3 +23,9 @@ Pod::Spec.new do |s|
   s.source_files = 'SummerPlayerView/Classes/**/*'
   s.frameworks = 'UIKit', 'AVKit'
 end
+
+
+
+
+
+                       
