@@ -23,7 +23,6 @@ public protocol SummerPlayerViewTheme {
 
 public struct defaultTheme: SummerPlayerViewTheme {
     public var backgroundViewColor: UIColor =  .black
-    
     public var totalTimeLableTextFont = UIFont.boldSystemFont(ofSize: 13)
     public var contentsListviewBackground: UIColor = .black
     public var activityViewColor: UIColor = .black
@@ -31,11 +30,9 @@ public struct defaultTheme: SummerPlayerViewTheme {
     public var totalTimeLableBackground: UIColor = .black
     public var sliderTintColor: UIColor = .red
     public var sliderThumbColor: UIColor = .red
-    
     public var playerScreenTimelabelsBackground: UIColor = .clear
     public var playerScreenTimelabelsTextFont: UIFont = UIFont.boldSystemFont(ofSize: 13)
     public var playerScreenTimelabelsTextColor: UIColor = .white
-    
     public var playerScreenTitleLabelBackground: UIColor = .clear
     public var playerScreenTitleLabelTextFont: UIFont = UIFont.boldSystemFont(ofSize: 16)
     public var playerScreenTitleLabelTextColor: UIColor = .white

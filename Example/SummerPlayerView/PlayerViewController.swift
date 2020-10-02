@@ -26,7 +26,7 @@ class PlayerViewController: UIViewController  {
         summerPlayerView.delegate = self
         
         if let currentItem = testContents.first {
-            summerPlayerView.setPlayList(currentItem: currentItem, items: testContents)
+            summerPlayerView.setupPlayList(currentItem: currentItem, items: testContents)
         }
         
         view.addSubview(summerPlayerView)

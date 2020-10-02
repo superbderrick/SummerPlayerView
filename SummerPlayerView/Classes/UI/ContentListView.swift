@@ -58,9 +58,9 @@ class ContentListView: UIView {
     
     var delegate: PlayerScreenViewDelegate?
     
-    var configuration:SummerPlayerViewConfig = InternalConfiguration()
+    private var configuration:SummerPlayerViewConfig = InternalConfiguration()
     
-    var theme:SummerPlayerViewTheme = defaultTheme()
+    private var theme:SummerPlayerViewTheme = defaultTheme()
     
     private var topC: NSLayoutConstraint?
     private var bottomC: NSLayoutConstraint?
@@ -194,7 +194,7 @@ extension ContentListView: UICollectionViewDelegate {
         if let item = contents?[indexPath.row], let url = URL(string: item.url) {
             delegate?.didLoadVideo(url)
             delegate?.currentVideoIndex(indexPath.row,url)
-         
+            
         }
     }
     

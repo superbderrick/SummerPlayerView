@@ -14,4 +14,4 @@ public protocol SummerPlayerViewConfig {
     var playbackMode: PlaybackMode{get set}
 }
 
- 
+

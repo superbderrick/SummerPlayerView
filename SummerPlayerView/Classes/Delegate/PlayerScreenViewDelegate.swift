@@ -3,8 +3,7 @@
 import UIKit
 import AVKit
 
- protocol PlayerScreenViewDelegate where Self: UIView {
-    
+protocol PlayerScreenViewDelegate {
     var playerCellForItem: ((UICollectionView, IndexPath)->(UICollectionViewCell))? {get set}
     var totalDuration: CMTime? { get }
     var currentTime: CMTime? { get }

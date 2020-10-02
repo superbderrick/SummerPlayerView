@@ -18,15 +18,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Derrick' => 'kang.derrick@gmail.com' }
   s.source           = { :git => 'https://github.com/superbderrick/SummerPlayerView.git', :tag => s.version.to_s }
-  
   s.ios.deployment_target = '13.0'
-
   s.source_files = 'SummerPlayerView/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'SummerPlayerView' => ['SummerPlayerView/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'AVKit'
 end
