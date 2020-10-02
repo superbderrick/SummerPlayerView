@@ -93,8 +93,8 @@ It tried to make it as similar as possible a Youtube kids App Player UI
 Through SummerPlayerView, you can understand the following basic player actions
 
 - Basic playback
-- Loop play
-- Next or Previous actions
+- Loop playback
+- Next or Previous playback with playlist
 - Seek 
 - HLS playback with AVQueueplayer
 
