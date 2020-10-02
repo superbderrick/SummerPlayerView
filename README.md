@@ -16,6 +16,9 @@ SummerPlayerView is an iOS Custom VideoPlayerView, It tried to make it as simila
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Demo
+![With Dark theme](https://github.com/superbderrick/SummerPlayerView/blob/master/demo/1.gif)
+
+![With Ligtht theme](https://github.com/superbderrick/SummerPlayerView/blob/master/demo/2.gif)
 
 ## Requirements
 -	Swift 5.0+
