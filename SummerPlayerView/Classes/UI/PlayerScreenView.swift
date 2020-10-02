@@ -46,10 +46,7 @@ class PlayerScreenView: UIView {
     
     lazy private var moreButton: UIButton = {
         let moreButton = UIButton()
-        if let image = UIImage(named: "more") {
-            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            moreButton.setImage(image, for: .normal)
-        }
+        moreButton.setImage(UIImage(named: "more", in: Bundle(for: PlayerControllView.self), compatibleWith: nil), for: .normal)
         moreButton.tintColor = UIColor(white: 1, alpha: 1)
         moreButton.translatesAutoresizingMaskIntoConstraints = false
         moreButton.addTarget(self, action: #selector(self.clickMoreButton(_:)), for: .touchUpInside)
@@ -78,10 +75,9 @@ class PlayerScreenView: UIView {
     
     lazy private var playButton: UIButton = {
         let playButton = UIButton()
-        if let image = UIImage(named: "play") {
-            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            playButton.setImage(image, for: .normal)
-        }
+        playButton.setImage(UIImage(named: "play", in: Bundle(for: PlayerControllView.self), compatibleWith: nil), for: .normal)
+        
+        
         playButton.tintColor = UIColor(white: 1, alpha: 1)
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.addTarget(self, action: #selector(self.clickPlayButton(_:)), for: .touchUpInside)
@@ -113,14 +109,10 @@ class PlayerScreenView: UIView {
     public func changePauseOrPlay(isActive:Bool) {
         
         if(isPlaying) {
-            if let image = UIImage(named: "pause") {
-                playButton.setImage(image, for: .normal)
-                
-            }
+            playButton.setImage(UIImage(named: "pause", in: Bundle(for: PlayerControllView.self), compatibleWith: nil), for: .normal)
         } else {
-            if let image = UIImage(named: "play") {
-                playButton.setImage(image, for: .normal)
-            }
+            playButton.setImage(UIImage(named: "play", in: Bundle(for: PlayerControllView.self), compatibleWith: nil), for: .normal)
+            
         }
     }
     
@@ -146,7 +138,7 @@ class PlayerScreenView: UIView {
     
     func videoDidStart(title:String) {
         playerTimeLabel.text = CMTime.zero.description
-        playButton.setImage(UIImage(named: "pause"), for: .normal)
+        playButton.setImage(UIImage(named: "pause", in: Bundle(for: PlayerControllView.self), compatibleWith: nil), for: .normal)
         
         playerSlider.value = 0.0
         fullTimeLabel.text = delegate?.totalDuration?.description ?? CMTime.zero.description

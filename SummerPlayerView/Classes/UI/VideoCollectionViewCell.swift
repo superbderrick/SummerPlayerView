@@ -54,7 +54,13 @@ class VideoCollectionViewCell: UICollectionViewCell {
             return
         }
         totalTimeLabel.text = playListItem.totalTime
-        videoThumbnail.image = UIImage(named: playListItem.thumbnail)
+        
+        if let image = UIImage(named: playListItem.thumbnail) {
+            videoThumbnail.image = image
+        } else {
+            videoThumbnail.image = UIImage(named: "sf" , in: Bundle(for: VideoCollectionViewCell.self),compatibleWith: nil)
+        }
+        
         applyTheme(theme)
     }
 }

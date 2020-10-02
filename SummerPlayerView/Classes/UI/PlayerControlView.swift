@@ -17,11 +17,7 @@ class PlayerControllView: UIView {
     lazy private var backButton: UIButton = {
         let backwardButton = UIButton()
         backwardButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        if let image = UIImage(named: "back") {
-            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            backwardButton.setImage(image, for: .normal)
-        }
+        backwardButton.setImage(UIImage(named: "back", in: Bundle(for: PlayerControllView.self), compatibleWith: nil), for: .normal)
         
         backwardButton.tintColor = UIColor(white:1, alpha:1)
         backwardButton.translatesAutoresizingMaskIntoConstraints = false
@@ -32,10 +28,7 @@ class PlayerControllView: UIView {
     lazy private var previousButton: UIButton = {
         let nextButton = UIButton()
         nextButton.translatesAutoresizingMaskIntoConstraints = false
-        if let image = UIImage(named: "previous") {
-            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            nextButton.setImage(image, for: .normal)
-        }
+        nextButton.setImage(UIImage(named: "previous", in: Bundle(for: PlayerControllView.self), compatibleWith: nil), for: .normal)
         nextButton.tintColor = UIColor(white:1, alpha:1)
         nextButton.addTarget(self, action: #selector(self.clickPreviousButton(_:)), for: .touchUpInside)
         return nextButton
@@ -44,10 +37,7 @@ class PlayerControllView: UIView {
     lazy private var airplayButton: UIButton = {
         let airplayButton = UIButton()
         airplayButton.translatesAutoresizingMaskIntoConstraints = false
-        if let image = UIImage(named: "airplay") {
-            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            airplayButton.setImage(image, for: .normal)
-        }
+        airplayButton.setImage(UIImage(named: "airplay", in: Bundle(for: PlayerControllView.self), compatibleWith: nil), for: .normal)
         airplayButton.tintColor = UIColor(white:1, alpha:1)
         airplayButton.addTarget(self, action: #selector(self.clickAirPlayButton(_:)), for: .touchUpInside)
         return airplayButton
@@ -56,11 +46,8 @@ class PlayerControllView: UIView {
     lazy private var nextButton: UIButton = {
         let previousButton = UIButton()
         previousButton.translatesAutoresizingMaskIntoConstraints = false
+        previousButton.setImage(UIImage(named: "next", in: Bundle(for: PlayerControllView.self), compatibleWith: nil), for: .normal)
         
-        if let image = UIImage(named: "next") {
-            image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            previousButton.setImage(image, for: .normal)
-        }
         previousButton.tintColor = UIColor(white:1, alpha:1)
         previousButton.addTarget(self, action: #selector(self.clickNextButton(_:)), for: .touchUpInside)
         return previousButton
