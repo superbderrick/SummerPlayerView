@@ -37,6 +37,64 @@ it, simply add the following line to your Podfile:
 pod 'SummerPlayerView'
 ```
 
+## Usage
+
+Currently `SummerPlayerView` can be instantiated programatically only
+
+#### Programatically
+
+```swift 
+
+import UIKit
+import AVKit
+
+import SummerPlayerView
+
+class PlayerViewController: UIViewController  {
+    
+    let defaultConfig = DefaultConfig()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let testContents = ContentsMaker.getContents()
+        let sampleTheme = ThemeMaker.getTheme()
+        
+        let summerPlayerView = SummerPlayerView(configuration: defaultConfig, theme: sampleTheme,targetView: view)
+        
+        summerPlayerView.delegate = self
+        
+        if let currentItem = testContents.first {
+            summerPlayerView.setupPlayList(currentItem: currentItem, items: testContents)
+        }
+        
+        view.addSubview(summerPlayerView)
+        
+        summerPlayerView.pinEdges(targetView: view)
+        
+    }
+    
+}
+
+```
+
+#### Configuration and theme
+
+Configure the summerPlayerView's theme and 
+configurations, and target view where the video will appear like sample code
+Currently, only landscape mode is supported
+
+#### Concepts
+It tried to make it as similar as possible a Youtube kids App Player UI
+Through summerplayerview, you can understand the following basic player actions
+- Basic playback
+- Loop play
+- Next or Previous actions
+- Seek 
+- HLS playback with AVQueueplayer
+
+
+
 ## Author
 
 Derrick, kang.derrick@gmail.com
