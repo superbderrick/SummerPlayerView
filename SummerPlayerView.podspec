@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/Derrick/SummerPlayerView'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Derrick' => 'kang.derrick@gmail.com' }
+  s.swift_version = '5.0'
   s.source           = { :git => 'https://github.com/superbderrick/SummerPlayerView.git', :tag => s.version.to_s }
   s.ios.deployment_target = '13.0'
   s.source_files = 'SummerPlayerView/Classes/**/*'
