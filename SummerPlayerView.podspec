@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SummerPlayerView'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'VideoPlayerView for kids, Tried to make it as similar as possible a Youtube kids App Player UI'
   s.description      = <<-DESC
   VideoPlayerView for kids, Tried to make it as similar as possible a Youtube kids App Player UI
