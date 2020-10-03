@@ -6,9 +6,8 @@
 [![License](https://img.shields.io/cocoapods/l/SummerPlayerView.svg?style=flat)](https://cocoapods.org/pods/SummerPlayerView)
 [![Platform](https://img.shields.io/cocoapods/p/SummerPlayerView.svg?style=flat)](https://cocoapods.org/pods/SummerPlayerView)
 
+[![HitCount](http://hits.dwyl.com/superbderrick/https://githubcom/superbderrick/SummerPlayerView.svg)](http://hits.dwyl.com/superbderrick/https://githubcom/superbderrick/SummerPlayerView)
 
-[![HitCount](http://hits.dwyl.com/superbderrick/SummerPlayerView.svg)]
-(http://hits.dwyl.com/superbderrick/https://githubcom/superbderrick/SummerPlayerView)
 
 
 ![](https://github.com/superbderrick/SummerSlider/blob/master/Image/logo.jpeg)
