@@ -8,8 +8,6 @@
 
 [![HitCount](http://hits.dwyl.com/superbderrick/https://githubcom/superbderrick/SummerPlayerView.svg)](http://hits.dwyl.com/superbderrick/https://githubcom/superbderrick/SummerPlayerView)
 
-[![HitCount](http://hits.dwyl.com/superbderrick/https://githubcom/superbderrick/SummerSlider.svg)](http://hits.dwyl.com/superbderrick/https://githubcom/superbderrick/SummerSlider)
-
 
 
 
