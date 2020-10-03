@@ -5,7 +5,6 @@
 [![Version](https://img.shields.io/cocoapods/v/SummerPlayerView.svg?style=flat)](https://cocoapods.org/pods/SummerPlayerView)
 [![License](https://img.shields.io/cocoapods/l/SummerPlayerView.svg?style=flat)](https://cocoapods.org/pods/SummerPlayerView)
 [![Platform](https://img.shields.io/cocoapods/p/SummerPlayerView.svg?style=flat)](https://cocoapods.org/pods/SummerPlayerView)
-
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fsuperbderrick%2FSummerPlayerView&count_bg=%23773DC8&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true)](https://hits.seeyoufarm.com)
 
 
