@@ -10,7 +10,7 @@
 
 [![HitCount](http://hits.dwyl.com/superbderrick/repo/summerplayerview.svg)](http://hits.dwyl.com/superbderrick/repo/summerplayerview)
 
-[![HitCount](http://hits.dwyl.com/superbderrick/summerplayerview.svg)](http://hits.dwyl.com/superbderrick/summerplayerview)
+[![HitCount](http://hits.dwyl.com/superbderrick/summerplayerview.svg)](https://github.com/superbderrick/SummerPlayerView)
 
 
 ![](https://github.com/superbderrick/SummerSlider/blob/master/Image/logo.jpeg)
